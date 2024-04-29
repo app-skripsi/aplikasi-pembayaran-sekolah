@@ -11,7 +11,7 @@ class Home extends BaseController
 
     public function paymentSpp(): string
     {
-        return view('fe');
+        return view('bayar-spp');
     }
 
     public function pembayaran(): string {
