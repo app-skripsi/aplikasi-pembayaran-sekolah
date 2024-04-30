@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::fe');
 $routes->get('/bayar-spp', 'Home::paymentSpp');
 $routes->get('/index', 'Home::index');
+$routes->get('/dashboard', 'Home::viewDashboard');
 $routes->get('/login', 'Home::login');
 $routes->post('authentication','Home::authentication');
 $routes->get('/logout','Home::logout');

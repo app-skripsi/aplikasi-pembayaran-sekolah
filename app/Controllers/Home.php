@@ -17,4 +17,8 @@ class Home extends BaseController
     public function pembayaran(): string {
         return view('informasi-data-pembayaran');
     }
+
+    public function viewDashboard(): string {
+        return view('index');
+    }
 }
