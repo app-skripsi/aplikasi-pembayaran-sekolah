@@ -51,11 +51,12 @@
                     <thead>
                       <tr>
                         <th scope="col"   class="text-center">No</th>
-                        <th scope="col"  class="text-center">Nama</th>
-                        <th scope="col"  class="text-center">NIP</th>
-                        <th scope="col"  class="text-center">Alamat</th>
-                        <th scope="col"  class="text-center">No Telephone</th>
-                        <th scope="col"  class="text-center">Email</th>
+                        <th scope="col"  class="text-center">Guru</th>
+                        <th scope="col"  class="text-center">Bulan</th>
+                        <th scope="col"  class="text-center">Tahun</th>
+                        <th scope="col"  class="text-center">Tanggal</th>
+                        <th scope="col"  class="text-center">Gaji</th>
+                        <th scope="col"  class="text-center">Status</th>
                         <th scope="col"  class="text-center">Action</th>
                       </tr>
                     </thead>
@@ -68,6 +69,8 @@
                         <td class="text-center">Cell</td>
                         <td class="text-center">Cell</td>
                         <td class="text-center">Cell</td>
+                        <td class="text-center">Cell</td>
+
                       </tr>
                     </tbody>
                   </table>

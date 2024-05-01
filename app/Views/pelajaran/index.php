@@ -47,7 +47,7 @@
               <div class="card">
                 <div class="card-body">
                 <div class="table-responsive">
-                <table class="table">
+                  <table class="table">
                     <thead>
                       <tr>
                         <th scope="col"   class="text-center">No</th>
@@ -56,11 +56,14 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($pelajaran as $key => $row) { ?>
                       <tr>
                         <th scope="row"  class="text-center">1</th>
                         <td class="text-center">Cell</td>
                         <td class="text-center">Cell</td>
+                        <td class="text-center">Cell</td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>

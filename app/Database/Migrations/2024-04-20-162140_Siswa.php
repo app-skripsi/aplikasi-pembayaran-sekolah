@@ -44,12 +44,13 @@ class Siswa extends Migration
             'kelas_id' => [
                 'type' => 'INT',
                 'constraint' => 5,
+                'unsigned' => true,
                 'null' => true,
             ],
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('kelas_id', 'kelas', 'id', 'CASCADE', 'SET NULL');
+        $this->forge->addForeignKey('kelas_id', 'kelas', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('siswa');
     }
 
