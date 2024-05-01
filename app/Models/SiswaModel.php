@@ -6,37 +6,34 @@ use CodeIgniter\Model;
 
 class SiswaModel extends Model
 {
-    protected $table            = 'siswas';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+	protected $table = 'siswa';
 
-    protected bool $allowEmptyInserts = false;
+	public function getData($id = false)
+	{
+		if ($id === false) {
+			return $this->table('siswa')
+				->join('kelas', 'kelas.id = siswa.kelas_id')
+				->get()
+				->getResultArray();
+		} else {
+			return $this->table('siswa')
+				->join('kelas', 'kelas.id = siswa.kelas_id')
+				->where('siswa.id', $id)
+				->get()
+				->getRowArray();
+		}
+	}
+	public function insertData($data)
+	{
+		return $this->db->table($this->table)->insert($data);
+	}
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
-
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+	public function updateData($data, $id)
+	{
+		return $this->db->table($this->table)->update($data, ['id' => $id]);
+	}
+	public function deleteData($id)
+	{
+		return $this->db->table($this->table)->delete(['id' => $id]);
+	}
 }

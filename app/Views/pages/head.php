@@ -12,4 +12,5 @@
   <link href="../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css" rel="stylesheet" />
   <!-- Custom CSS -->
   <link href="../dist/css/style.min.css" rel="stylesheet" />
+  <title>Sistem Pembayaran</title>
 </head>

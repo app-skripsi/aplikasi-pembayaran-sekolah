@@ -30,11 +30,11 @@
                       ><i class="mdi mdi-home-outline fs-4"></i></a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                   Data Siswa
+                   Data Pengajian
                   </li>
                 </ol>
               </nav>
-              <h1 class="mb-0 fw-bold text-center"> Informasi Data Siswa </h1>
+              <h1 class="mb-0 fw-bold text-center"> Informasi Data Pengajian </h1>
             </div>
           </div>
           <a href="<?php echo base_url('#'); ?>" class="link" style="float: right;">
@@ -52,20 +52,16 @@
                       <tr>
                         <th scope="col"   class="text-center">No</th>
                         <th scope="col"  class="text-center">Nama</th>
-                        <th scope="col"  class="text-center">NIS</th>
+                        <th scope="col"  class="text-center">NIP</th>
                         <th scope="col"  class="text-center">Alamat</th>
                         <th scope="col"  class="text-center">No Telephone</th>
-                        <th scope="col"  class="text-center">Jenis Kelamin</th>
-                        <th scope="col"  class="text-center">Tanggal Lahir</th>
-                        <th scope="col"  class="text-center">Kelas</th>
+                        <th scope="col"  class="text-center">Email</th>
                         <th scope="col"  class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row"  class="text-center">1</th>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
                         <td class="text-center">Cell</td>
                         <td class="text-center">Cell</td>
                         <td class="text-center">Cell</td>

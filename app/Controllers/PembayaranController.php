@@ -9,6 +9,6 @@ class PembayaranController extends BaseController
 {
     public function index()
     {
-        //
+        return view('pembayaran/index');
     }
 }
