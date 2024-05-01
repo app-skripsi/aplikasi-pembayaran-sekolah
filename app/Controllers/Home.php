@@ -21,4 +21,8 @@ class Home extends BaseController
     public function viewDashboard(): string {
         return view('index');
     }
+
+    public function login(): string {
+        return view ('login');
+    }
 }
