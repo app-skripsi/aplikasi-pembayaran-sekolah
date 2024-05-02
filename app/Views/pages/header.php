@@ -6,17 +6,17 @@
         <b class="logo-icon">
           <i class="wi wi-sunset"></i>
           <!-- Dark Logo icon -->
-          <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+          <img src="../../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
           <!-- Light Logo icon -->
-          <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+          <img src="../../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
         </b>
         <!--End Logo icon -->
         <!-- Logo text -->
         <span class="logo-text">
           <!-- dark Logo text -->
-          <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+          <img src="../../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
           <!-- Light Logo text -->
-          <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+          <img src="../../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
         </span>
       </a>
       <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a>
@@ -41,7 +41,7 @@
                     waves-effect waves-dark
                     pro-pic
                   " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../assets/images/users/profile.png" alt="user" class="rounded-circle" width="31" />
+            <img src="../../assets/images/users/profile.png" alt="user" class="rounded-circle" width="31" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<?php echo base_url("/login"); ?>"><i class="mdi mdi-account m-r-5 m-l-5"></i> Logout</a>

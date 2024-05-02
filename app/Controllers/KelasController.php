@@ -16,9 +16,9 @@ class KelasController extends BaseController
 
     public function index(): string
     {
-        return view('kelas/index');
+        $kelas['kelas'] = $this->kelas->findAll();
+		return view('kelas/index', $kelas);
     }
-
 	public function create(): string
 	{
 		return view('kelas/create');

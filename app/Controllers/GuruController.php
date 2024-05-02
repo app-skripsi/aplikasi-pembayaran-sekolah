@@ -17,7 +17,8 @@ class GuruController extends BaseController
 
     public function index(): string
     {
-        return view('guru/index');
+        $guru['guru'] = $this->guru->findAll();
+		return view('guru/index', $guru);
     }
 
 	public function create(): string

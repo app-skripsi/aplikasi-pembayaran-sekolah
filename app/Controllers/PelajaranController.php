@@ -16,7 +16,8 @@ class PelajaranController extends BaseController
 
     public function index(): string
     {
-        return view('pelajaran/index');
+        $pelajaran['pelajaran'] = $this->pelajaran->findAll();
+		return view('pelajaran/index', $pelajaran);
     }
 
 	public function create(): string
