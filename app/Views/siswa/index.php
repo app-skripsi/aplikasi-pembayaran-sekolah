@@ -62,17 +62,28 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($spp as $key => $row) { ?>
                       <tr>
-                        <th scope="row"  class="text-center">1</th>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
+                      <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['nama']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['nis']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['alamat']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['nomor_telepon']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['jenis_kelamin']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['tanggal_lahir']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['kelas_id']; ?></td>
+                          <td scope="col" class="text-center">
+                            <div class="btn-group">
+                              <a href="<?php echo base_url('siswa/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
+                                edit
+                              </a>
+                              <a href="<?php echo base_url('siswa/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger delete-btn">
+                                hapus
+                              </a>
+                            </div>
+                          </td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>

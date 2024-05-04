@@ -64,19 +64,30 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($spp as $key => $row) { ?>
                       <tr>
-                        <th scope="row"  class="text-center">1</th>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
+                      <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['siswa_id']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['kelas_id']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['tahun_ajaran']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['bulan_pembayaran']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['nominal_pembayaran']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['tanggal_pembayaran']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['status_pembayaran']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['metode_pembayaran']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['catatan']; ?></td>
+                          <td scope="col" class="text-center">
+                            <div class="btn-group">
+                              <a href="<?php echo base_url('spp/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
+                                edit
+                              </a>
+                              <a href="<?php echo base_url('spp/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger delete-btn">
+                                hapus
+                              </a>
+                            </div>
+                          </td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>

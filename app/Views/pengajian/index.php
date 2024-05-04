@@ -61,17 +61,27 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($pengajian as $key => $row) { ?>
                       <tr>
-                        <th scope="row"  class="text-center">1</th>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-                        <td class="text-center">Cell</td>
-
+                      <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['guru_id']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['gaji']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
+                          <td scope="col" class="text-center">
+                            <div class="btn-group">
+                              <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
+                                edit
+                              </a>
+                              <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger delete-btn">
+                                hapus
+                              </a>
+                            </div>
+                          </td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>
