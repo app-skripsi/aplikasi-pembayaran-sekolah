@@ -17,7 +17,8 @@ class SiswaController extends BaseController
 
     public function index(): string
     {
-        return view('siswa/index');
+		$siswa['siswa'] = $this->siswa->findAll();
+		return view('siswa/index', $siswa);
     }
 
 	public function create(): string

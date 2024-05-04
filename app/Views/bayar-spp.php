@@ -41,8 +41,8 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="<?php echo base_url("/") ?>">Home</a></li>
-          <li><a class="nav-link scrollto" href="<?php echo base_url("/bayar-spp") ?>">Pembayaran Spp</a></li>
+          <li><a class="nav-link scrollto" href="<?php echo base_url("/") ?>">Home</a></li>
+          <li><a class="nav-link scrollto active" href="<?php echo base_url("/bayar-spp") ?>">Pembayaran Spp</a></li>
           <li><a class="getstarted scrollto" href=<?php echo base_url("/login") ?>>Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -70,69 +70,13 @@
   <div class="container">
     <div class="card shadow">
       <div class="card-body">
-        <h2 class="card-title">Input Form</h2>
-        <form action="/submit-form" method="post">
+        <h2 class="card-title text-center">Form Cari Data Siswa</h2>
+        <form action="<?= base_url('spp/getByNIS  '); ?>" method="post">
           <div class="form-group mb-3">
             <label for="siswa_id">Siswa ID:</label>
-            <input type="number" class="form-control" id="siswa_id" name="siswa_id" placeholder="Enter Siswa ID.." required>
+            <input type="number" class="form-control" id="siswa_id" name="siswa_id" placeholder="Silahkan Memasukan Data NIS siswa.." required>
           </div>
-
-          <div class="form-group mb-3">
-            <label for="kelas_id">Kelas ID:</label>
-            <input type="number" class="form-control" id="kelas_id" name="kelas_id" placeholder="Enter Kelas ID.." required>
-          </div>
-
-          <div class="form-group mb-3">
-            <label for="tahun_ajaran">Tahun Ajaran:</label>
-            <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" placeholder="Enter Tahun Ajaran.." required>
-          </div>
-
-          <div class="form-group mb-3">
-            <label for="bulan_pembayaran">Bulan Pembayaran:</label>
-            <input type="text" class="form-control" id="bulan_pembayaran" name="bulan_pembayaran" placeholder="Enter Bulan Pembayaran.." required>
-          </div>
-
-          <div class="form-group mb-3">
-            <label for="nominal_pembayaran">Nominal Pembayaran:</label>
-            <input type="number" class="form-control" id="nominal_pembayaran" name="nominal_pembayaran" placeholder="Enter Nominal Pembayaran.." required>
-          </div>
-
-          <div class="form-group mb-3">
-            <label for="tanggal_pembayaran">Tanggal Pembayaran:</label>
-            <input type="date" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran" required>
-          </div>
-
-          <div class="form-group mb-3">
-            <label for="status_pembayaran">Status Pembayaran:</label>
-            <select class="form-control" id="status_pembayaran" name="status_pembayaran">
-              <option value="Lunas">Lunas</option>
-              <option value="Belum Lunas">Belum Lunas</option>
-            </select>
-          </div>
-          <div class="form-group mb-3">
-            <label for="metode_pembayaran">Metode Pembayaran:</label>
-            <select class="form-control" id="metode_pembayaran" name="metode_pembayaran" onchange="showPaymentDetails()">
-              <option value="transfer">Transfer</option>
-              <option value="gopay">GoPay</option>
-            </select>
-          </div>
-
-          <div id="transferDetails" style="display: none;">
-            <div class="form-group mb-3">
-              <label for="no_rekening">Nomor Rekening:</label>
-              <input type="text" class="form-control" id="no_rekening" name="no_rekening" placeholder="Enter Nomor Rekening">
-            </div>
-            <div class="form-group mb-3">
-              <label for="atas_nama">Atas Nama:</label>
-              <input type="text" class="form-control" id="atas_nama" name="atas_nama" placeholder="Enter Atas Nama">
-            </div>
-          </div>
-
-          <div id="gopayDetails" style="display: none;">
-            <button type="button" class="btn btn-primary" onclick="payWithGoPay()">Bayar dengan GoPay</button>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Cari Data</button>
         </form>
       </div>
     </div>

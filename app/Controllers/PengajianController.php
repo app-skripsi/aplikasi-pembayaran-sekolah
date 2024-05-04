@@ -17,7 +17,8 @@ class PengajianController extends BaseController
 
     public function index(): string
     {
-        return view('pengajian/index');
+		$pengajian['pengajian'] = $this->pengajian->findAll();
+		return view('pengajian/index', $pengajian);
     }
 
 	public function create(): string

@@ -38,4 +38,14 @@ class SppModel extends Model
 	{
 		return $this->db->table($this->table)->delete(['id' => $id]);
 	}
+
+	public function getDataByNIS($nis)
+{
+    return $this->table('spp')
+        ->join('guru', 'guru.id = spp.guru_id')
+        ->join('siswa', 'siswa.id = spp.siswa_id')
+        ->where('siswa.nis', $nis)
+        ->get()
+        ->getResultArray();
+}
 }

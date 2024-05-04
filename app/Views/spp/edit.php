@@ -21,14 +21,14 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data Pengajian
+                  Data Spp
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                   Edit Pengajian
+                   Edit Spp
                 </li>
               </ol>
             </nav>
-            <h1 class="mb-0 fw-bold text-center"> Form Edit Data Pengajian </h1>
+            <h1 class="mb-0 fw-bold text-center"> Form Edit Data Spp </h1>
           </div>
         </div>
       </div>
@@ -50,30 +50,42 @@
             <?php } ?>
             <div class="card shadow">
               <div class="card-body">
-              <form action="<?= site_url('pengajian/update/' . $pengajian['id']); ?>" method="post"><?php echo form_hidden('id', $pengajian['id']); ?>
+              <form action="<?= site_url('spp/update/' . $spp['id']); ?>" method="post"><?php echo form_hidden('id', $spp['id']); ?>
                   <div class="form-group">
-                    <label class="form-label" for="guru_id">Guru</label>
-                    <input class="form-control form-control-lg" type="text" id="guru_id" name="guru_id" value="<?php echo isset($pengajian['guru_id']) ? $pengajian['guru_id'] : ''; ?>"  />
+                    <label class="form-label" for="siswa_id">Siswa</label>
+                    <input class="form-control form-control-lg" type="text" id="siswa_id" name="siswa_id" value="<?php echo isset($spp['siswa_id']) ? $spp['siswa_id'] : ''; ?>"  />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="bulan">Bulan</label>
-                    <input class="form-control form-control-lg" type="text" id="bulan" name="bulan" value="<?php echo isset($pengajian['bulan']) ? $pengajian['bulan'] : ''; ?>"  />
+                    <label class="form-label" for="kelas_id">Kelas</label>
+                    <input class="form-control form-control-lg" type="text" id="kelas_id" name="kelas_id" value="<?php echo isset($spp['kelas_id']) ? $spp['kelas_id'] : ''; ?>"  />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="tahun">Tahun</label>
-                    <input class="form-control form-control-lg" type="text" id="tahun" name="tahun" value="<?php echo isset($pengajian['tahun']) ? $pengajian['tahun'] : ''; ?>"  />
+                    <label class="form-label" for="tahun_ajaran">Tahun Ajaran</label>
+                    <input class="form-control form-control-lg" type="text" id="tahun_ajaran" name="tahun_ajaran" value="<?php echo isset($spp['tahun_ajaran']) ? $spp['tahun_ajaran'] : ''; ?>"  />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="tanggal">Tanggal</label>
-                    <input class="form-control form-control-lg" type="text" id="tanggal" name="tanggal" value="<?php echo isset($pengajian['tanggal']) ? $pengajian['tanggal'] : ''; ?>"  />
+                    <label class="form-label" for="bulan_pembayaran">Bulan</label>
+                    <input class="form-control form-control-lg" type="text" id="bulan_pembayaran" name="bulan_pembayaran" value="<?php echo isset($spp['bulan_pembayaran']) ? $spp['bulan_pembayaran'] : ''; ?>"  />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="gaji">Gaji</label>
-                    <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" value="<?php echo isset($pengajian['gaji']) ? $pengajian['gaji'] : ''; ?>"  />
+                    <label class="form-label" for="nominal_pembayaran">Tagihan</label>
+                    <input class="form-control form-control-lg" type="text" id="nominal_pembayaran" name="nominal_pembayaran" value="<?php echo isset($spp['nominal_pembayaran']) ? $spp['nominal_pembayaran'] : ''; ?>"  />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="status">Status</label>
-                    <input class="form-control form-control-lg" type="text" id="status" name="status" value="<?php echo isset($pengajian['status']) ? $pengajian['status'] : ''; ?>"  />
+                    <label class="form-label" for="tanggal_pembayaran">Gaji</label>
+                    <input class="form-control form-control-lg" type="text" id="tanggal_pembayaran" name="tanggal_pembayaran" value="<?php echo isset($spp['tanggal_pembayaran']) ? $spp['tanggal_pembayaran'] : ''; ?>"  />
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="status_pembayaran">Status</label>
+                    <input class="form-control form-control-lg" type="text" id="status_pembayaran" name="status_pembayaran" value="<?php echo isset($spp['status_pembayaran']) ? $spp['status_pembayaran'] : ''; ?>"  />
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="metode_pembayaran">Metode Pembayaran</label>
+                    <input class="form-control form-control-lg" type="text" id="metode_pembayaran" name="metode_pembayaran" value="<?php echo isset($spp['metode_pembayaran']) ? $spp['metode_pembayaran'] : ''; ?>"  />
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="catatan">Catatan</label>
+                    <input class="form-control form-control-lg" type="text" id="catatan" name="catatan" value="<?php echo isset($spp['catatan']) ? $spp['catatan'] : ''; ?>"  />
                   </div><br>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

@@ -62,7 +62,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($spp as $key => $row) { ?>
+                    <?php foreach ($siswa as $key => $row) { ?>
                       <tr>
                       <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['nama']; ?></td>

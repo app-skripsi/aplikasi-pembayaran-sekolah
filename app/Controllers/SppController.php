@@ -16,7 +16,8 @@ class SppController extends BaseController
 
     public function index(): string
     {
-        return view('spp/index');
+		$spp['spp'] = $this->spp->findAll();
+		return view('spp/index', $spp);
     }
 
 	public function create(): string
@@ -52,6 +53,41 @@ class SppController extends BaseController
 			}
 		}
 	}
+
+
+	public function getByNIS()
+    {
+        // Ambil NIS dari permintaan GET
+        $nis = $this->request->getGet('nis');
+
+        // Validasi NIS
+        if (!$nis) {
+            // Jika NIS tidak tersedia, kembalikan respon JSON dengan pesan kesalahan
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => 'NIS harus disediakan dalam permintaan GET.'
+            ])->setStatusCode(400);
+        }
+
+        // Dapatkan data siswa berdasarkan NIS
+        $siswa = $this->spp->getDataByNIS($nis);
+
+        // Periksa apakah data siswa ditemukan
+        if (!$siswa) {
+            // Jika tidak ditemukan, kembalikan respon JSON dengan pesan
+            return $this->response->setJSON([
+                'status' => false,
+                'message' => 'Siswa dengan NIS tersebut tidak ditemukan.'
+            ])->setStatusCode(404);
+        }
+
+        // Jika ditemukan, kembalikan data siswa dalam respon JSON
+        return $this->response->setJSON([
+            'status' => true,
+            'data' => $siswa
+        ])->setStatusCode(200);
+    }
+
 
 
 	public function edit($id)
