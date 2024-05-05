@@ -70,11 +70,15 @@
                   <div class="form-group">
                     <label class="form-label" for="nomor_telepon">Nomer Telepon</label>
                     <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" placeholder="Masukan Nomer Telephone" />
-                  </div><br><div class="form-group">
-
-                    <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
-                    <input class="form-control form-control-lg" type="text" id="jenis_kelamin" name="jenis_kelamin" placeholder="Masukan Jenis Kelamin" />
                   </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
+                    <select class="form-control form-control-lg" id="jenis_kelamin" name="jenis_kelamin" required>
+                        <option value="">Pilih Jenis Kelamin</option>
+                        <option value="L">Laki-laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                </div>
                   <div class="form-group">
                     <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
                     <input class="form-control form-control-lg" type="date" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukan Tanggal Lahir" />

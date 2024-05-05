@@ -3,27 +3,44 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\KelasModel;
 use App\Models\SiswaModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class SiswaController extends BaseController
 {
     protected $siswa;
+	protected $kelas;
+
     public function __construct()
 	{
 		helper(['form']);
 		$this->siswa = new SiswaModel();
+		$this->kelas = new KelasModel();
 	}
 
-    public function index(): string
-    {
-		$siswa['siswa'] = $this->siswa->findAll();
+    public function index(): string {
+		$siswa['siswa'] = $this->siswa->join('kelas', 'kelas.id = siswa.kelas_id', 'INNER JOIN')->findAll();
 		return view('siswa/index', $siswa);
     }
 
-	public function create(): string
+	public function create()
 	{
-		return view('siswa/create');
+		// Mendapatkan daftar kelas dari model kelas
+		$kelas = $this->kelas->findAll();
+	
+		// Memformat data kelas ke dalam format yang sesuai untuk dropdown
+		$kelas_options = ['' => 'Pilih Kelas']; // Inisialisasi array dengan opsi default
+		foreach ($kelas as $kelas_item) {
+			$kelas_options[$kelas_item['kelas']] = $kelas_item['kelas']; // Menggunakan id sebagai value dan kelas sebagai label
+		}
+	
+		// Data yang akan dikirim ke view
+		$data = [
+			'kelas' => $kelas
+		];
+	
+		// Mengirimkan data ke view dan me-render view
+		return view('siswa/create', $data);
 	}
 
     public function store()
@@ -55,6 +72,8 @@ class SiswaController extends BaseController
 
 	public function edit($id)
 	{
+		$kelas = $this->kelas->findAll();
+		$data['kelas'] = ['' => 'kelas'] + array_column($kelas, 'kelas','kelas_id');
         $data['siswa'] = $this->siswa->getData($id);
 		return view('siswa/edit', $data);
 	}

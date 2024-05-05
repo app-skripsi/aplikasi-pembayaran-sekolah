@@ -37,7 +37,7 @@
               <h1 class="mb-0 fw-bold text-center"> Informasi Data Siswa </h1>
             </div>
           </div>
-          <a href="<?php echo base_url('#'); ?>" class="link" style="float: right;">
+          <a href="<?php echo base_url('/siswa/create'); ?>" class="link" style="float: right;">
                     <i class="mdi mdi-plus fs-4 text-primary">Tambah Data</i>
                 </a>
         </div>
@@ -71,7 +71,7 @@
                           <td scope="col" class="text-center"><?php echo $row['nomor_telepon']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['jenis_kelamin']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['tanggal_lahir']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['kelas_id']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['kelas']; ?></td>
                           <td scope="col" class="text-center">
                             <div class="btn-group">
                               <a href="<?php echo base_url('siswa/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
