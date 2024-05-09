@@ -23,6 +23,10 @@ class SiswaModel extends Model
 				->getRowArray();
 		}
 	}
+	public function countAllSiswa()
+    {
+        return $this->countAll();
+    }
 	public function insertData($data)
 	{
 		return $this->db->table($this->table)->insert($data);

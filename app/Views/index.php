@@ -62,9 +62,22 @@
                             </div>
                           </div>
                         </td>
-                        <td>123</td>
+                        <td><?= $kelas ?? 0 ?></td>
                         <td>
-                          <label class="badge bg-danger">Lihat</label>
+                        <a href="<?php  echo base_url('/kelas')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="">
+                              <h4 class="m-b-0 font-16">Data Guru</h4>
+                            </div>
+                          </div>
+                        </td>
+                        <td><?= $guru ?? 0 ?></td>
+                        <td>
+                          <a href="<?php  echo base_url('/guru')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
                         </td>
                       </tr>
                       <tr>
@@ -75,9 +88,9 @@
                             </div>
                           </div>
                         </td>
-                        <td>123</td>
+                        <td><?= $siswa ?? 0 ?></td>
                         <td>
-                          <label class="badge bg-danger">Lihat</label>
+                        <a href="<?php  echo base_url('/siswa')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
                         </td>
                       </tr>
                       <tr>
@@ -88,9 +101,9 @@
                             </div>
                           </div>
                         </td>
-                        <td>123</td>
+                        <td><?= $pelajaran ?? 0 ?></td>
                         <td>
-                          <label class="badge bg-danger">Lihat</label>
+                        <a href="<?php  echo base_url('/pelajaran')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
                         </td>
                       </tr>
                       <tr>
@@ -101,9 +114,9 @@
                             </div>
                           </div>
                         </td>
-                        <td>123</td>
+                        <td><?= $spp ?? 0 ?></td>
                         <td>
-                          <label class="badge bg-danger">Lihat</label>
+                        <a href="<?php  echo base_url('/spp')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
                         </td>
                       </tr>
                       <tr>
@@ -114,9 +127,9 @@
                             </div>
                           </div>
                         </td>
-                        <td>123</td>
+                        <td><?= $pengajian ?? 0 ?></td>
                         <td>
-                          <label class="badge bg-danger">Lihat</label>
+                        <a href="<?php  echo base_url('/pengajian')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
                         </td>
                       </tr>
                     </tbody>

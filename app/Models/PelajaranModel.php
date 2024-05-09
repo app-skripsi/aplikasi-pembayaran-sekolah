@@ -20,6 +20,10 @@ class PelajaranModel extends Model
 				->getRowArray();
 		}
 	}
+	public function countAllPelajaran()
+    {
+        return $this->countAll();
+    }
 	public function insertData($data)
 	{
 		return $this->db->table($this->table)->insert($data);

@@ -25,6 +25,10 @@ class SppModel extends Model
 				->getRowArray();
 		}
 	}
+	public function countAllSpp()
+    {
+        return $this->countAll();
+    }
 	public function insertData($data)
 	{
 		return $this->db->table($this->table)->insert($data);

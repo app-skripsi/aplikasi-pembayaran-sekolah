@@ -20,6 +20,10 @@ class GuruModel extends Model
 				->getRowArray();
 		}
 	}
+	public function countAllGuru()
+    {
+        return $this->countAll();
+    }
 	public function insertData($data)
 	{
 		return $this->db->table($this->table)->insert($data);

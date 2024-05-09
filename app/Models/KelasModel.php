@@ -20,6 +20,10 @@ class KelasModel extends Model
 				->getRowArray();
 		}
 	}
+	public function countAllKelas()
+    {
+        return $this->countAll();
+    }
 	public function insertData($data)
 	{
 		return $this->db->table($this->table)->insert($data);
