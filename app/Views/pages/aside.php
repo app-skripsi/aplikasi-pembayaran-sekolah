@@ -14,7 +14,7 @@
               <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/kelas'); ?>" aria-expanded="false"><i class="mdi mdi-border-all"></i><span class="hide-menu">Kelas</span></a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/siswa'); ?>" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Siswa</span></a>
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/siswa'); ?>" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Siswa</span></a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/pelajaran'); ?>" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Pelajaran</span></a>

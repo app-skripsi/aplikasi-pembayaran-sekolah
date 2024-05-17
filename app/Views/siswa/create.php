@@ -51,10 +51,15 @@
             <div class="card shadow">
               <div class="card-body">
                 <form action="<?= base_url('siswa/store'); ?>" method="post">
-                  <div class="form-group">
-                    <label class="form-label" for="kelas_id">Kelas</label>
-                    <input class="form-control form-control-lg" type="text" id="kelas_id" name="kelas_id"/>
-                  </div><br>
+                <div class="form-group">
+                <label class="form-label" for="kelas_id">Kelas</label>
+                <select class="form-control form-control-lg" id="kelas_id" name="kelas_id">
+                <option value="">Pilih Kelas</option> <!-- Tambahkan opsi ini -->
+                    <?php foreach ($kelas as $kelas_item): ?>
+                        <option value="<?= $kelas_item['id'] ?>"><?= $kelas_item['kelas'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nama">Nama</label>
                     <input class="form-control form-control-lg" type="text" id="nama" name="nama" placeholder="Masukan Nama Siswa" />
@@ -78,7 +83,7 @@
                         <option value="L">Laki-laki</option>
                         <option value="P">Perempuan</option>
                     </select>
-                </div>
+                </div><br>
                   <div class="form-group">
                     <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
                     <input class="form-control form-control-lg" type="date" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukan Tanggal Lahir" />

@@ -28,12 +28,6 @@ class SiswaController extends BaseController
 		// Mendapatkan daftar kelas dari model kelas
 		$kelas = $this->kelas->findAll();
 	
-		// Memformat data kelas ke dalam format yang sesuai untuk dropdown
-		$kelas_options = ['' => 'Pilih Kelas']; // Inisialisasi array dengan opsi default
-		foreach ($kelas as $kelas_item) {
-			$kelas_options[$kelas_item['kelas']] = $kelas_item['kelas']; // Menggunakan id sebagai value dan kelas sebagai label
-		}
-	
 		// Data yang akan dikirim ke view
 		$data = [
 			'kelas' => $kelas
@@ -72,11 +66,27 @@ class SiswaController extends BaseController
 
 	public function edit($id)
 	{
-		$kelas = $this->kelas->findAll();
-		$data['kelas'] = ['' => 'kelas'] + array_column($kelas, 'kelas','kelas_id');
-        $data['siswa'] = $this->siswa->getData($id);
+		// Mendapatkan detail kelas berdasarkan ID
+		$kelas = $this->kelas->find($id);
+	
+		// Memastikan bahwa kelas tidak null sebelum mengambil siswa terkait
+		if ($kelas === null) {
+			throw new \CodeIgniter\Exceptions\PageNotFoundException("Kelas with ID $id not found");
+		}
+	
+		// Mendapatkan data siswa berdasarkan ID kelas
+		$siswa = $this->siswa->where('kelas_id', $id)->findAll();
+	
+		// Data yang akan dikirim ke view
+		$data = [
+			'kelas' => $kelas,
+			'siswa' => $siswa
+		];
+	
+		// Mengirimkan data ke view dan me-render view
 		return view('siswa/edit', $data);
 	}
+	
 
 	public function update()
 	{

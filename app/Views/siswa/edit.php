@@ -50,11 +50,17 @@
             <?php } ?>
             <div class="card shadow">
               <div class="card-body">
-              <form action="<?= site_url('siswa/update/' . $siswa['id']); ?>" method="post"><?php echo form_hidden('id', $siswa['id']); ?>
-                  <div class="form-group">
-                    <label class="form-label" for="kelas_id">Kelas</label>
-                    <input class="form-control form-control-lg" type="text" id="kelas_id" name="kelas_id" value="<?php echo isset($siswa['kelas_id']) ? $siswa['kelas_id'] : ''; ?>"  />
-                  </div><br>
+              <form action="<?= site_url('siswa/update/' . $siswa['id']); ?>" method="post">
+              <input type="hidden" name="kelas_id" value="<?= $siswa['kelas_id'] ?>">
+
+              <div class="form-group">
+                <label class="form-label" for="kelas_id">Kelas</label>
+                <select class="form-control form-control-lg" id="kelas_id" name="kelas_id">
+                    <?php foreach ($kelas_options as $id => $kelas): ?>
+                        <option value="<?= $id ?>" <?= $siswa['kelas_id'] == $id ? 'selected' : '' ?>><?= $kelas ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
                   <div class="form-group">
                     <label class="form-label" for="nis">Nis</label>
                     <input class="form-control form-control-lg" type="text" id="bulan" name="nis" value="<?php echo isset($siswa['nis']) ? $siswa['nis'] : ''; ?>"  />
