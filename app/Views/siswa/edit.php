@@ -24,7 +24,7 @@
                   Data Siswa
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                   Edit Siswa
+                  Edit Siswa
                 </li>
               </ol>
             </nav>
@@ -49,41 +49,56 @@
               </div>
             <?php } ?>
             <div class="card shadow">
+            <?php if ($siswa !== null): ?>
+              <?php echo form_open_multipart('siswa/update/' . $siswa['id']); ?>
               <div class="card-body">
-              <form action="<?= site_url('siswa/update/' . $siswa['id']); ?>" method="post">
-              <input type="hidden" name="kelas_id" value="<?= $siswa['kelas_id'] ?>">
-
-              <div class="form-group">
-                <label class="form-label" for="kelas_id">Kelas</label>
-                <select class="form-control form-control-lg" id="kelas_id" name="kelas_id">
-                    <?php foreach ($kelas_options as $id => $kelas): ?>
-                        <option value="<?= $id ?>" <?= $siswa['kelas_id'] == $id ? 'selected' : '' ?>><?= $kelas ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+                <?php echo form_hidden('id', $siswa['id']); ?>
+                <form action="<?= site_url('siswa/update/' . $siswa['id']); ?>" method="post">
+                  <input type="hidden" name="id" value="<?= $siswa['id'] ?>">
+                  <div class="form-group">
+                    <?php echo form_label('Kelas', 'kelas_id'); ?>
+                    <?php echo form_dropdown('kelas_id', $kelas, $siswa['kelas_id'], ['class' => 'form-control']); ?>
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="nama">Nama</label>
+                    <input class="form-control form-control-lg" type="text" id="nama" name="nama" value="<?php echo isset($siswa['nama']) ? $siswa['nama'] : ''; ?>" />
+                  </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nis">Nis</label>
-                    <input class="form-control form-control-lg" type="text" id="bulan" name="nis" value="<?php echo isset($siswa['nis']) ? $siswa['nis'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="nis" name="nis" value="<?php echo isset($siswa['nis']) ? $siswa['nis'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="alamat">Alamat</label>
-                    <input class="form-control form-control-lg" type="text" id="alamat" name="alamat" value="<?php echo isset($siswa['alamat']) ? $siswa['alamat'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="alamat" name="alamat" value="<?php echo isset($siswa['alamat']) ? $siswa['alamat'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nomor_telepon">Nomer Telepon</label>
-                    <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" value="<?php echo isset($siswa['nomor_telepon']) ? $siswa['nomor_telepon'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" value="<?php echo isset($siswa['nomor_telepon']) ? $siswa['nomor_telepon'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
-                    <input class="form-control form-control-lg" type="text" id="jenis_kelamin" name="jenis_kelamin" value="<?php echo isset($siswa['jenis_kelamin']) ? $siswa['jenis_kelamin'] : ''; ?>"  />
-                  </div><br>
+                    <select class="form-control form-control-lg" id="jenis_kelamin" name="jenis_kelamin" value="<?php echo isset($siswa['jenis_kelamin']) ? $siswa['jenis_kelamin'] : ''; ?>">
+                        <option value="">Pilih Jenis Kelamin</option>
+                        <option value="L">Laki-laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                </div><br>
+                  <!-- <div class="form-group">
+                    <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
+                    <input class="form-control form-control-lg" type="text" id="jenis_kelamin" name="jenis_kelamin" value="<?php echo isset($siswa['jenis_kelamin']) ? $siswa['jenis_kelamin'] : ''; ?>" />
+                  </div><br> -->
                   <div class="form-group">
                     <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
-                    <input class="form-control form-control-lg" type="text" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo isset($siswa['tanggal_lahir']) ? $siswa['tanggal_lahir'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo isset($siswa['tanggal_lahir']) ? $siswa['tanggal_lahir'] : ''; ?>" />
                   </div><br>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+                <?php echo form_close(); ?>
+
               </div>
+              <?php else: ?>
+                <p>Data siswa tidak ditemukan.</p>
+<?php endif; ?>
             </div>
           </div>
         </div>

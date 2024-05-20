@@ -19,6 +19,7 @@ class Pengajian extends Migration
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
+                'null'				=> TRUE
             ],
             'bulan' => [
                 'type' => 'INT',
@@ -47,7 +48,7 @@ class Pengajian extends Migration
         ]);
 
         $this->forge->addKey('id', TRUE);
-        $this->forge->addForeignKey('guru_id','guru','id','CASCADE','CASCADE');
+        $this->forge->addForeignKey('guru_id','guru','id','cascade','cascade');
         $this->forge->createTable('pengajian', TRUE);
     }
 

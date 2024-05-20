@@ -73,11 +73,11 @@
                           <td scope="col" class="text-center"><?php echo $row['tanggal_lahir']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['kelas']; ?></td>
                           <td scope="col" class="text-center">
-                            <div class="btn-group">
+                            <div class="form-group">
                               <a href="<?php echo base_url('siswa/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
                                 edit
                               </a>
-                              <a href="<?php echo base_url('siswa/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger delete-btn">
+                              <a href="<?php echo base_url('siswa/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger">
                                 hapus
                               </a>
                             </div>

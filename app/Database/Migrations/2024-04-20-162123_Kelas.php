@@ -25,7 +25,7 @@ class Kelas extends Migration
             ],
         ]);
 
-        $this->forge->addPrimaryKey('id');
+        $this->forge->addKey('id');
         $this->forge->createTable('kelas');
     }
 

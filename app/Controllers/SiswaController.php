@@ -25,16 +25,9 @@ class SiswaController extends BaseController
 
 	public function create()
 	{
-		// Mendapatkan daftar kelas dari model kelas
 		$kelas = $this->kelas->findAll();
-	
-		// Data yang akan dikirim ke view
-		$data = [
-			'kelas' => $kelas
-		];
-	
-		// Mengirimkan data ke view dan me-render view
-		return view('siswa/create', $data);
+		$data = ['kelas' => $kelas];
+			return view('siswa/create', $data);
 	}
 
     public function store()
@@ -62,30 +55,15 @@ class SiswaController extends BaseController
 			}
 		}
 	}
-
-
 	public function edit($id)
-	{
-		// Mendapatkan detail kelas berdasarkan ID
-		$kelas = $this->kelas->find($id);
-	
-		// Memastikan bahwa kelas tidak null sebelum mengambil siswa terkait
-		if ($kelas === null) {
-			throw new \CodeIgniter\Exceptions\PageNotFoundException("Kelas with ID $id not found");
-		}
-	
-		// Mendapatkan data siswa berdasarkan ID kelas
-		$siswa = $this->siswa->where('kelas_id', $id)->findAll();
-	
-		// Data yang akan dikirim ke view
-		$data = [
-			'kelas' => $kelas,
-			'siswa' => $siswa
-		];
-	
-		// Mengirimkan data ke view dan me-render view
-		return view('siswa/edit', $data);
-	}
+    {
+        $kelas = $this->kelas->findAll();
+        $data['kelas'] = ['' => 'Pilih Kelas'] + array_column($kelas, 'kelas', 'kelas_id');
+        $data['siswa'] = $this->siswa->getData($id);
+        echo view('siswa/edit', $data);
+    }
+
+
 	
 
 	public function update()
@@ -112,14 +90,8 @@ class SiswaController extends BaseController
 		} else {
 			$ubah = $this->siswa->updateData($data, $id);
 			if ($ubah) {
-				session()->setFlashdata('success', 'Update Data Berhasil');
-				// Sweet Alert success
-				session()->setFlashdata('alert', 'success');
 				return redirect()->to(base_url('siswa'));
 			} else {
-				session()->setFlashdata('error', 'Gagal mengupdate data');
-				// Sweet Alert error
-				session()->setFlashdata('alert', 'error');
 				return redirect()->to(base_url('siswa/edit/' . $id));
 			}
 		}

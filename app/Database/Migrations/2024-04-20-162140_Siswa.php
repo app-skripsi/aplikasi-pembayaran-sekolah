@@ -49,9 +49,9 @@ class Siswa extends Migration
             ],
         ]);
 
-        $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('kelas_id', 'kelas', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('siswa');
+        $this->forge->addKey('id', TRUE);
+        $this->forge->addForeignKey('kelas_id', 'kelas', 'id', 'cascade', 'cascade');
+        $this->forge->createTable('siswa', TRUE);
     }
 
     public function down()
