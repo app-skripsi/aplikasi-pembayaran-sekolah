@@ -58,58 +58,6 @@
                         <td>
                           <div class="d-flex align-items-center">
                             <div class="">
-                              <h4 class="m-b-0 font-16">Data Kelas</h4>
-                            </div>
-                          </div>
-                        </td>
-                        <td><?= $kelas ?? 0 ?></td>
-                        <td>
-                        <a href="<?php  echo base_url('/kelas')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="">
-                              <h4 class="m-b-0 font-16">Data Guru</h4>
-                            </div>
-                          </div>
-                        </td>
-                        <td><?= $guru ?? 0 ?></td>
-                        <td>
-                          <a href="<?php  echo base_url('/guru')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="">
-                              <h4 class="m-b-0 font-16">Data Siswa</h4>
-                            </div>
-                          </div>
-                        </td>
-                        <td><?= $siswa ?? 0 ?></td>
-                        <td>
-                        <a href="<?php  echo base_url('/siswa')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="">
-                              <h4 class="m-b-0 font-16">Data Pelajaran</h4>
-                            </div>
-                          </div>
-                        </td>
-                        <td><?= $pelajaran ?? 0 ?></td>
-                        <td>
-                        <a href="<?php  echo base_url('/pelajaran')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="">
                               <h4 class="m-b-0 font-16">Data SPP</h4>
                             </div>
                           </div>

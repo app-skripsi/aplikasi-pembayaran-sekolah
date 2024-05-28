@@ -42,93 +42,6 @@ class Validation extends BaseConfig
     // Rules
     // --------------------------------------------------------------------
 
-
-    public $guru = [
-		'nama'                      => 'required',
-        'nip'                       => 'required',
-        'nomor_telepon'             => 'required',
-        'alamat'                    => 'required',
-        'email'                     => 'required',
-	];
-
-	public $guru_errors = [
-		'nama'      	        => [
-			'required'			=> 'Nama Tidak Boleh Kosong'
-        ],
-        'nip'      	            => [
-			'required'			=> 'Nip Tidak Boleh Kosong'
-        ],
-        'alamat'      	        => [
-			'required'			=> 'Alamat Tidak Boleh Kosong'
-        ],
-        'nomor_telepon'      	=> [
-			'required'			=> 'Nomer Telephone Tidak Boleh Kosong'
-        ],
-        'email'      	        => [
-			'required'			=> 'Email Tidak Boleh Kosong'
-        ]
-	];
-
-    public $kelas = [
-		'kelas'                     => 'required',
-        'description'               => 'required',
-	];
-
-	public $kelas_errors = [
-		'kelas'      	        => [
-			'required'			=> 'Kelas Tidak Boleh Kosong'
-        ],
-        'description'      	    => [
-			'required'			=> 'Description Tidak Boleh Kosong'
-        ]
-	];
-
-    public $pelajaran = [
-		'nama_pelajaran'                => 'required',
-	];
-
-	public $pelajaran_errors = [
-		'nama_pelajaran'      	        => [
-			'required'			        => 'Nama Pelajaran Tidak Boleh Kosong'
-        ]
-	];
-
-
-    public $siswa = [
-		'nama'                   => 'required',
-        'nis'                    => 'required',
-        'alamat'                 => 'required',
-        'nomor_telepon'          => 'required',
-        'jenis_kelamin'          => 'required',
-        'tanggal_lahir'          => 'required',
-        'kelas_id'               => 'required',
-	];
-
-	public $siswa_errors = [
-		'nama'      	        => [
-			'required'			=> 'Nama Tidak Boleh Kosong'
-        ],
-        'nis'      	            => [
-			'required'			=> 'Nis Tidak Boleh Kosong'
-        ],
-        'Alamat'      	        => [
-			'required'			=> 'Alamat Tidak Boleh Kosong'
-        ],
-        'nomor_telepon'      	=> [
-			'required'			=> 'Nomor Telephon Tidak Boleh Kosong'
-        ],
-        'jenis_kelamin'      	=> [
-			'required'			=> 'Jenis Kelamin Tidak Boleh Kosong'
-        ],
-        'tanggal_lahir'         => [
-			'required'			=> 'Tanggal Lahir Tidak Boleh Kosong'
-        ],
-        'kelas_id'      	    => [
-			'required'			=> 'kelas_id Tidak Boleh Kosong'
-        ]
-	];
-
-
     public $spp = [
 		'tahun_ajaran'           => 'required',
         'bulan_pembayaran'       => 'required',
@@ -137,8 +50,9 @@ class Validation extends BaseConfig
         'status_pembayaran'      => 'required',
         'metode_pembayaran'      => 'required',
         'catatan'                => 'required',
-        'siswa_id'               => 'required',
-        'kelas_id'               => 'required',
+        'siswa'                  => 'required',
+        'kelas'                  => 'required',
+        'nis'                    => 'required',
 	];
 
 	public $spp_errors = [
@@ -163,16 +77,20 @@ class Validation extends BaseConfig
         'catatan'      	        => [
 			'required'			=> 'Catatan Tidak Boleh Kosong'
         ],
-        'siswa_id'      	    => [
+        'siswa'      	        => [
 			'required'			=> 'Siswa Tidak Boleh Kosong'
         ],
-        'kelas_id'      	    => [
+        'kelas'      	        => [
 			'required'			=> 'Kelas Tidak Boleh Kosong'
+        ],
+        'nis'      	            => [
+			'required'			=> 'Nis Tidak Boleh Kosong'
         ]
 	];
 
     public $pengajian = [
-		'guru_id'               => 'required',
+		'guru'                  => 'required',
+        'npk'                   => 'required',
         'bulan'                 => 'required',
         'tahun'                 => 'required',
         'tanggal'               => 'required',
@@ -182,8 +100,11 @@ class Validation extends BaseConfig
 	];
 
 	public $pengajian_errors = [
-		'guru_id'      	        => [
+		'guru'      	        => [
 			'required'			=> 'Guru Tidak Boleh Kosong'
+        ],
+        'npk'                   => [
+			'required'			=> 'Npk Tidak Boleh Kosong'
         ],
         'bulan'                 => [
 			'required'			=> 'Bulan Tidak Boleh Kosong'
@@ -200,7 +121,7 @@ class Validation extends BaseConfig
         'status'                => [
 			'required'			=> 'Status Tidak Boleh Kosong'
         ],
-        'keterangan'      	        => [
+        'keterangan'      	    => [
 			'required'			=> 'Keterangan Tidak Boleh Kosong'
         ]
 	];

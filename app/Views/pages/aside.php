@@ -8,18 +8,6 @@
               <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/dashboard'); ?>" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/guru'); ?>" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">Guru</span></a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/kelas'); ?>" aria-expanded="false"><i class="mdi mdi-border-all"></i><span class="hide-menu">Kelas</span></a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/siswa'); ?>" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Siswa</span></a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/pelajaran'); ?>" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Pelajaran</span></a>
-            </li>
-            <li class="sidebar-item">
               <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/spp'); ?>" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">SPP</span></a>
             </li>
             <li class="sidebar-item">

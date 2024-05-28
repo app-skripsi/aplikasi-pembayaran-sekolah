@@ -10,27 +10,27 @@ class Spp extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
-                'auto_increment' => true,
+                'type'              => 'INT',
+                'constraint'        => 11,
+                'unsigned'          => true,
+                'auto_increment'    => true,
             ],
             'siswa' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
+                'type'              => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
                 'null'				=> TRUE
             ],
-            'kelas' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
+            'kelas'                 => [
+                'type'              => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
                 'null'				=> TRUE
             ],
             'nis' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
+                'type'              => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
                 'null'				=> TRUE
             ],
             'tahun_ajaran' => [
@@ -64,8 +64,7 @@ class Spp extends Migration
         ]);
 
         $this->forge->addKey('id', TRUE);
-        $this->forge->addForeignKey('siswa_id','siswa','id','cascade','cascade');
-        $this->forge->addForeignKey('kelas_id','kelas','id','cascade','cascade');
+
         $this->forge->createTable('spp', TRUE);
     }
 

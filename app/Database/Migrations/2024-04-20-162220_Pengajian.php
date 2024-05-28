@@ -15,11 +15,15 @@ class Pengajian extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'guru_id' => [
-                'type' => 'INT',
-                'constraint' => 5,
-                'unsigned' => true,
+            'guru' => [
+                'type'              => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
                 'null'				=> TRUE
+            ],
+            'npk' => [
+                'type' => 'INT',
+                'constraint' => 40,
             ],
             'bulan' => [
                 'type' => 'INT',
@@ -48,12 +52,11 @@ class Pengajian extends Migration
         ]);
 
         $this->forge->addKey('id', TRUE);
-        $this->forge->addForeignKey('guru_id','guru','id','cascade','cascade');
-        $this->forge->createTable('pengajian', TRUE);
+        $this->forge->createTable('penggajian', TRUE);
     }
 
     public function down()
     {
-        $this->forge->dropTable('pengajian');
+        $this->forge->dropTable('penggajian');
     }
 }

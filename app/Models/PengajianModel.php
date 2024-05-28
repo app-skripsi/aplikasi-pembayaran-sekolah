@@ -6,24 +6,22 @@ use CodeIgniter\Model;
 
 class PengajianModel extends Model
 {
-	protected $table = 'pengajian';
+	protected $table = 'penggajian';
 
 	public function getData($id = false)
 	{
 		if ($id === false) {
-			return $this->table('pengajian')
-				->join('guru', 'guru.id = pengajian.guru_id')
+			return $this->table('penggajian')
 				->get()
 				->getResultArray();
 		} else {
-			return $this->table('pengajian')
-				->join('guru', 'guru.id = pengajian.guru_id')
-				->where('pengajian.id', $id)
+			return $this->table('penggajian')
+				->where('penggajian.id', $id)
 				->get()
 				->getRowArray();
 		}
 	}
-	public function countAllPengajian()
+	public function countAllpenggajian()
     {
         return $this->countAll();
     }
