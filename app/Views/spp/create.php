@@ -21,10 +21,10 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data SPP
+                  <a href="<?php echo base_url('/spp') ?>">Data SPP</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                   Tambah SPP
+                  Tambah SPP
                 </li>
               </ol>
             </nav>
@@ -52,12 +52,16 @@
               <div class="card-body">
                 <form action="<?= base_url('spp/store'); ?>" method="post">
                   <div class="form-group">
-                    <label class="form-label" for="kelas_id">Kelas</label>
-                    <input class="form-control form-control-lg" type="text" id="kelas_id" name="kelas_id"/>
+                    <label class="form-label" for="kelas">Kelas</label>
+                    <input class="form-control form-control-lg" type="text" id="kelas" name="kelas" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="siswa_id">Siswa</label>
-                    <input class="form-control form-control-lg" type="text" id="siswa_id" name="siswa_id"/>
+                    <label class="form-label" for="siswa">Siswa</label>
+                    <input class="form-control form-control-lg" type="text" id="siswa" name="siswa" />
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="nis">NIS</label>
+                    <input class="form-control form-control-lg" type="text" id="nis" name="nis" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bulan">Bulan</label>
@@ -65,26 +69,40 @@
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="tahun_ajaran">Tahun Ajaran</label>
-                    <input class="form-control form-control-lg" type="text" id="tahun_ajaran" name="tahun_ajaran" placeholder="Masukan Tahun" />
+                    <input class="form-control form-control-lg" type="number" id="tahun_ajaran" name="tahun_ajaran" placeholder="Masukan Tahun" min="1900" max="2100" step="1" />
                   </div><br>
+
                   <div class="form-group">
                     <label class="form-label" for="bulan_pembayaran">Bulan Pembayaran</label>
-                    <input class="form-control form-control-lg" type="text" id="bulan_pembayaran" name="bulan_pembayaran" placeholder="Masukan Bulan Pembayaran" />
-                  </div><br><div class="form-group">
+                    <input class="form-control form-control-lg" type="month" id="bulan_pembayaran" name="bulan_pembayaran" placeholder="Masukan Bulan Pembayaran" />
+                  </div><br>
+                  <div class="form-group">
                     <label class="form-label" for="nominal_pembayaran">Nominal Pembayaran</label>
                     <input class="form-control form-control-lg" type="text" id="nominal_pembayaran" name="nominal_pembayaran" placeholder="Masukan Nominal Pembayaran" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="tanggal_pembayaran">Tanggal Pembayaran</label>
-                    <input class="form-control form-control-lg" type="text" id="tanggal_pembayaran" name="tanggal_pembayaran" placeholder="Masukan Tanggal Pembayaran" />
+                    <input class="form-control form-control-lg" type="text" id="tanggal_pembayaran" name="tanggal_pembayaran" placeholder="Masukan Tanggal" maxlength="2" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="status_pembayaran">Status Pembayaran</label>
-                    <input class="form-control form-control-lg" type="text" id="status_pembayaran" name="status_pembayaran" placeholder="Masukan Status Pembayaran" />
+                    <select class="form-control form-control-lg" id="status_pembayaran" name="status_pembayaran" required>
+                      <option value="">Pilih Status Pembayaran</option>
+                      <option value="Lunas">Lunas</option>
+                      <option value="Belum Lunas">Belum Lunas</option>
+                    </select>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="metode_pembayaran">Metode Pembayaran</label>
-                    <input class="form-control form-control-lg" type="text" id="metode_pembayaran" name="metode_pembayaran" placeholder="Masukan Metode Pembayaran" />
+                    <select class="form-control form-control-lg" id="metode_pembayaran" name="metode_pembayaran" required>
+                      <option value="">Pilih Metode Pembayaran</option>
+                      <option value="Transfer">Transfer</option>
+                      <option value="Cash">Cash</option>
+                    </select>
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="bukti_pembayaran">Bukti Pembayaran</label>
+                    <input class="form-control form-control-lg" type="file" id="bukti_pembayaran" name="bukti_pembayaran" placeholder="Bukti Pembayaran" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="catatan">Catatan Pembayaran</label>
@@ -100,6 +118,30 @@
     </div>
   </div>
   <?php echo view("pages/script.php"); ?>
+  <script>
+    document.getElementById('tanggal_pembayaran').addEventListener('input', function(e) {
+      var value = e.target.value.replace(/[^0-9]/g, '');
+      if (value.length > 2) value = value.slice(0, 2);
+      e.target.value = value;
+    });
+  </script>
+  <script>
+    document.getElementById('nominal_pembayaran').addEventListener('input', function(e) {
+      var value = e.target.value.replace(/[^,\d]/g, '').toString();
+      var split = value.split(',');
+      var sisa = split[0].length % 3;
+      var rupiah = split[0].substr(0, sisa);
+      var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+      if (ribuan) {
+        var separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+
+      rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+      e.target.value = 'Rp. ' + rupiah;
+    });
+  </script>
 </body>
 
 </html>

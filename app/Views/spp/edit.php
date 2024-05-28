@@ -21,7 +21,7 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data Spp
+                <a href="<?php echo base_url('/spp') ?>">Data SPP</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                    Edit Spp

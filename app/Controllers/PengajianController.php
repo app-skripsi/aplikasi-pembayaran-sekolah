@@ -30,7 +30,8 @@ class PengajianController extends BaseController
 	{
 		$validation =  \Config\Services::validation();
 		$data = array(
-			'guru_id'               => $this->request->getPost('guru_id'),
+			'guru'               	=> $this->request->getPost('guru'),
+			'npk'              		=> $this->request->getPost('npk'),
             'bulan'                 => $this->request->getPost('bulan'),
 			'tahun'                 => $this->request->getPost('tahun'),
 			'tanggal'               => $this->request->getPost('tanggal'),
@@ -66,7 +67,8 @@ class PengajianController extends BaseController
 		$validation =  \Config\Services::validation();
 
 		$data = array(
-            'guru_id'               => $this->request->getPost('guru_id'),
+			'guru'               	=> $this->request->getPost('guru'),
+			'npk'              		=> $this->request->getPost('npk'),
             'bulan'                 => $this->request->getPost('bulan'),
 			'tahun'                 => $this->request->getPost('tahun'),
 			'tanggal'               => $this->request->getPost('tanggal'),

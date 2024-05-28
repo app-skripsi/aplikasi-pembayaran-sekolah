@@ -12,14 +12,10 @@ class SppModel extends Model
 	{
 		if ($id === false) {
 			return $this->table('spp')
-				->join('guru', 'guru.id = spp.guru_id')
-                ->join('siswa', 'siswa.id = spp.siswa_id')
 				->get()
 				->getResultArray();
 		} else {
 			return $this->table('spp')
-				->join('guru', 'guru.id = spp.guru_id')
-                ->join('siswa', 'siswa.id = spp.siswa_id')
 				->where('spp.id', $id)
 				->get()
 				->getRowArray();
@@ -44,12 +40,10 @@ class SppModel extends Model
 	}
 
 	public function getDataByNIS($nis)
-{
-    return $this->table('spp')
-        ->join('guru', 'guru.id = spp.guru_id')
-        ->join('siswa', 'siswa.id = spp.siswa_id')
-        ->where('siswa.nis', $nis)
-        ->get()
-        ->getResultArray();
-}
+	{
+		return $this->table('spp')
+			->where('siswa.nis', $nis)
+			->get()
+			->getResultArray();
+	}
 }

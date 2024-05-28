@@ -27,6 +27,8 @@ class SppController extends BaseController
 
     public function store()
 	{
+		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
+		$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
 		$validation =  \Config\Services::validation();
 		$data = array(
 			'tahun_ajaran'              => $this->request->getPost('tahun_ajaran'),
@@ -36,11 +38,12 @@ class SppController extends BaseController
 			'status_pembayaran'         => $this->request->getPost('status_pembayaran'),
 			'metode_pembayaran'         => $this->request->getPost('metode_pembayaran'),
             'catatan'                   => $this->request->getPost('catatan'),
-            'siswa_id'                  => $this->request->getPost('siswa_id'),
-            'kelas_id'                  => $this->request->getPost('kelas_id'),
-
+			'nis'                   	=> $this->request->getPost('nis'),
+            'siswa'                  	=> $this->request->getPost('siswa'),
+            'kelas'                  	=> $this->request->getPost('kelas'),
+			'bukti_pembayaran'          => $fileBuktiPembayaran,
 		);
-
+		$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
 		if ($validation->run($data, 'spp') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
 			session()->setFlashdata('errors', $validation->getErrors());
@@ -98,6 +101,8 @@ class SppController extends BaseController
 
 	public function update()
 	{
+		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
+		$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
 		$id = $this->request->getPost('id');
 
 		$validation =  \Config\Services::validation();
@@ -110,10 +115,13 @@ class SppController extends BaseController
 			'status_pembayaran'         => $this->request->getPost('status_pembayaran'),
 			'metode_pembayaran'         => $this->request->getPost('metode_pembayaran'),
             'catatan'                   => $this->request->getPost('catatan'),
-            'siswa_id'                  => $this->request->getPost('siswa_id'),
-            'kelas_id'                  => $this->request->getPost('kelas_id'),
+            'nis'                   	=> $this->request->getPost('nis'),
+            'siswa'                  	=> $this->request->getPost('siswa'),
+            'kelas'                  	=> $this->request->getPost('kelas'),
+			'bukti_pembayaran'          => $fileBuktiPembayaran,
 		);
 
+		$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
 		if ($validation->run($data, 'spp') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
 			session()->setFlashdata('errors', $validation->getErrors());

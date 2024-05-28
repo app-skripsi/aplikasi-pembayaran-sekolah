@@ -53,6 +53,7 @@ class Validation extends BaseConfig
         'siswa'                  => 'required',
         'kelas'                  => 'required',
         'nis'                    => 'required',
+        'bukti_pembayaran'       => 'required',
 	];
 
 	public $spp_errors = [
@@ -85,6 +86,9 @@ class Validation extends BaseConfig
         ],
         'nis'      	            => [
 			'required'			=> 'Nis Tidak Boleh Kosong'
+        ],
+        'bukti_pembayaran'      => [
+			'required'			=> 'Bukti Pembayaran Tidak Boleh Kosong'
         ]
 	];
 

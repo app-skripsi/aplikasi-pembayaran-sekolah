@@ -33,38 +33,42 @@ class Spp extends Migration
                 'unsigned'          => true,
                 'null'				=> TRUE
             ],
-            'tahun_ajaran' => [
-                'type' => 'VARCHAR',
-                'constraint' => 20,
+            'tahun_ajaran'          => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 20,
             ],
-            'bulan_pembayaran' => [
-                'type' => 'VARCHAR',
-                'constraint' => 20,
+            'bulan_pembayaran'      => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 20,
             ],
-            'nominal_pembayaran' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
+            'nominal_pembayaran'    => [
+                'type'              => 'DECIMAL',
+                'constraint'        => '10,2',
             ],
-            'tanggal_pembayaran' => [
-                'type' => 'DATE',
+            'tanggal_pembayaran'    => [
+                'type'              => 'DATE',
             ],
-            'status_pembayaran' => [
-                'type' => 'ENUM',
-                'constraint' => ['Lunas', 'Belum Lunas'],
-                'default' => 'Belum Lunas',
+            'status_pembayaran'     => [
+                'type'              => 'ENUM',
+                'constraint'        => ['Lunas', 'Belum Lunas'],
+                'default'           => 'Belum Lunas',
             ],
-            'metode_pembayaran' => [
-                'type' => 'VARCHAR',
-                'constraint' => 50,
+            'metode_pembayaran'     => [
+                'type'              => 'ENUM',
+                'constraint'        => ['Transfer', 'Cash'],
+                'default'           => 'Cash',
             ],
-            'catatan' => [
-                'type' => 'TEXT',
-                'null' => true,
+            'bukti_pembayaran'      => [
+                'type'              => 'VARCHAR',
+                'constraint'        => 255,
+            ],
+            'catatan'               => [
+                'type'              => 'TEXT',
+                'null'              => true,
             ],
         ]);
 
         $this->forge->addKey('id', TRUE);
-
         $this->forge->createTable('spp', TRUE);
     }
 
