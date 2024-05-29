@@ -129,5 +129,74 @@ class Validation extends BaseConfig
 			'required'			=> 'Keterangan Tidak Boleh Kosong'
         ]
 	];
+    public $guru = [
+		'nama'                      => 'required',
+        'nip'                       => 'required',
+        'nomor_telepon'             => 'required',
+        'alamat'                    => 'required',
+        'email'                     => 'required',
+	];
 
+	public $guru_errors = [
+		'nama'      	        => [
+			'required'			=> 'Nama Tidak Boleh Kosong'
+        ],
+        'nip'      	            => [
+			'required'			=> 'Nip Tidak Boleh Kosong'
+        ],
+        'alamat'      	        => [
+			'required'			=> 'Alamat Tidak Boleh Kosong'
+        ],
+        'nomor_telepon'      	=> [
+			'required'			=> 'Nomer Telephone Tidak Boleh Kosong'
+        ],
+        'email'      	        => [
+			'required'			=> 'Email Tidak Boleh Kosong'
+        ]
+	];
+
+    
+    public $siswa = [
+		'nama'                   => 'required',
+        'nis'                    => 'required',
+        'alamat'                 => 'required',
+        'nomor_telepon'          => 'required',
+        'jenis_kelamin'          => 'required',
+        'tanggal_lahir'          => 'required',
+        'kelas_id'               => 'required',
+	];
+
+	public $siswa_errors = [
+		'nama'      	        => [
+			'required'			=> 'Nama Tidak Boleh Kosong'
+        ],
+        'nis'      	            => [
+			'required'			=> 'Nis Tidak Boleh Kosong'
+        ],
+        'Alamat'      	        => [
+			'required'			=> 'Alamat Tidak Boleh Kosong'
+        ],
+        'nomor_telepon'      	=> [
+			'required'			=> 'Nomor Telephon Tidak Boleh Kosong'
+        ],
+        'jenis_kelamin'      	=> [
+			'required'			=> 'Jenis Kelamin Tidak Boleh Kosong'
+        ],
+        'tanggal_lahir'         => [
+			'required'			=> 'Tanggal Lahir Tidak Boleh Kosong'
+        ]
+	];
+    public $kelas = [
+		'kelas'                     => 'required',
+        'description'               => 'required',
+	];
+
+	public $kelas_errors = [
+		'kelas'      	        => [
+			'required'			=> 'Kelas Tidak Boleh Kosong'
+        ],
+        'description'      	    => [
+			'required'			=> 'Description Tidak Boleh Kosong'
+        ]
+	];
 }

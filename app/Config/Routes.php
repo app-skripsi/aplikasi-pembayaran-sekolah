@@ -27,4 +27,25 @@ $routes->get('pengajian/edit/(:alphanum)', 'PengajianController::edit/$1');
 $routes->post('pengajian/update/(:num)', 'PengajianController::update/$1');
 $routes->get('pengajian/delete/(:alphanum)', 'PengajianController::delete/$1');
 
+$routes->get('guru', 'GuruController::index');
+$routes->get('guru/create', 'GuruController::create');
+$routes->post('guru/store', 'GuruController::store');
+$routes->get('guru/edit/(:alphanum)', 'GuruController::edit/$1');
+$routes->post('guru/update/(:num)', 'GuruController::update/$1');
+$routes->get('guru/delete/(:alphanum)', 'GuruController::delete/$1');
+
+$routes->get('siswa', 'SiswaController::index');
+$routes->get('siswa/create', 'SiswaController::create');
+$routes->post('siswa/store', 'SiswaController::store');
+$routes->get('siswa/edit/(:alphanum)', 'SiswaController::edit/$1');
+$routes->post('siswa/update/(:num)', 'SiswaController::update/$1');
+$routes->get('siswa/delete/(:alphanum)', 'SiswaController::delete/$1');
+
+$routes->get('kelas', 'KelasController::index');
+$routes->get('kelas/create', 'KelasController::create');
+$routes->post('kelas/store', 'KelasController::store');
+$routes->get('kelas/edit/(:alphanum)', 'KelasController::edit/$1');
+$routes->post('kelas/update/(:num)', 'KelasController::update/$1');
+$routes->get('kelas/delete/(:alphanum)', 'KelasController::delete/$1');
+
 //

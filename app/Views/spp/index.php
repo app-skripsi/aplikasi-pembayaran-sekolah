@@ -1,7 +1,26 @@
 <?php echo view("pages/head"); ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
-
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+<style>
+        .btn-custom {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Add some space below each button */
+        }
+        .btn-custom .mdi {
+            margin-right: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .left-buttons {
+            display: flex;
+            gap: 10px; /* Add some space between left buttons */
+        }
+    </style>
 <body>
     <div class="preloader">
         <div class="lds-ripple">
@@ -31,9 +50,18 @@
                         <h1 class="mb-0 fw-bold text-center"> Informasi Data Spp </h1>
                     </div>
                 </div>
-                <a href="<?php echo base_url('/spp/create'); ?>" class="link" style="float: right;">
-                    <i class="mdi mdi-plus fs-4 text-primary">Tambah Data</i>
+                <hr>
+                <a href="<?php echo base_url('/spp/create'); ?>" class="btn btn-primary" style="float: right;">
+                    <i class="mdi mdi-plus fs-4"></i> Tambah Data
                 </a>
+              <div class="left-buttons">
+                <a href="<?php echo base_url('/spp/pdf'); ?>" class="btn btn-danger btn-custom">
+                    <i class="mdi mdi-file-pdf-box fs-4"></i> Print Laporan PDF
+                </a>
+                <a href="<?php echo base_url('/spp/excel'); ?>" class="btn btn-success btn-custom">
+                    <i class="mdi mdi-file-excel-box fs-4"></i> Print Laporan Excel
+                </a>
+              </div>
             </div>
             <div class="container-fluid">
                 <div class="row">
@@ -67,16 +95,11 @@
                                                 <td scope="col" class="text-center"><?php echo $row['kelas']; ?></td>
                                                 <td scope="col" class="text-center"><?php echo $row['nis']; ?></td>
                                                 <td scope="col" class="text-center"><?php echo $row['tahun_ajaran']; ?></td>
-                                                <td scope="col" class="text-center"><?php echo $row['bulan_pembayaran']; ?>
-                                                </td>
-                                                <td scope="col" class="text-center"><?php echo $row['nominal_pembayaran']; ?>
-                                                </td>
-                                                <td scope="col" class="text-center"><?php echo $row['tanggal_pembayaran']; ?>
-                                                </td>
-                                                <td scope="col" class="text-center"><?php echo $row['status_pembayaran']; ?>
-                                                </td>
-                                                <td scope="col" class="text-center"><?php echo $row['metode_pembayaran']; ?>
-                                                </td>
+                                                <td scope="col" class="text-center"><?php echo $row['bulan_pembayaran']; ?></td>
+                                                <td scope="col" class="text-center"><?php echo 'Rp. ' . number_format($row['nominal_pembayaran'], 3, ',', '.'); ?></td>
+                                                <td scope="col" class="text-center"><?php echo $row['tanggal_pembayaran']; ?></td>
+                                                <td scope="col" class="text-center"><?php echo $row['status_pembayaran']; ?></td>
+                                                <td scope="col" class="text-center"><?php echo $row['metode_pembayaran']; ?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('uploads/bukti_pembayaran/' . $row['bukti_pembayaran']); ?>" data-fancybox="gallery" data-caption="Bukti Pembayaran" target="_blank">
                                                         <img src="<?php echo base_url('uploads/bukti_pembayaran/' . $row['bukti_pembayaran']); ?>" alt="Gambar" style="width: 100px; height: auto;">
