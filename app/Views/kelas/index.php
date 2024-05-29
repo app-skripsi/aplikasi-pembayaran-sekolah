@@ -1,6 +1,26 @@
 <?php echo view("pages/head"); ?>
-
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+<style>
+        .btn-custom {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Add some space below each button */
+        }
+        .btn-custom .mdi {
+            margin-right: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .left-buttons {
+            display: flex;
+            gap: 10px; /* Add some space between left buttons */
+        }
+    </style>
 <body>
   <div class="preloader">
     <div class="lds-ripple">
@@ -38,7 +58,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table">
+                  <table id="dataTable" class="table">
                     <thead>
                       <tr>
                         <th scope="col" class="text-center">No</th>
@@ -74,7 +94,14 @@
         </div>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <?php echo view("pages/script.php"); ?>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
 </body>
 
 </html>

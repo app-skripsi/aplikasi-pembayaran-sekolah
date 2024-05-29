@@ -1,26 +1,26 @@
 <?php echo view("pages/head"); ?>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
 <style>
-    .btn-custom {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px; /* Tambahkan ruang di bawah setiap tombol */
-    }
-    .btn-custom .mdi {
-        margin-right: 5px;
-    }
-    .button-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .left-buttons {
-        display: flex;
-        gap: 10px; /* Tambahkan ruang antara tombol kiri */
-    }
-</style>
+        .btn-custom {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Add some space below each button */
+        }
+        .btn-custom .mdi {
+            margin-right: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .left-buttons {
+            display: flex;
+            gap: 10px; /* Add some space between left buttons */
+        }
+    </style>
 <body>
     <div class="preloader">
         <div class="lds-ripple">
@@ -118,10 +118,9 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <?php echo view("pages/script.php"); ?>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function () {
             $('#dataTable').DataTable();
