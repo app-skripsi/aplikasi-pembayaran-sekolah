@@ -15,9 +15,10 @@ class Pengajian extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'guru' => [
-				'type'           => 'VARCHAR',
-				'constraint'     => '50',
+            'guru_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
             ],
             'npk' => [
                 'type' => 'INT',
@@ -51,6 +52,7 @@ class Pengajian extends Migration
         ]);
 
         $this->forge->addKey('id', TRUE);
+        $this->forge->addForeignKey('guru_id','guru','id','cascade','cascade');
         $this->forge->createTable('penggajian', TRUE);
     }
 

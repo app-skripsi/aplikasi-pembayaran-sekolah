@@ -25,7 +25,7 @@ $routes->get('pengajian/create', 'PengajianController::create');
 $routes->post('pengajian/store', 'PengajianController::store');
 $routes->get('pengajian/edit/(:alphanum)', 'PengajianController::edit/$1');
 $routes->post('pengajian/update/(:num)', 'PengajianController::update/$1');
-$routes->get('pengajian/delete/(:alphanum)', 'PengajianController::delete/$1');
+$routes->get('pengajian/delete/(:num)', 'PengajianController::delete/$1');
 
 $routes->get('guru', 'GuruController::index');
 $routes->get('guru/create', 'GuruController::create');

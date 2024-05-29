@@ -51,10 +51,16 @@
             <div class="card shadow">
               <div class="card-body">
                 <form action="<?= base_url('pengajian/store'); ?>" method="post">
-                  <div class="form-group">
-                    <label class="form-label" for="guru">Nama Guru</label>
-                    <input class="form-control form-control-lg" type="text" id="guru" name="guru" placeholder="Masukan Nama Guru"/>
-                  </div><br>
+                <div class="form-group">
+                  <label class="form-label" for="guru_id">Guru`</label>
+                  <select class="form-control" id="guru_id" name="guru_id">
+                  <option value="">Pilih Guru</option> <!-- Tambahkan opsi ini -->
+
+                    <?php foreach ($guru as $guruItem): ?>
+                      <option value="<?= $guruItem['id']; ?>"><?= $guruItem['nama']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
                   <div class="form-group">
                     <label class="form-label" for="npk">NPK</label>
                     <input class="form-control form-control-lg" type="text" id="npk" name="npk" placeholder="Masukan NPK"/>

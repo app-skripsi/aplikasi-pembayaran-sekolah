@@ -93,7 +93,7 @@ class Validation extends BaseConfig
 	];
 
     public $pengajian = [
-		'guru'                  => 'required',
+		'guru_id'                  => 'required',
         'npk'                   => 'required',
         'bulan'                 => 'required',
         'tahun'                 => 'required',
@@ -104,7 +104,7 @@ class Validation extends BaseConfig
 	];
 
 	public $pengajian_errors = [
-		'guru'      	        => [
+		'guru_id'      	        => [
 			'required'			=> 'Guru Tidak Boleh Kosong'
         ],
         'npk'                   => [

@@ -12,10 +12,12 @@ class PengajianModel extends Model
 	{
 		if ($id === false) {
 			return $this->table('penggajian')
+				->join('guru', 'guru.id = penggajian.guru_id')
 				->get()
 				->getResultArray();
 		} else {
 			return $this->table('penggajian')
+				->join('guru', 'guru.id = penggajian.guru_id')
 				->where('penggajian.id', $id)
 				->get()
 				->getRowArray();
@@ -34,8 +36,14 @@ class PengajianModel extends Model
 	{
 		return $this->db->table($this->table)->update($data, ['id' => $id]);
 	}
+	// public function deleteData($id)
+	// {
+	// 	return $this->db->table($this->table)->delete(['id' => $id]);
+	// }
 	public function deleteData($id)
 	{
 		return $this->db->table($this->table)->delete(['id' => $id]);
 	}
+	
+
 }
