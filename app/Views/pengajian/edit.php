@@ -21,7 +21,7 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data Pengajian
+                  <a href="<?php echo base_url('/pengajian') ?>">Data Pengajian</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                    Edit Pengajian
@@ -52,8 +52,12 @@
               <div class="card-body">
               <form action="<?= site_url('pengajian/update/' . $pengajian['id']); ?>" method="post"><?php echo form_hidden('id', $pengajian['id']); ?>
                   <div class="form-group">
-                    <label class="form-label" for="guru_id">Guru</label>
-                    <input class="form-control form-control-lg" type="text" id="guru_id" name="guru_id" value="<?php echo isset($pengajian['guru_id']) ? $pengajian['guru_id'] : ''; ?>"  />
+                    <label class="form-label" for="guru">Guru</label>
+                    <input class="form-control form-control-lg" type="text" id="guru" name="guru" value="<?php echo isset($pengajian['guru']) ? $pengajian['guru'] : ''; ?>"  />
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="npk">NPK</label>
+                    <input class="form-control form-control-lg" type="text" id="npk" name="npk" value="<?php echo isset($pengajian['npk']) ? $pengajian['npk'] : ''; ?>"  />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bulan">Bulan</label>
@@ -69,11 +73,14 @@
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="gaji">Gaji</label>
-                    <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" value="<?php echo isset($pengajian['gaji']) ? $pengajian['gaji'] : ''; ?>"  />
-                  </div><br>
+                    <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" value="<?php echo isset($pengajian['gaji']) ? number_format($pengajian['gaji'], 3, ',', '.') : ''; ?>" />                  </div><br>
                   <div class="form-group">
                     <label class="form-label" for="status">Status</label>
                     <input class="form-control form-control-lg" type="text" id="status" name="status" value="<?php echo isset($pengajian['status']) ? $pengajian['status'] : ''; ?>"  />
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="keterangan">Informasi Tambahan</label>
+                    <input class="form-control form-control-lg" type="text" id="keterangan" name="keterangan" value="<?php echo isset($pengajian['keterangan']) ? $pengajian['keterangan'] : ''; ?>"  />
                   </div><br>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -84,6 +91,23 @@
       </div>
     </div>
   </div>
+  <script>
+    document.getElementById('gaji').addEventListener('input', function(e) {
+      var value = e.target.value.replace(/[^,\d]/g, '').toString();
+      var split = value.split(',');
+      var sisa = split[0].length % 3;
+      var rupiah = split[0].substr(0, sisa);
+      var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+      if (ribuan) {
+        var separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+
+      rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+      e.target.value = '' + rupiah;
+    });
+  </script>
   <?php echo view("pages/script.php"); ?>
 </body>
 

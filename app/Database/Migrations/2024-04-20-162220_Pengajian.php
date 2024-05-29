@@ -16,10 +16,8 @@ class Pengajian extends Migration
                 'auto_increment' => true,
             ],
             'guru' => [
-                'type'              => 'INT',
-                'constraint'        => 5,
-                'unsigned'          => true,
-                'null'				=> TRUE
+				'type'           => 'VARCHAR',
+				'constraint'     => '50',
             ],
             'npk' => [
                 'type' => 'INT',
@@ -34,11 +32,12 @@ class Pengajian extends Migration
                 'constraint' => 4,
             ],
             'tanggal' => [
-                'type' => 'DATE',
+                'type' => 'INT',
+                'constraint' => 4,
             ],
             'gaji' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
+                'type' => 'INT',
+                'constraint' => 40,
             ],
             'status' => [
                 'type' => 'ENUM',

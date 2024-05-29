@@ -30,14 +30,14 @@
                       ><i class="mdi mdi-home-outline fs-4"></i></a>
                   </li>
                   <li class="breadcrumb-item active" aria-current="page">
-                   Data Pengajian
+                   Data Penggajian
                   </li>
                 </ol>
               </nav>
-              <h1 class="mb-0 fw-bold text-center"> Informasi Data Pengajian </h1>
+              <h1 class="mb-0 fw-bold text-center"> Informasi Data Penggajian </h1>
             </div>
           </div>
-          <a href="<?php echo base_url('#'); ?>" class="link" style="float: right;">
+          <a href="<?php echo base_url('/pengajian/create'); ?>" class="link" style="float: right;">
                     <i class="mdi mdi-plus fs-4 text-primary">Tambah Data</i>
                 </a>
         </div>
@@ -52,11 +52,13 @@
                       <tr>
                         <th scope="col"   class="text-center">No</th>
                         <th scope="col"  class="text-center">Guru</th>
+                        <th scope="col"  class="text-center">Npk</th>
                         <th scope="col"  class="text-center">Bulan</th>
                         <th scope="col"  class="text-center">Tahun</th>
                         <th scope="col"  class="text-center">Tanggal</th>
                         <th scope="col"  class="text-center">Gaji</th>
                         <th scope="col"  class="text-center">Status</th>
+                        <th scope="col"  class="text-center">Informasi Tambahan</th>
                         <th scope="col"  class="text-center">Action</th>
                       </tr>
                     </thead>
@@ -64,12 +66,14 @@
                     <?php foreach ($pengajian as $key => $row) { ?>
                       <tr>
                       <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['guru_id']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['guru']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['npk']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['gaji']; ?></td>
+                          <td scope="col" class="text-center"><?php echo 'Rp. ' . number_format($row['gaji'], 3, ',', '.'); ?></td>
                           <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['keterangan']; ?></td>
                           <td scope="col" class="text-center">
                             <div class="btn-group">
                               <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">

@@ -71,7 +71,6 @@
                     <label class="form-label" for="tahun_ajaran">Tahun Ajaran</label>
                     <input class="form-control form-control-lg" type="number" id="tahun_ajaran" name="tahun_ajaran" placeholder="Masukan Tahun" min="1900" max="2100" step="1" />
                   </div><br>
-
                   <div class="form-group">
                     <label class="form-label" for="bulan_pembayaran">Bulan Pembayaran</label>
                     <input class="form-control form-control-lg" type="month" id="bulan_pembayaran" name="bulan_pembayaran" placeholder="Masukan Bulan Pembayaran" />
@@ -139,7 +138,7 @@
       }
 
       rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-      e.target.value = 'Rp. ' + rupiah;
+      e.target.value = '' + rupiah;
     });
   </script>
 </body>
