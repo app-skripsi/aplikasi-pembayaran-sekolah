@@ -1,5 +1,6 @@
 <?php echo view("pages/head"); ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 <body>
     <div class="preloader">
@@ -76,8 +77,10 @@
                                                 </td>
                                                 <td scope="col" class="text-center"><?php echo $row['metode_pembayaran']; ?>
                                                 </td>
-                                                <td><a href="<?php base_url('uploads/bukti_pembayaran/' . $row['bukti_pembayaran']) ?>"
-                                                        id="pseudo-dynamism" target="_blank"><?php echo $row['bukti_pembayaran']; ?></a>
+                                                <td>
+                                                    <a href="<?php echo base_url('uploads/bukti_pembayaran/' . $row['bukti_pembayaran']); ?>" data-fancybox="gallery" data-caption="Bukti Pembayaran" target="_blank">
+                                                        <img src="<?php echo base_url('uploads/bukti_pembayaran/' . $row['bukti_pembayaran']); ?>" alt="Gambar" style="width: 100px; height: auto;">
+                                                    </a>
                                                 </td>
                                                 <td scope="col" class="text-center"><?php echo $row['catatan']; ?></td>
                                                 <td scope="col" class="text-center">
@@ -104,6 +107,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <?php echo view("pages/script.php"); ?>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
