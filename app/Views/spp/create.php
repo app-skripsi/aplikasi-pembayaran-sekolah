@@ -50,7 +50,7 @@
             <?php } ?>
             <div class="card shadow">
               <div class="card-body">
-                <form action="<?= base_url('spp/store'); ?>" method="post">
+                <form action="<?= base_url('spp/store'); ?>" method="post" enctype="multipart/form-data"  >
                   <div class="form-group">
                     <label class="form-label" for="kelas">Kelas</label>
                     <input class="form-control form-control-lg" type="text" id="kelas" name="kelas" />

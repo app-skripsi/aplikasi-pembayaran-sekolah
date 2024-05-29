@@ -27,8 +27,28 @@ class SppController extends BaseController
 
     public function store()
 	{
+		// Ambil file yang diupload
 		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
-		$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
+
+		// Periksa apakah file ditemukan
+		if (!$dataBuktiPembayaran) {
+			// Tangani error jika file tidak ditemukan
+			session()->setFlashdata('error', 'File upload not found');
+			return redirect()->back()->withInput();
+		}
+
+		// Periksa apakah file valid dan belum dipindahkan
+		if ($dataBuktiPembayaran->isValid() && !$dataBuktiPembayaran->hasMoved()) {
+			// Dapatkan nama file
+			$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
+			// Pindahkan file ke direktori tujuan
+			$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
+		} else {
+			// Tangani error jika file upload gagal
+			session()->setFlashdata('error', 'File upload failed');
+			return redirect()->back()->withInput();
+		}
+
 		$validation =  \Config\Services::validation();
 		$data = array(
 			'tahun_ajaran'              => $this->request->getPost('tahun_ajaran'),
@@ -41,9 +61,8 @@ class SppController extends BaseController
 			'nis'                   	=> $this->request->getPost('nis'),
             'siswa'                  	=> $this->request->getPost('siswa'),
             'kelas'                  	=> $this->request->getPost('kelas'),
-			'bukti_pembayaran'          => $fileBuktiPembayaran,
+            'bukti_pembayaran'   		=> $fileBuktiPembayaran,
 		);
-		$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
 		if ($validation->run($data, 'spp') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
 			session()->setFlashdata('errors', $validation->getErrors());
