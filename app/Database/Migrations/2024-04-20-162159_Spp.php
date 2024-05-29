@@ -16,22 +16,16 @@ class Spp extends Migration
                 'auto_increment'    => true,
             ],
             'siswa' => [
-                'type'              => 'INT',
-                'constraint'        => 5,
-                'unsigned'          => true,
-                'null'				=> TRUE
+                'type'              => 'VARCHAR',
+                'constraint'        => 100,
             ],
             'kelas'                 => [
-                'type'              => 'INT',
-                'constraint'        => 5,
-                'unsigned'          => true,
-                'null'				=> TRUE
+                'type'              => 'VARCHAR',
+                'constraint'        => 100,
             ],
             'nis' => [
                 'type'              => 'INT',
-                'constraint'        => 5,
-                'unsigned'          => true,
-                'null'				=> TRUE
+                'constraint'        => 100,
             ],
             'tahun_ajaran'          => [
                 'type'              => 'VARCHAR',
@@ -43,10 +37,11 @@ class Spp extends Migration
             ],
             'nominal_pembayaran'    => [
                 'type'              => 'DECIMAL',
-                'constraint'        => '10,2',
+                'constraint'        => '10,3',
             ],
             'tanggal_pembayaran'    => [
-                'type'              => 'DATE',
+                'type'              => 'INT',
+                'constraint'        => 4,
             ],
             'status_pembayaran'     => [
                 'type'              => 'ENUM',

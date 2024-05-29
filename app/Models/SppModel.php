@@ -46,4 +46,29 @@ class SppModel extends Model
 			->get()
 			->getResultArray();
 	}
+
+	public function getStatusPembayaranEnum()
+    {
+        // Lakukan query untuk mendapatkan nilai-nilai unik dari kolom status_pembayaran
+        $query = $this->db->query('SHOW COLUMNS FROM '.$this->table.' WHERE Field = "status_pembayaran"');
+        $row = $query->getRow();
+        
+        // Parsing nilai-nilai enum dari string
+        preg_match("/^enum\(\'(.*)\'\)$/", $row->Type, $matches);
+        $enumValues = explode("','", $matches[1]);
+
+        return $enumValues;
+    }
+	public function getMetodePembayaranEnum()
+    {
+        // Lakukan query untuk mendapatkan nilai-nilai unik dari kolom status_pembayaran
+        $query = $this->db->query('SHOW COLUMNS FROM '.$this->table.' WHERE Field = "metode_pembayaran"');
+        $row = $query->getRow();
+        
+        // Parsing nilai-nilai enum dari string
+        preg_match("/^enum\(\'(.*)\'\)$/", $row->Type, $matches);
+        $enumValues = explode("','", $matches[1]);
+
+        return $enumValues;
+    }
 }

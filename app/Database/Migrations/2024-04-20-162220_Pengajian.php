@@ -36,8 +36,8 @@ class Pengajian extends Migration
                 'constraint' => 4,
             ],
             'gaji' => [
-                'type' => 'INT',
-                'constraint' => 40,
+                'type'              => 'DECIMAL',
+                'constraint'        => '10,3',
             ],
             'status' => [
                 'type' => 'ENUM',

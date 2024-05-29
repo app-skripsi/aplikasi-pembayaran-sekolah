@@ -22,7 +22,10 @@ class SppController extends BaseController
 
 	public function create(): string
 	{
-		return view('spp/create');
+		$sppModel = new SppModel();
+        $data['statusPembayaranEnum'] = $sppModel->getStatusPembayaranEnum();
+		$data['metodePembayaranEnum'] = $sppModel->getMetodePembayaranEnum();
+		return view('spp/create', $data);
 	}
 
     public function store()
@@ -111,19 +114,46 @@ class SppController extends BaseController
     }
 
 
-
 	public function edit($id)
-	{
-        $data['spp'] = $this->spp->getData($id);
-		return view('spp/edit', $data);
-	}
+    {
+        // Membuat instance dari model SppModel
+        $sppModel = new SppModel();
+
+        // Mendapatkan data spp berdasarkan ID
+        $data['spp'] = $sppModel->getData($id);
+
+        // Mendapatkan enum dari kolom status_pembayaran
+        $data['statusPembayaranEnum'] = $sppModel->getStatusPembayaranEnum();
+		$data['metodePembayaranEnum'] = $sppModel->getMetodePembayaranEnum();
+
+        // Mengirimkan data ke view 'spp/edit'
+        return view('spp/edit', $data);
+    }
 
 	public function update()
 	{
-		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
-		$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
 		$id = $this->request->getPost('id');
+		// Ambil file yang diupload
+		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
 
+		// Periksa apakah file ditemukan
+		if (!$dataBuktiPembayaran) {
+			// Tangani error jika file tidak ditemukan
+			session()->setFlashdata('error', 'File upload not found');
+			return redirect()->back()->withInput();
+		}
+
+		// Periksa apakah file valid dan belum dipindahkan
+		if ($dataBuktiPembayaran->isValid() && !$dataBuktiPembayaran->hasMoved()) {
+			// Dapatkan nama file
+			$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
+			// Pindahkan file ke direktori tujuan
+			$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
+		} else {
+			// Tangani error jika file upload gagal
+			session()->setFlashdata('error', 'File upload failed');
+			return redirect()->back()->withInput();
+		}
 		$validation =  \Config\Services::validation();
 
 		$data = array(
@@ -137,11 +167,8 @@ class SppController extends BaseController
             'nis'                   	=> $this->request->getPost('nis'),
             'siswa'                  	=> $this->request->getPost('siswa'),
             'kelas'                  	=> $this->request->getPost('kelas'),
-			'bukti_pembayaran'          => $fileBuktiPembayaran,
 		);
-
-		$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
-		if ($validation->run($data, 'spp') == FALSE) {
+			if ($validation->run($data, 'spp') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
 			session()->setFlashdata('errors', $validation->getErrors());
 			return redirect()->to(base_url('spp/edit/' . $id));
