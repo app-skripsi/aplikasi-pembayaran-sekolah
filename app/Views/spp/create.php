@@ -53,15 +53,15 @@
                 <form action="<?= base_url('spp/store'); ?>" method="post" enctype="multipart/form-data"  >
                   <div class="form-group">
                     <label class="form-label" for="kelas">Kelas</label>
-                    <input class="form-control form-control-lg" type="text" id="kelas" name="kelas" />
+                    <input class="form-control form-control-lg" type="text" id="kelas" name="kelas" placeholder="Masukan Kelas"/>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="siswa">Siswa</label>
-                    <input class="form-control form-control-lg" type="text" id="siswa" name="siswa" />
+                    <input class="form-control form-control-lg" type="text" id="siswa" name="siswa" placeholder="Masukan Siswa"/>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nis">NIS</label>
-                    <input class="form-control form-control-lg" type="text" id="nis" name="nis" />
+                    <input class="form-control form-control-lg" type="text" id="nis" name="nis" placeholder="Masukan Nis"/>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bulan">Bulan</label>

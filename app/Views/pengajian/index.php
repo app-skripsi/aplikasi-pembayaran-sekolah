@@ -1,5 +1,5 @@
-<?php  echo view("pages/head");?>
-
+<?php echo view("pages/head"); ?>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
   <body>
     <div class="preloader">
@@ -18,7 +18,7 @@
       data-boxed-layout="full"
     >
     <?php echo view("pages/header") ?>
-    <?php  echo view("pages/aside");?>
+    <?php  echo view("pages/aside"); ?>
       <div class="page-wrapper">
         <div class="page-breadcrumb">
           <div class="row align-items-center">
@@ -47,43 +47,43 @@
               <div class="card">
                 <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table">
+                  <table id="dataTable" class="table">
                     <thead>
                       <tr>
-                        <th scope="col"   class="text-center">No</th>
-                        <th scope="col"  class="text-center">Guru</th>
-                        <th scope="col"  class="text-center">Npk</th>
-                        <th scope="col"  class="text-center">Bulan</th>
-                        <th scope="col"  class="text-center">Tahun</th>
-                        <th scope="col"  class="text-center">Tanggal</th>
-                        <th scope="col"  class="text-center">Gaji</th>
-                        <th scope="col"  class="text-center">Status</th>
-                        <th scope="col"  class="text-center">Informasi Tambahan</th>
-                        <th scope="col"  class="text-center">Action</th>
+                        <th scope="col" class="text-center">No</th>
+                        <th scope="col" class="text-center">Guru</th>
+                        <th scope="col" class="text-center">Npk</th>
+                        <th scope="col" class="text-center">Bulan</th>
+                        <th scope="col" class="text-center">Tahun</th>
+                        <th scope="col" class="text-center">Tanggal</th>
+                        <th scope="col" class="text-center">Gaji</th>
+                        <th scope="col" class="text-center">Status</th>
+                        <th scope="col" class="text-center">Informasi Tambahan</th>
+                        <th scope="col" class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($pengajian as $key => $row) { ?>
                       <tr>
-                      <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['guru']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['npk']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
-                          <td scope="col" class="text-center"><?php echo 'Rp. ' . number_format($row['gaji'], 3, ',', '.'); ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['keterangan']; ?></td>
-                          <td scope="col" class="text-center">
-                            <div class="btn-group">
-                              <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
-                                edit
-                              </a>
-                              <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger">
-                                hapus
-                              </a>
-                            </div>
-                          </td>
+                        <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
+                        <td scope="col" class="text-center"><?php echo $row['guru']; ?></td>
+                        <td scope="col" class="text-center"><?php echo $row['npk']; ?></td>
+                        <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
+                        <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
+                        <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
+                        <td scope="col" class="text-center"><?php echo 'Rp. ' . number_format($row['gaji'], 3, ',', '.'); ?></td>
+                        <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
+                        <td scope="col" class="text-center"><?php echo $row['keterangan']; ?></td>
+                        <td scope="col" class="text-center">
+                          <div class="btn-group">
+                            <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
+                              edit
+                            </a>
+                            <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger">
+                              hapus
+                            </a>
+                          </div>
+                        </td>
                       </tr>
                       <?php } ?>
                     </tbody>
@@ -96,5 +96,11 @@
       </div>
     </div>
     <?php echo view("pages/script.php"); ?>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script>
+      $(document).ready( function () {
+        $('#dataTable').DataTable();
+      });
+    </script>
   </body>
 </html>
