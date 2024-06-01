@@ -113,7 +113,7 @@ class SppController extends BaseController
 		$kelas = $this->kelas->findAll();
 		$siswa = $this->siswa->findAll();
 		$data['kelas'] = ['' => 'Pilih Kelas'] + array_column($kelas, 'kelas', 'id');
-		$data['siswa'] = ['' => 'Pilih Siswa'] + array_column($siswa, 'siswa', 'id');
+		$data['siswa'] = ['' => 'Pilih Siswa'] + array_column($siswa, 'nama', 'id');
 		$data['spp'] = $this->spp->find($id);
 		$data['statusPembayaranEnum'] = $this->spp->getStatusPembayaranEnum();
 		$data['metodePembayaranEnum'] = $this->spp->getMetodePembayaranEnum();
