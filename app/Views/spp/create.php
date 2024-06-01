@@ -50,18 +50,28 @@
             <?php } ?>
             <div class="card shadow">
               <div class="card-body">
-                <form action="<?= base_url('spp/store'); ?>" method="post" enctype="multipart/form-data"  >
+                <form action="<?= base_url('spp/store'); ?>" method="post" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label class="form-label" for="kelas">Kelas</label>
-                    <input class="form-control form-control-lg" type="text" id="kelas" name="kelas" placeholder="Masukan Kelas"/>
+                    <label class="form-label" for="kelas_id">Kelas</label>
+                    <select class="form-control form-control-lg" id="kelas_id" name="kelas_id">
+                      <option value="">Pilih Kelas</option>
+                      <?php foreach ($kelas as $kelas_item) : ?>
+                        <option value="<?= $kelas_item['id'] ?>"><?= $kelas_item['kelas'] ?></option>
+                      <?php endforeach; ?>
+                    </select>
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="siswa">Siswa</label>
-                    <input class="form-control form-control-lg" type="text" id="siswa" name="siswa" placeholder="Masukan Siswa"/>
+                    <label class="form-label" for="siswa_id">Siswa</label>
+                    <select class="form-control form-control-lg" id="siswa_id" name="siswa_id">
+                      <option value="">Pilih Siswa</option>
+                      <?php foreach ($siswa as $siswa_item) : ?>
+                        <option value="<?= $siswa_item['id'] ?>"><?= $siswa_item['siswa'] ?></option>
+                      <?php endforeach; ?>
+                    </select>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nis">NIS</label>
-                    <input class="form-control form-control-lg" type="number" id="nis" name="nis" placeholder="Masukan Nis"/>
+                    <input class="form-control form-control-lg" type="number" id="nis" name="nis" placeholder="Masukan Nis" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bulan">Bulan</label>
@@ -86,21 +96,21 @@
                   <div class="form-group">
                     <label class="form-label" for="status_pembayaran">Status Pembayaran</label>
                     <select class="form-control form-control-lg" id="status_pembayaran" name="status_pembayaran" required>
-                        <option value="">Pilih Status Pembayaran</option>
-                        <?php foreach ($statusPembayaranEnum as $status): ?>
-                            <option value="<?php echo $status; ?>" <?php echo isset($spp['status_pembayaran']) && $spp['status_pembayaran'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
-                        <?php endforeach; ?>
+                      <option value="">Pilih Status Pembayaran</option>
+                      <?php foreach ($statusPembayaranEnum as $status) : ?>
+                        <option value="<?php echo $status; ?>" <?php echo isset($spp['status_pembayaran']) && $spp['status_pembayaran'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
+                      <?php endforeach; ?>
                     </select>
-                </div><br>
-                <div class="form-group">
+                  </div><br>
+                  <div class="form-group">
                     <label class="form-label" for="metode_pembayaran">Metode Pembayaran</label>
                     <select class="form-control form-control-lg" id="metode_pembayaran" name="metode_pembayaran" required>
-                        <option value="">Pilih Metode Pembayaran</option>
-                        <?php foreach ($metodePembayaranEnum as $pembayaran): ?>
-                            <option value="<?php echo $pembayaran; ?>" <?php echo isset($spp['metode_pembayaran']) && $spp['metode_pembayaran'] == $pembayaran ? 'selected' : ''; ?>><?php echo $pembayaran; ?></option>
-                        <?php endforeach; ?>
+                      <option value="">Pilih Metode Pembayaran</option>
+                      <?php foreach ($metodePembayaranEnum as $pembayaran) : ?>
+                        <option value="<?php echo $pembayaran; ?>" <?php echo isset($spp['metode_pembayaran']) && $spp['metode_pembayaran'] == $pembayaran ? 'selected' : ''; ?>><?php echo $pembayaran; ?></option>
+                      <?php endforeach; ?>
                     </select>
-                </div><br>
+                  </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bukti_pembayaran">Bukti Pembayaran</label>
                     <input class="form-control form-control-lg" type="file" id="bukti_pembayaran" name="bukti_pembayaran" placeholder="Bukti Pembayaran" />

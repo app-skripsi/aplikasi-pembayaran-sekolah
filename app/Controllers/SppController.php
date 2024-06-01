@@ -3,51 +3,53 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\KelasModel;
+use App\Models\SiswaModel;
 use App\Models\SppModel;
 
 class SppController extends BaseController
 {
-    protected $spp;
+    protected $spp, $kelas, $siswa;
+
     public function __construct()
 	{
 		helper(['form']);
-		$this->spp = new SppModel();
+		$this->spp 		= new SppModel();
+		$this->kelas 	= new KelasModel();
+		$this->siswa 	= new SiswaModel();
 	}
 
-    public function index(): string
-    {
-		$spp['spp'] = $this->spp->findAll();
-		return view('spp/index', $spp);
-    }
+	public function index(): string
+	{
+		$data['spp'] = $this->spp->select('spp.*, kelas.kelas, siswa.nama')
+		->join('kelas', 'kelas.id = spp.kelas_id')
+		->join('siswa', 'siswa.id = spp.siswa_id')
+		->findAll();
+		return view('spp/index', $data);
+	}
 
 	public function create(): string
 	{
-		$sppModel = new SppModel();
-        $data['statusPembayaranEnum'] = $sppModel->getStatusPembayaranEnum();
-		$data['metodePembayaranEnum'] = $sppModel->getMetodePembayaranEnum();
+		$kelas = $this->kelas->findAll();
+		$siswa = $this->siswa->findAll();
+		$data = ['kelas' => $kelas];
+		$data = ['siswa' => $siswa];
+        $data['statusPembayaranEnum'] = $this->spp->getStatusPembayaranEnum();
+		$data['metodePembayaranEnum'] = $this->spp->getMetodePembayaranEnum();
 		return view('spp/create', $data);
 	}
 
     public function store()
 	{
-		// Ambil file yang diupload
 		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
-
-		// Periksa apakah file ditemukan
 		if (!$dataBuktiPembayaran) {
-			// Tangani error jika file tidak ditemukan
 			session()->setFlashdata('error', 'File upload not found');
 			return redirect()->back()->withInput();
 		}
-
-		// Periksa apakah file valid dan belum dipindahkan
 		if ($dataBuktiPembayaran->isValid() && !$dataBuktiPembayaran->hasMoved()) {
-			// Dapatkan nama file
 			$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
-			// Pindahkan file ke direktori tujuan
 			$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
 		} else {
-			// Tangani error jika file upload gagal
 			session()->setFlashdata('error', 'File upload failed');
 			return redirect()->back()->withInput();
 		}
@@ -62,8 +64,8 @@ class SppController extends BaseController
 			'metode_pembayaran'         => $this->request->getPost('metode_pembayaran'),
             'catatan'                   => $this->request->getPost('catatan'),
 			'nis'                   	=> $this->request->getPost('nis'),
-            'siswa'                  	=> $this->request->getPost('siswa'),
-            'kelas'                  	=> $this->request->getPost('kelas'),
+            'siswa_id'                  => $this->request->getPost('siswa_id'),
+            'kelas_id'                  => $this->request->getPost('kelas_id'),
             'bukti_pembayaran'   		=> $fileBuktiPembayaran,
 		);
 		if ($validation->run($data, 'spp') == FALSE) {
@@ -82,31 +84,20 @@ class SppController extends BaseController
 
 	public function getByNIS()
     {
-        // Ambil NIS dari permintaan GET
         $nis = $this->request->getGet('nis');
-
-        // Validasi NIS
         if (!$nis) {
-            // Jika NIS tidak tersedia, kembalikan respon JSON dengan pesan kesalahan
             return $this->response->setJSON([
                 'status' => false,
                 'message' => 'NIS harus disediakan dalam permintaan GET.'
             ])->setStatusCode(400);
         }
-
-        // Dapatkan data siswa berdasarkan NIS
         $siswa = $this->spp->getDataByNIS($nis);
-
-        // Periksa apakah data siswa ditemukan
         if (!$siswa) {
-            // Jika tidak ditemukan, kembalikan respon JSON dengan pesan
             return $this->response->setJSON([
                 'status' => false,
                 'message' => 'Siswa dengan NIS tersebut tidak ditemukan.'
             ])->setStatusCode(404);
         }
-
-        // Jika ditemukan, kembalikan data siswa dalam respon JSON
         return $this->response->setJSON([
             'status' => true,
             'data' => $siswa
@@ -116,41 +107,29 @@ class SppController extends BaseController
 
 	public function edit($id)
     {
-        // Membuat instance dari model SppModel
-        $sppModel = new SppModel();
 
-        // Mendapatkan data spp berdasarkan ID
-        $data['spp'] = $sppModel->getData($id);
-
-        // Mendapatkan enum dari kolom status_pembayaran
-        $data['statusPembayaranEnum'] = $sppModel->getStatusPembayaranEnum();
-		$data['metodePembayaranEnum'] = $sppModel->getMetodePembayaranEnum();
-
-        // Mengirimkan data ke view 'spp/edit'
+		$kelas = $this->kelas->findAll();
+		$siswa = $this->siswa->findAll();
+		$data['kelas'] = ['' => 'Pilih Kelas'] + array_column($kelas, 'kelas', 'id');
+		$data['siswa'] = ['' => 'Pilih Siswa'] + array_column($siswa, 'siswa', 'id');
+		$data['spp'] = $this->spp->find($id);
+		$data['statusPembayaranEnum'] = $this->spp->getStatusPembayaranEnum();
+		$data['metodePembayaranEnum'] = $this->spp->getMetodePembayaranEnum();
         return view('spp/edit', $data);
     }
 
 	public function update()
 	{
 		$id = $this->request->getPost('id');
-		// Ambil file yang diupload
 		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
-
-		// Periksa apakah file ditemukan
 		if (!$dataBuktiPembayaran) {
-			// Tangani error jika file tidak ditemukan
 			session()->setFlashdata('error', 'File upload not found');
 			return redirect()->back()->withInput();
 		}
-
-		// Periksa apakah file valid dan belum dipindahkan
 		if ($dataBuktiPembayaran->isValid() && !$dataBuktiPembayaran->hasMoved()) {
-			// Dapatkan nama file
 			$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
-			// Pindahkan file ke direktori tujuan
 			$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
 		} else {
-			// Tangani error jika file upload gagal
 			session()->setFlashdata('error', 'File upload failed');
 			return redirect()->back()->withInput();
 		}
@@ -165,8 +144,8 @@ class SppController extends BaseController
 			'metode_pembayaran'         => $this->request->getPost('metode_pembayaran'),
             'catatan'                   => $this->request->getPost('catatan'),
             'nis'                   	=> $this->request->getPost('nis'),
-            'siswa'                  	=> $this->request->getPost('siswa'),
-            'kelas'                  	=> $this->request->getPost('kelas'),
+            'siswa_id'                  => $this->request->getPost('siswa_id'),
+            'kelas_id'                  => $this->request->getPost('kelas_id'),
 		);
 			if ($validation->run($data, 'spp') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
@@ -190,17 +169,9 @@ class SppController extends BaseController
 	public function delete($id)
 	{
 		$hapus = $this->spp->deleteData($id);
-		if ($hapus) {
-			session()->setFlashdata('success', 'Delete Data Berhasil');
-			// Sweet Alert success
-			session()->setFlashdata('alert', 'success');
-			session()->setFlashdata('delete_alert', 'success');
-		} else {
-			session()->setFlashdata('error', 'Gagal menghapus data');
-			// Sweet Alert error
-			session()->setFlashdata('alert', 'error');
-			session()->setFlashdata('delete_alert', 'error');
-		}
-		return redirect()->to(base_url('spp'));
+        if ($hapus) {
+            session()->setFlashdata('warning', 'Delete Data  Berhasil');
+			return redirect()->to(base_url('spp'));
+		}	
 	}
 }

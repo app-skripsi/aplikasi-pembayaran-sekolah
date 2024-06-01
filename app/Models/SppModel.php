@@ -12,10 +12,14 @@ class SppModel extends Model
 	{
 		if ($id === false) {
 			return $this->table('spp')
+				->join('kelas', 'kelas.id = spp.kelas_id')
+				->join('siswa', 'siswa.id = spp.siswa_id')
 				->get()
 				->getResultArray();
 		} else {
 			return $this->table('spp')
+				->join('kelas', 'kelas.id = spp.kelas_id')
+				->join('siswa', 'siswa.id = spp.siswa_id')
 				->where('spp.id', $id)
 				->get()
 				->getRowArray();

@@ -21,10 +21,10 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                <a href="<?php echo base_url('/siswa'); ?>">Data Siswa</a>
+                  <a href="<?php echo base_url('/siswa'); ?>">Data Siswa</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                   Tambah Siswa
+                  Tambah Siswa
                 </li>
               </ol>
             </nav>
@@ -51,15 +51,15 @@
             <div class="card shadow">
               <div class="card-body">
                 <form action="<?= base_url('siswa/store'); ?>" method="post">
-                <div class="form-group">
-                <label class="form-label" for="kelas_id">Kelas</label>
-                <select class="form-control form-control-lg" id="kelas_id" name="kelas_id">
-                <option value="">Pilih Kelas</option> <!-- Tambahkan opsi ini -->
-                    <?php foreach ($kelas as $kelas_item): ?>
+                  <div class="form-group">
+                    <label class="form-label" for="kelas_id">Kelas</label>
+                    <select class="form-control form-control-lg" id="kelas_id" name="kelas_id">
+                      <option value="">Pilih Kelas</option> <!-- Tambahkan opsi ini -->
+                      <?php foreach ($kelas as $kelas_item) : ?>
                         <option value="<?= $kelas_item['id'] ?>"><?= $kelas_item['kelas'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div><br>
+                      <?php endforeach; ?>
+                    </select>
+                  </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nama">Nama</label>
                     <input class="form-control form-control-lg" type="text" id="nama" name="nama" placeholder="Masukan Nama Siswa" />
@@ -79,11 +79,11 @@
                   <div class="form-group">
                     <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
                     <select class="form-control form-control-lg" id="jenis_kelamin" name="jenis_kelamin" required>
-                        <option value="">Pilih Jenis Kelamin</option>
-                        <option value="Laki - Laki">Laki-laki</option>
-                        <option value="Perempuan">Perempuan</option>
+                      <option value="">Pilih Jenis Kelamin</option>
+                      <option value="Laki - Laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
                     </select>
-                </div><br>
+                  </div><br>
                   <div class="form-group">
                     <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
                     <input class="form-control form-control-lg" type="date" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukan Tanggal Lahir" />

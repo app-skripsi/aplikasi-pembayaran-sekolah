@@ -15,13 +15,17 @@ class Spp extends Migration
                 'unsigned'          => true,
                 'auto_increment'    => true,
             ],
-            'siswa' => [
-                'type'              => 'VARCHAR',
-                'constraint'        => 100,
+            'kelas_id' => [
+                'type' => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
+                'null'              => true,
             ],
-            'kelas'                 => [
-                'type'              => 'VARCHAR',
-                'constraint'        => 100,
+            'siswa_id' => [
+                'type' => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
+                'null'              => true,
             ],
             'nis' => [
                 'type'              => 'INT',
@@ -64,6 +68,8 @@ class Spp extends Migration
         ]);
 
         $this->forge->addKey('id', TRUE);
+        $this->forge->addForeignKey('kelas_id', 'kelas', 'id', 'cascade', 'cascade');
+        $this->forge->addForeignKey('siswa_id', 'siswa', 'id', 'cascade', 'cascade');
         $this->forge->createTable('spp', TRUE);
     }
 
