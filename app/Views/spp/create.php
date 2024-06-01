@@ -51,7 +51,7 @@
             <div class="card shadow">
               <div class="card-body">
                 <form action="<?= base_url('spp/store'); ?>" method="post" enctype="multipart/form-data">
-                <div class="form-group">
+                  <div class="form-group">
                     <label class="form-label" for="kelas_id">Kelas</label>
                     <select class="form-control form-control-lg" id="kelas_id" name="kelas_id">
                       <option value="">Pilih Kelas</option>

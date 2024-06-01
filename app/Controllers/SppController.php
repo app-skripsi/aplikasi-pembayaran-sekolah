@@ -148,6 +148,7 @@ class SppController extends BaseController
             'nis'                   	=> $this->request->getPost('nis'),
             'siswa_id'                  => $this->request->getPost('siswa_id'),
             'kelas_id'                  => $this->request->getPost('kelas_id'),
+			'bukti_pembayaran'   		=> $fileBuktiPembayaran,
 		);
 			if ($validation->run($data, 'spp') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
@@ -157,12 +158,10 @@ class SppController extends BaseController
 			$ubah = $this->spp->updateData($data, $id);
 			if ($ubah) {
 				session()->setFlashdata('success', 'Update Data Berhasil');
-				// Sweet Alert success
 				session()->setFlashdata('alert', 'success');
 				return redirect()->to(base_url('spp'));
 			} else {
 				session()->setFlashdata('error', 'Gagal mengupdate data');
-				// Sweet Alert error
 				session()->setFlashdata('alert', 'error');
 				return redirect()->to(base_url('spp/edit/' . $id));
 			}
