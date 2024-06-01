@@ -21,7 +21,7 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data Siswa
+                  <a href="<?php echo base_url('/siswa'); ?>">Data Siswa</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                   Edit Siswa
@@ -76,17 +76,13 @@
                     <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" value="<?php echo isset($siswa['nomor_telepon']) ? $siswa['nomor_telepon'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
-                    <select class="form-control form-control-lg" id="jenis_kelamin" name="jenis_kelamin" value="<?php echo isset($siswa['jenis_kelamin']) ? $siswa['jenis_kelamin'] : ''; ?>">
-                        <option value="">Pilih Jenis Kelamin</option>
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
-                    </select>
-                </div><br>
-                  <!-- <div class="form-group">
-                    <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
-                    <input class="form-control form-control-lg" type="text" id="jenis_kelamin" name="jenis_kelamin" value="<?php echo isset($siswa['jenis_kelamin']) ? $siswa['jenis_kelamin'] : ''; ?>" />
-                  </div><br> -->
+                      <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
+                      <select class="form-control form-control-lg" id="jenis_kelamin" name="jenis_kelamin">
+                          <option value="">Pilih Jenis Kelamin</option>
+                          <option value="Laki - Laki" <?php echo isset($siswa['jenis_kelamin']) && $siswa['jenis_kelamin'] == 'Laki - Laki' ? 'selected' : ''; ?>>Laki-laki</option>
+                          <option value="Perempuan" <?php echo isset($siswa['jenis_kelamin']) && $siswa['jenis_kelamin'] == 'Perempuan' ? 'selected' : ''; ?>>Perempuan</option>
+                      </select>
+                  </div>
                   <div class="form-group">
                     <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
                     <input class="form-control form-control-lg" type="text" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo isset($siswa['tanggal_lahir']) ? $siswa['tanggal_lahir'] : ''; ?>" />

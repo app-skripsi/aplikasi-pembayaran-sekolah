@@ -21,7 +21,7 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data Siswa
+                <a href="<?php echo base_url('/siswa'); ?>">Data Siswa</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                    Tambah Siswa
@@ -80,8 +80,8 @@
                     <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
                     <select class="form-control form-control-lg" id="jenis_kelamin" name="jenis_kelamin" required>
                         <option value="">Pilih Jenis Kelamin</option>
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
+                        <option value="Laki - Laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
                     </select>
                 </div><br>
                   <div class="form-group">

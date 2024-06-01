@@ -57,14 +57,14 @@ class SiswaController extends BaseController
 			}
 		}
 	}
-	public function edit($id)
-    {
-        $kelas = $this->kelas->findAll();
-        $data['kelas'] = ['' => 'Pilih Kelas'] + array_column($kelas, 'kelas', 'kelas_id');
-        $data['siswa'] = $this->siswa->getData($id);
-        echo view('siswa/edit', $data);
-    }
 
+	public function edit($id)
+	{
+		$kelas = $this->kelas->findAll();
+		$data['kelas'] = ['' => 'Pilih Kelas'] + array_column($kelas, 'kelas', 'id');
+		$data['siswa'] = $this->siswa->find($id);
+		return view('siswa/edit', $data);
+	}
 
 	
 
