@@ -50,14 +50,15 @@
             <?php } ?>
             <div class="card shadow">
               <div class="card-body">
-              <form action="<?= site_url('spp/update/' . $spp['id']); ?>" method="post"><?php echo form_hidden('id', $spp['id']); ?>
-                  <div class="form-group">
-                    <label class="form-label" for="siswa">Siswa</label>
-                    <input class="form-control form-control-lg" type="text" id="siswa" name="siswa" value="<?php echo isset($spp['siswa']) ? $spp['siswa'] : ''; ?>"  />
+              <form action="<?= site_url('spp/update/' . $spp['id']); ?>" method="post">
+              <?php echo form_hidden('id', $spp['id']); ?>
+              <div class="form-group">
+                    <?php echo form_label('Kelas', 'kelas_id'); ?>
+                    <?php echo form_dropdown('kelas_id', $kelas, $spp['kelas_id'], ['class' => 'form-control']); ?>
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="kelas">Kelas</label>
-                    <input class="form-control form-control-lg" type="text" id="kelas" name="kelas" value="<?php echo isset($spp['kelas']) ? $spp['kelas'] : ''; ?>"  />
+                    <?php echo form_label('Siswa', 'siswa_id'); ?>
+                    <?php echo form_dropdown('siswa_id', $siswa, $spp['siswa_id'], ['class' => 'form-control']); ?>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nis">Nis</label>

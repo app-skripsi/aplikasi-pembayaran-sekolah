@@ -51,7 +51,7 @@
             <div class="card shadow">
               <div class="card-body">
                 <form action="<?= base_url('spp/store'); ?>" method="post" enctype="multipart/form-data">
-                  <div class="form-group">
+                <div class="form-group">
                     <label class="form-label" for="kelas_id">Kelas</label>
                     <select class="form-control form-control-lg" id="kelas_id" name="kelas_id">
                       <option value="">Pilih Kelas</option>
@@ -65,7 +65,7 @@
                     <select class="form-control form-control-lg" id="siswa_id" name="siswa_id">
                       <option value="">Pilih Siswa</option>
                       <?php foreach ($siswa as $siswa_item) : ?>
-                        <option value="<?= $siswa_item['id'] ?>"><?= $siswa_item['siswa'] ?></option>
+                        <option value="<?= $siswa_item['id'] ?>"><?= $siswa_item['nama'] ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div><br>

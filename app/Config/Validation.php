@@ -50,8 +50,8 @@ class Validation extends BaseConfig
         'status_pembayaran'      => 'required',
         'metode_pembayaran'      => 'required',
         'catatan'                => 'required',
-        'siswa'                  => 'required',
-        'kelas'                  => 'required',
+        'siswa_id'               => 'required',
+        'kelas_id'               => 'required',
         'nis'                    => 'required',
         'bukti_pembayaran'       => 'required',
 	];
@@ -78,10 +78,10 @@ class Validation extends BaseConfig
         'catatan'      	        => [
 			'required'			=> 'Catatan Tidak Boleh Kosong'
         ],
-        'siswa'      	        => [
+        'siswa_id'      	    => [
 			'required'			=> 'Siswa Tidak Boleh Kosong'
         ],
-        'kelas'      	        => [
+        'kelas_id'      	    => [
 			'required'			=> 'Kelas Tidak Boleh Kosong'
         ],
         'nis'      	            => [
@@ -93,7 +93,7 @@ class Validation extends BaseConfig
 	];
 
     public $pengajian = [
-		'guru_id'                  => 'required',
+		'guru_id'               => 'required',
         'npk'                   => 'required',
         'bulan'                 => 'required',
         'tahun'                 => 'required',
@@ -130,11 +130,11 @@ class Validation extends BaseConfig
         ]
 	];
     public $guru = [
-		'nama'                      => 'required',
-        'nip'                       => 'required',
-        'nomor_telepon'             => 'required',
-        'alamat'                    => 'required',
-        'email'                     => 'required',
+		'nama'                  => 'required',
+        'nip'                   => 'required',
+        'nomor_telepon'         => 'required',
+        'alamat'                => 'required',
+        'email'                 => 'required',
 	];
 
 	public $guru_errors = [

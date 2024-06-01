@@ -32,10 +32,12 @@ class SppController extends BaseController
 	{
 		$kelas = $this->kelas->findAll();
 		$siswa = $this->siswa->findAll();
-		$data = ['kelas' => $kelas];
-		$data = ['siswa' => $siswa];
-        $data['statusPembayaranEnum'] = $this->spp->getStatusPembayaranEnum();
-		$data['metodePembayaranEnum'] = $this->spp->getMetodePembayaranEnum();
+		$data = [
+			'kelas' => $kelas,
+			'siswa' => $siswa,
+			'statusPembayaranEnum' => $this->spp->getStatusPembayaranEnum(),
+			'metodePembayaranEnum' => $this->spp->getMetodePembayaranEnum()
+		];
 		return view('spp/create', $data);
 	}
 

@@ -91,7 +91,7 @@
                                             <?php foreach ($spp as $key => $row) { ?>
                                             <tr>
                                                 <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
-                                                <td scope="col" class="text-center"><?php echo $row['siswa']; ?></td>
+                                                <td scope="col" class="text-center"><?php echo $row['nama']; ?></td>
                                                 <td scope="col" class="text-center"><?php echo $row['kelas']; ?></td>
                                                 <td scope="col" class="text-center"><?php echo $row['nis']; ?></td>
                                                 <td scope="col" class="text-center"><?php echo $row['tahun_ajaran']; ?></td>
