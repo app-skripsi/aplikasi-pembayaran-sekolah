@@ -21,14 +21,14 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  <a href="<?php echo base_url('/pengajian') ?>">Data Pengajian</a>
+                  <a href="<?php echo base_url('/pengajian') ?>">Data Penggajian</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                   Tambah Pengajian
+                   Tambah Penggajian
                 </li>
               </ol>
             </nav>
-            <h1 class="mb-0 fw-bold text-center"> Form Tambah Data Pengajian </h1>
+            <h1 class="mb-0 fw-bold text-center"> Form Tambah Data Penggajian </h1>
           </div>
         </div>
       </div>
@@ -76,7 +76,8 @@
                   <div class="form-group">
                     <label class="form-label" for="tanggal">Tanggal</label>
                     <input class="form-control form-control-lg" type="text" id="tanggal" name="tanggal" placeholder="Masukan Tanggal" />
-                  </div><br><div class="form-group">
+                  </div><br>
+                  <div class="form-group">
                     <label class="form-label" for="gaji">Gaji</label>
                     <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" placeholder="Masukan Gaji" />
                   </div><br>
@@ -119,6 +120,7 @@
       e.target.value = '' + rupiah;
     });
   </script>
+
   <?php echo view("pages/script.php"); ?>
 </body>
 

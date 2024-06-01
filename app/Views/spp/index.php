@@ -100,7 +100,7 @@
                                                     <td scope="col" class="text-center"><?php echo $row['nis']; ?></td>
                                                     <td scope="col" class="text-center"><?php echo $row['tahun_ajaran']; ?></td>
                                                     <td scope="col" class="text-center"><?php echo $row['bulan_pembayaran']; ?></td>
-                                                    <td scope="col" class="text-center"><?php echo 'Rp. ' . number_format($row['nominal_pembayaran'], 3, ',', '.'); ?></td>
+                                                    <td scope="col" class="text-center"><?php echo 'Rp. ' . number_format($row['nominal_pembayaran'], 3, ',', '.') . ',000'; ?></td>
                                                     <td scope="col" class="text-center"><?php echo $row['tanggal_pembayaran']; ?></td>
                                                     <td scope="col" class="text-center"><?php echo $row['status_pembayaran']; ?></td>
                                                     <td scope="col" class="text-center"><?php echo $row['metode_pembayaran']; ?></td>

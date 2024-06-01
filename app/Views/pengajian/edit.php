@@ -21,14 +21,14 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  <a href="<?php echo base_url('/pengajian') ?>">Data Pengajian</a>
+                  <a href="<?php echo base_url('/pengajian') ?>">Data Penggajian</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                   Edit Pengajian
+                  Edit Penggajian
                 </li>
               </ol>
             </nav>
-            <h1 class="mb-0 fw-bold text-center"> Form Edit Data Pengajian </h1>
+            <h1 class="mb-0 fw-bold text-center"> Form Edit Data Penggajian </h1>
           </div>
         </div>
       </div>
@@ -50,31 +50,32 @@
             <?php } ?>
             <div class="card shadow">
               <div class="card-body">
-              <form action="<?= site_url('pengajian/update/' . $pengajian['id']); ?>" method="post"><?php echo form_hidden('id', $pengajian['id']); ?>
-              <div class="form-group">
+                <form action="<?= site_url('pengajian/update/' . $pengajian['id']); ?>" method="post"><?php echo form_hidden('id', $pengajian['id']); ?>
+                  <div class="form-group">
                     <?php echo form_label('Guru', 'guru_id'); ?>
                     <?php echo form_dropdown('guru_id', $guru, $pengajian['guru_id'], ['class' => 'form-control']); ?>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="npk">NPK</label>
-                    <input class="form-control form-control-lg" type="text" id="npk" name="npk" value="<?php echo isset($pengajian['npk']) ? $pengajian['npk'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="npk" name="npk" value="<?php echo isset($pengajian['npk']) ? $pengajian['npk'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bulan">Bulan</label>
-                    <input class="form-control form-control-lg" type="text" id="bulan" name="bulan" value="<?php echo isset($pengajian['bulan']) ? $pengajian['bulan'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="bulan" name="bulan" value="<?php echo isset($pengajian['bulan']) ? $pengajian['bulan'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="tahun">Tahun</label>
-                    <input class="form-control form-control-lg" type="text" id="tahun" name="tahun" value="<?php echo isset($pengajian['tahun']) ? $pengajian['tahun'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="tahun" name="tahun" value="<?php echo isset($pengajian['tahun']) ? $pengajian['tahun'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="tanggal">Tanggal</label>
-                    <input class="form-control form-control-lg" type="text" id="tanggal" name="tanggal" value="<?php echo isset($pengajian['tanggal']) ? $pengajian['tanggal'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="tanggal" name="tanggal" value="<?php echo isset($pengajian['tanggal']) ? $pengajian['tanggal'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="gaji">Gaji</label>
-                    <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" value="<?php echo isset($pengajian['gaji']) ? number_format($pengajian['gaji'], 3, ',', '.') : ''; ?>" />                  </div><br>
-                    <div class="form-group">
+                    <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" value="<?php echo isset($pengajian['gaji']) ? number_format($pengajian['gaji'], 3, ',', '.') : ''; ?>" />
+                  </div><br>
+                  <div class="form-group">
                     <label class="form-label" for="status">Status Pembayaran</label>
                     <select class="form-control form-control-lg" id="status" name="status" required>
                       <!-- <option value="">Pilih Status Pembayaran</option> -->
@@ -85,7 +86,7 @@
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="keterangan">Informasi Tambahan</label>
-                    <input class="form-control form-control-lg" type="text" id="keterangan" name="keterangan" value="<?php echo isset($pengajian['keterangan']) ? $pengajian['keterangan'] : ''; ?>"  />
+                    <input class="form-control form-control-lg" type="text" id="keterangan" name="keterangan" value="<?php echo isset($pengajian['keterangan']) ? $pengajian['keterangan'] : ''; ?>" />
                   </div><br>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

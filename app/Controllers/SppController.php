@@ -123,18 +123,6 @@ class SppController extends BaseController
 	public function update()
 	{
 		$id = $this->request->getPost('id');
-		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
-		if (!$dataBuktiPembayaran) {
-			session()->setFlashdata('error', 'File upload not found');
-			return redirect()->back()->withInput();
-		}
-		if ($dataBuktiPembayaran->isValid() && !$dataBuktiPembayaran->hasMoved()) {
-			$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
-			$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
-		} else {
-			session()->setFlashdata('error', 'File upload failed');
-			return redirect()->back()->withInput();
-		}
 		$validation =  \Config\Services::validation();
 
 		$data = array(
@@ -148,7 +136,6 @@ class SppController extends BaseController
             'nis'                   	=> $this->request->getPost('nis'),
             'siswa_id'                  => $this->request->getPost('siswa_id'),
             'kelas_id'                  => $this->request->getPost('kelas_id'),
-			'bukti_pembayaran'   		=> $fileBuktiPembayaran,
 		);
 			if ($validation->run($data, 'spp') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
@@ -160,11 +147,7 @@ class SppController extends BaseController
 				session()->setFlashdata('success', 'Update Data Berhasil');
 				session()->setFlashdata('alert', 'success');
 				return redirect()->to(base_url('spp'));
-			} else {
-				session()->setFlashdata('error', 'Gagal mengupdate data');
-				session()->setFlashdata('alert', 'error');
-				return redirect()->to(base_url('spp/edit/' . $id));
-			}
+			} 
 		}
 	}
 	public function delete($id)

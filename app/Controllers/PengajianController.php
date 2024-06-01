@@ -3,10 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Database\Migrations\Guru;
 use App\Models\GuruModel;
 use App\Models\PengajianModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class PengajianController extends BaseController
 {
@@ -43,12 +41,8 @@ class PengajianController extends BaseController
 	public function store()
 	{
 		$validation =  \Config\Services::validation();
-		
-		// Menonaktifkan validasi sementara
-		$validation->setRules([], []); // Menyimpan aturan validasi yang kosong untuk menonaktifkan validasi
-	
-		// Tetapkan aturan validasi sesuai kebutuhan
-		$validation->setRules([
+		$validation->setRules([], []); 
+			$validation->setRules([
 			'guru_id' => 'required',
 			'npk' => 'required',
 			'bulan' => 'required',
@@ -58,7 +52,6 @@ class PengajianController extends BaseController
 			'status' => 'required',
 			'keterangan' => 'required',
 		]);
-	
 		$data = array(
 			'guru_id' => $this->request->getPost('guru_id'),
 			'npk' => $this->request->getPost('npk'),
@@ -81,13 +74,8 @@ class PengajianController extends BaseController
 				return redirect()->to(base_url('pengajian'));
 			}
 		}
-	
-		// Mengaktifkan kembali validasi
-		$validation->reset(); // Mengatur ulang semua aturan validasi
-	
-		// Tetapkan kembali aturan validasi sesuai kebutuhan
+		$validation->reset(); 
 		$validation->setRules([
-			// Daftar aturan validasi
 		]);
 	}
 	

@@ -113,7 +113,7 @@
                             </div>
                           </div>
                         </td>
-                        <td><?= $pengajian ?? 0 ?></td>
+                        <td><?= $penggajian ?? 0 ?></td>
                         <td>
                         <a href="<?php  echo base_url('/pengajian')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
                         </td>

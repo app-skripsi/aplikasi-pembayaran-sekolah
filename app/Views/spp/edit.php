@@ -51,7 +51,7 @@
             <div class="card shadow">
               <div class="card-body">
                 <form action="<?= site_url('spp/update/' . $spp['id']); ?>" method="post">
-                  <?php echo form_hidden('id', $spp['id']); ?>
+                <?php echo form_hidden('id', $spp['id']); ?>
                   <div class="form-group">
                     <?php echo form_label('Kelas', 'kelas_id'); ?>
                     <?php echo form_dropdown('kelas_id', $kelas, $spp['kelas_id'], ['class' => 'form-control']); ?>
@@ -97,10 +97,6 @@
                         <option value="<?php echo $pembayaran; ?>" <?php echo isset($spp['metode_pembayaran']) && $spp['metode_pembayaran'] == $pembayaran ? 'selected' : ''; ?>><?php echo $pembayaran; ?></option>
                       <?php endforeach; ?>
                     </select>
-                  </div><br>
-                  <div class="form-group">
-                    <label class="form-label" for="bukti_pembayaran">Bukti Pembayaran</label>
-                    <input class="form-control form-control-lg" type="file" id="bukti_pembayaran" name="bukti_pembayaran" placeholder="Bukti Pembayaran" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="catatan">Catatan</label>
