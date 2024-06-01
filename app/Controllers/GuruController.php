@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\GuruModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class GuruController extends BaseController
 {

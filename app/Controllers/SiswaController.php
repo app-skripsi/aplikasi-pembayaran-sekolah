@@ -18,10 +18,12 @@ class SiswaController extends BaseController
 		$this->kelas = new KelasModel();
 	}
 
-    public function index(): string {
-		$siswa['siswa'] = $this->siswa->join('kelas', 'kelas.id = siswa.kelas_id', 'INNER JOIN')->findAll();
+	public function index(): string {
+		$siswa['siswa'] = $this->siswa->select('siswa.*, kelas.kelas')
+									 ->join('kelas', 'kelas.id = siswa.kelas_id')
+									 ->findAll();
 		return view('siswa/index', $siswa);
-    }
+	}
 
 	public function create()
 	{
@@ -98,7 +100,6 @@ class SiswaController extends BaseController
 	}
 	public function delete($id)
 	{
-
 		$hapus = $this->siswa->deleteData($id);
         if ($hapus) {
             session()->setFlashdata('warning', 'Delete Data  Berhasil');
