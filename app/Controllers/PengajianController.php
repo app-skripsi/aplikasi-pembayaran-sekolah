@@ -20,19 +20,25 @@ class PengajianController extends BaseController
 		$this->guru = new GuruModel();
 	}
 
-    public function index(): string
-    {
-		$pengajian['pengajian'] = $this->pengajian
-		->join('guru', 'guru.id = penggajian.guru_id', 'INNER')
+	public function index(): string
+	{
+		$data['pengajian'] = $this->pengajian->select('penggajian.*, guru.nama')
+		->join('guru', 'guru.id = penggajian.guru_id')
 		->findAll();
-		return view('pengajian/index', $pengajian);
-    }
+		return view('pengajian/index', $data);
+	}
+
 
 	public function create(): string
 	{
-		$data['guru'] = $this->guru->findAll();
-		return view('pengajian/create', $data);
+		 $guru = $this->guru->findAll();
+		$data = [
+			'guru' => $guru,
+			'statusPembayaranEnum' => $this->pengajian->getStatusPembayaranEnum(),
+		];
+				return view('pengajian/create', $data);
 	}
+
 
 	public function store()
 	{
@@ -89,8 +95,11 @@ class PengajianController extends BaseController
 
 	public function edit($id)
 	{
-        $data['pengajian'] = $this->pengajian->getData($id);
-		return view('pengajian/edit', $data);
+		$guru = $this->guru->findAll();
+		$data['guru'] = ['' => 'Pilih Guru'] + array_column($guru, 'nama', 'id');
+		$data['pengajian'] = $this->pengajian->find($id);
+		$data['statusPembayaranEnum'] = $this->pengajian->getStatusPembayaranEnum();
+        return view('pengajian/edit', $data);
 	}
 
 	public function update()
@@ -100,7 +109,7 @@ class PengajianController extends BaseController
 		$validation =  \Config\Services::validation();
 
 		$data = array(
-			'guru'               	=> $this->request->getPost('guru'),
+			'guru_id'               => $this->request->getPost('guru_id'),
 			'npk'              		=> $this->request->getPost('npk'),
             'bulan'                 => $this->request->getPost('bulan'),
 			'tahun'                 => $this->request->getPost('tahun'),

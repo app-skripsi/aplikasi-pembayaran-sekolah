@@ -36,14 +36,23 @@ class PengajianModel extends Model
 	{
 		return $this->db->table($this->table)->update($data, ['id' => $id]);
 	}
-	// public function deleteData($id)
-	// {
-	// 	return $this->db->table($this->table)->delete(['id' => $id]);
-	// }
 	public function deleteData($id)
 	{
 		return $this->db->table($this->table)->delete(['id' => $id]);
 	}
+
+	public function getStatusPembayaranEnum()
+    {
+        // Lakukan query untuk mendapatkan nilai-nilai unik dari kolom status_pembayaran
+        $query = $this->db->query('SHOW COLUMNS FROM '.$this->table.' WHERE Field = "status"');
+        $row = $query->getRow();
+        
+        // Parsing nilai-nilai enum dari string
+        preg_match("/^enum\(\'(.*)\'\)$/", $row->Type, $matches);
+        $enumValues = explode("','", $matches[1]);
+
+        return $enumValues;
+    }
 	
 
 }

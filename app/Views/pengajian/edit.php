@@ -51,9 +51,9 @@
             <div class="card shadow">
               <div class="card-body">
               <form action="<?= site_url('pengajian/update/' . $pengajian['id']); ?>" method="post"><?php echo form_hidden('id', $pengajian['id']); ?>
-                  <div class="form-group">
-                    <label class="form-label" for="guru">Guru</label>
-                    <input class="form-control form-control-lg" type="text" id="guru" name="guru" value="<?php echo isset($pengajian['guru']) ? $pengajian['guru'] : ''; ?>"  />
+              <div class="form-group">
+                    <?php echo form_label('Guru', 'guru_id'); ?>
+                    <?php echo form_dropdown('guru_id', $guru, $pengajian['guru_id'], ['class' => 'form-control']); ?>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="npk">NPK</label>
@@ -74,9 +74,14 @@
                   <div class="form-group">
                     <label class="form-label" for="gaji">Gaji</label>
                     <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" value="<?php echo isset($pengajian['gaji']) ? number_format($pengajian['gaji'], 3, ',', '.') : ''; ?>" />                  </div><br>
-                  <div class="form-group">
-                    <label class="form-label" for="status">Status</label>
-                    <input class="form-control form-control-lg" type="text" id="status" name="status" value="<?php echo isset($pengajian['status']) ? $pengajian['status'] : ''; ?>"  />
+                    <div class="form-group">
+                    <label class="form-label" for="status">Status Pembayaran</label>
+                    <select class="form-control form-control-lg" id="status" name="status" required>
+                      <!-- <option value="">Pilih Status Pembayaran</option> -->
+                      <?php foreach ($statusPembayaranEnum as $status) : ?>
+                        <option value="<?php echo $status; ?>" <?php echo isset($pengajian['status']) && $pengajian['status'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
+                      <?php endforeach; ?>
+                    </select>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="keterangan">Informasi Tambahan</label>

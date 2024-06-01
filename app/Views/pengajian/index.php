@@ -107,7 +107,7 @@
                               <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
                                 edit
                               </a>
-                              <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger" data-id="<?php echo $row['id']; ?>">
+                              <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger">
                                 Hapus
                             </a>
                             </div>
@@ -124,40 +124,6 @@
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Tambahkan tombol hapus dengan data-id -->
-<a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger delete-button" data-id="<?php echo $row['id']; ?>">
-    Hapus
-</a>
-
-<!-- Sisipkan script JavaScript -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.delete-button').on('click', function (e) {
-            e.preventDefault();
-            var id = $(this).data('id');
-            // Lakukan apa yang Anda inginkan dengan ID di sini, seperti konfirmasi penghapusan atau permintaan Ajax ke server
-            console.log('ID yang akan dihapus: ' + id);
-            // Lakukan penghapusan dengan Ajax atau metode lainnya
-            $.ajax({
-                url: '<?php echo base_url('pengajian/delete/'); ?>' + id,
-                type: 'GET',
-                success: function (response) {
-                    // Tambahkan logika penanganan sukses di sini
-                    console.log('Data berhasil dihapus');
-                    // Refresh halaman atau perbarui tampilan
-                    location.reload();
-                },
-                error: function (xhr, status, error) {
-                    // Tambahkan logika penanganan kesalahan di sini
-                    console.error('Terjadi kesalahan:', error);
-                }
-            });
-        });
-    });
-</script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <?php echo view("pages/script.php"); ?>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>

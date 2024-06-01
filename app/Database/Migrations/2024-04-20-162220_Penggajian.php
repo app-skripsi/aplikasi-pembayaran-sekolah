@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Pengajian extends Migration
+class Penggajian extends Migration
 {
     public function up()
     {
@@ -42,8 +42,8 @@ class Pengajian extends Migration
             ],
             'status' => [
                 'type' => 'ENUM',
-                'constraint' => ['sudah_dibayar', 'belum_dibayar', 'lunas'],
-                'default' => 'belum_dibayar',
+                'constraint' => ['Sudah Dibayar', 'Belum Dibayar', 'Lunas'],
+                'default' => 'Belum dibayar',
             ],
             'keterangan' => [
                 'type' => 'TEXT',

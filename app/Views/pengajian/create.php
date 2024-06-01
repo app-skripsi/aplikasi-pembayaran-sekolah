@@ -52,7 +52,7 @@
               <div class="card-body">
                 <form action="<?= base_url('pengajian/store'); ?>" method="post">
                 <div class="form-group">
-                  <label class="form-label" for="guru_id">Guru`</label>
+                  <label class="form-label" for="guru_id">Guru</label>
                   <select class="form-control" id="guru_id" name="guru_id">
                   <option value="">Pilih Guru</option> <!-- Tambahkan opsi ini -->
 
@@ -81,8 +81,13 @@
                     <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" placeholder="Masukan Gaji" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="status">Status</label>
-                    <input class="form-control form-control-lg" type="text" id="status" name="status" placeholder="Masukan Status" />
+                    <label class="form-label" for="status">Status Pembayaran</label>
+                    <select class="form-control form-control-lg" id="status" name="status" required>
+                      <option value="">Pilih Status Pembayaran</option>
+                      <?php foreach ($statusPembayaranEnum as $status) : ?>
+                        <option value="<?php echo $status; ?>" <?php echo isset($pengajian['status']) && $pengajian['status'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
+                      <?php endforeach; ?>
+                    </select>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="keterangan">Informasi Tambahan</label>
