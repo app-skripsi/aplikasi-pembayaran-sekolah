@@ -7,8 +7,6 @@ use CodeIgniter\Model;
 class SiswaModel extends Model
 {
 	protected $table = 'siswa';
-    protected $allowedFields    = ['nama','nis','alamat','nomor_telepon','jenis_kelamin','tanggal_lahir','kelas_id'];
-
 	public function getData($id = false)
 	{
 		if ($id === false) {

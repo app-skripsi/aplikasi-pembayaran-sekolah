@@ -39,7 +39,7 @@ $routes->get('siswa/create', 'SiswaController::create');
 $routes->post('siswa/store', 'SiswaController::store');
 $routes->get('siswa/edit/(:alphanum)', 'SiswaController::edit/$1');
 $routes->post('siswa/update/(:num)', 'SiswaController::update/$1');
-$routes->get('siswa/delete/(:alphanum)', 'SiswaController::delete/$1');
+$routes->get('siswa/delete/(:num)', 'SiswaController::delete/$1');
 
 $routes->get('kelas', 'KelasController::index');
 $routes->get('kelas/create', 'KelasController::create');

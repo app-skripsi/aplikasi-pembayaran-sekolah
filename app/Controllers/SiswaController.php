@@ -98,18 +98,11 @@ class SiswaController extends BaseController
 	}
 	public function delete($id)
 	{
+
 		$hapus = $this->siswa->deleteData($id);
-		if ($hapus) {
-			session()->setFlashdata('success', 'Delete Data Berhasil');
-			// Sweet Alert success
-			session()->setFlashdata('alert', 'success');
-			session()->setFlashdata('delete_alert', 'success');
-		} else {
-			session()->setFlashdata('error', 'Gagal menghapus data');
-			// Sweet Alert error
-			session()->setFlashdata('alert', 'error');
-			session()->setFlashdata('delete_alert', 'error');
-		}
-		return redirect()->to(base_url('siswa'));
+        if ($hapus) {
+            session()->setFlashdata('warning', 'Delete Data  Berhasil');
+			return redirect()->to(base_url('siswa'));
+		}	
 	}
 }

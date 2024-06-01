@@ -97,8 +97,8 @@
                               <a href="<?php echo base_url('siswa/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
                                 edit
                               </a>
-                              <a href="<?php echo base_url('siswa/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger">
-                                hapus
+                              <a href="<?php echo base_url('siswa/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus Data Pelamar ini?');">
+                                hapus <i class="fa fa-trash-alt"></i>
                               </a>
                             </div>
                           </td>
