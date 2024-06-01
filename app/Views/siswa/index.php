@@ -78,7 +78,6 @@
                         <th scope="col"  class="text-center">No Telephone</th>
                         <th scope="col"  class="text-center">Jenis Kelamin</th>
                         <th scope="col"  class="text-center">Tanggal Lahir</th>
-                        <th scope="col"  class="text-center">Kelas</th>
                         <th scope="col"  class="text-center">Action</th>
                       </tr>
                     </thead>

@@ -113,7 +113,7 @@
                                                             edit
                                                         </a>
                                                         <a href="<?php echo base_url('spp/delete/' . $row['id']); ?>"
-                                                            class="btn btn-sm btn-danger delete-btn">
+                                                            class="btn btn-sm btn-danger">
                                                             hapus
                                                         </a>
                                                     </div>

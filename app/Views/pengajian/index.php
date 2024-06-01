@@ -107,7 +107,7 @@
                               <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
                                 edit
                               </a>
-                              <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger delete-button" data-id="<?php echo $row['id']; ?>">
+                              <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger" data-id="<?php echo $row['id']; ?>">
                                 Hapus
                             </a>
                             </div>
