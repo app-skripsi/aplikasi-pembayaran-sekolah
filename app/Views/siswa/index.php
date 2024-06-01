@@ -73,6 +73,7 @@
                         <th scope="col"   class="text-center">No</th>
                         <th scope="col"  class="text-center">Nama</th>
                         <th scope="col"  class="text-center">NIS</th>
+                        <th scope="col"  class="text-center">Kelas</th>
                         <th scope="col"  class="text-center">Alamat</th>
                         <th scope="col"  class="text-center">No Telephone</th>
                         <th scope="col"  class="text-center">Jenis Kelamin</th>
@@ -87,11 +88,11 @@
                       <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['nama']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['nis']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['kelas']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['alamat']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['nomor_telepon']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['jenis_kelamin']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['tanggal_lahir']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['kelas']; ?></td>
                           <td scope="col" class="text-center">
                             <div class="form-group">
                               <a href="<?php echo base_url('siswa/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">

@@ -108,8 +108,8 @@
                                 edit
                               </a>
                               <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger delete-button" data-id="<?php echo $row['id']; ?>">
-    Hapus
-</a>
+                                Hapus
+                            </a>
                             </div>
                           </td>
                         </tr>
