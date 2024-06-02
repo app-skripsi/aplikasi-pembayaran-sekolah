@@ -83,28 +83,26 @@ class SppController extends BaseController
 		}
 	}
 
-
-	public function getByNIS()
-    {
-        $nis = $this->request->getGet('nis');
-        if (!$nis) {
-            return $this->response->setJSON([
-                'status' => false,
-                'message' => 'NIS harus disediakan dalam permintaan GET.'
-            ])->setStatusCode(400);
-        }
-        $siswa = $this->spp->getDataByNIS($nis);
-        if (!$siswa) {
-            return $this->response->setJSON([
-                'status' => false,
-                'message' => 'Siswa dengan NIS tersebut tidak ditemukan.'
-            ])->setStatusCode(404);
-        }
-        return $this->response->setJSON([
-            'status' => true,
-            'data' => $siswa
-        ])->setStatusCode(200);
-    }
+	public function searchByNIS()
+	{
+		$nis = $this->request->getPost('siswa_id');
+		$sppModel = new SppModel();
+	
+		// Search for SPP data based on NIS
+		$spp = $sppModel->where('nis', $nis)->findAll();
+	
+		if ($spp) {
+			// SPP data found, send to view
+			$data['spp'] = $spp;
+			return view('siswa/informasi-pembayaran', $data);
+		} else {
+			// SPP data not found, send error message to view
+			$data['error'] = 'Data SPP dengan NIS ' . $nis . ' tidak ditemukan.';
+			return view('siswa/informasi-pembayaran', $data);
+		}
+	}
+	
+	
 
 
 	public function edit($id)

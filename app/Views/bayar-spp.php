@@ -71,7 +71,7 @@
     <div class="card shadow">
       <div class="card-body">
         <h2 class="card-title text-center">Form Cari Data Siswa</h2>
-        <form action="<?= base_url('spp/getByNIS  '); ?>" method="post">
+        <form action="<?= base_url('spp/searchByNIS'); ?>" method="post">
           <div class="form-group mb-3">
             <label for="siswa_id">Siswa ID:</label>
             <input type="number" class="form-control" id="siswa_id" name="siswa_id" placeholder="Silahkan Memasukan Data NIS siswa.." required>

@@ -99,7 +99,7 @@
                           <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
-                          <td scope="col" class="text-center"><?php echo 'Rp. ' . number_format($row['gaji'], 3, ',', '.') . ',000'; ?></td>
+                          <td scope="col" class="text-center">Rp. <?= $row['gaji'] ?>,000</td>
                           <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
                           <td scope="col" class="text-center"><?php echo $row['keterangan']; ?></td>
                           <td scope="col" class="text-center">

@@ -19,6 +19,7 @@ $routes->post('spp/store', 'SppController::store');
 $routes->get('spp/edit/(:alphanum)', 'SppController::edit/$1');
 $routes->post('spp/update/(:num)', 'SppController::update/$1');
 $routes->get('spp/delete/(:alphanum)', 'SppController::delete/$1');
+$routes->post('spp/searchByNIS', 'SppController::searchByNIS');
 
 $routes->get('pengajian', 'PengajianController::index');
 $routes->get('pengajian/create', 'PengajianController::create');
