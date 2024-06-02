@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use App\Models\KelasModel;
 use App\Models\SiswaModel;
 use App\Models\SppModel;
+use Midtrans\Snap;
+use Config\Midtrans;
 
 class SppController extends BaseController
 {
@@ -156,4 +158,52 @@ class SppController extends BaseController
 			return redirect()->to(base_url('spp'));
 		}	
 	}
+
+	public function createMidtransTransaction($nis)
+{
+    // Load Midtrans configuration
+    Midtrans::configure();
+
+    // Fetch student SPP data
+    $sppModel = new SppModel();
+    $spp = $sppModel->where('nis', $nis)->first();
+
+    if (!$spp || strtolower($spp['status_pembayaran']) != 'belum lunas') {
+        return redirect()->back()->with('error', 'Data SPP tidak valid atau sudah lunas.');
+    }
+
+    // Create transaction parameters
+    $transactionDetails = [
+        'order_id' => 'order-' . uniqid(),
+        'gross_amount' => $spp['nominal_pembayaran'],
+    ];
+
+    $itemDetails = [
+        [
+            'id' => 'spp-' . $spp['id'],
+            'price' => $spp['nominal_pembayaran'],
+            'quantity' => 1,
+            'name' => 'Pembayaran SPP ' . $spp['nama'],
+        ],
+    ];
+
+    $customerDetails = [
+        'first_name' => $spp['nama'],
+        'email' => 'email@example.com', // Provide a valid email
+        'phone' => '081234567890', // Provide a valid phone number
+    ];
+
+    $transaction = [
+        'transaction_details' => $transactionDetails,
+        'item_details' => $itemDetails,
+        'customer_details' => $customerDetails,
+    ];
+
+    try {
+        $snapToken = Snap::getSnapToken($transaction);
+        return redirect()->to(base_url('/bayar-spp'))->with('snapToken', $snapToken);
+    } catch (Exception $e) {
+        return redirect()->back()->with('error', $e->getMessage());
+    }
+}
 }
