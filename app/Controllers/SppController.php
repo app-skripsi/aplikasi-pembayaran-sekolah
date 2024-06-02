@@ -81,27 +81,27 @@ class SppController extends BaseController
 				return redirect()->to(base_url('spp'));
 			}
 		}
-	}
+	}	
 
-	public function searchByNIS()
-	{
-		$nis = $this->request->getPost('siswa_id');
-		$sppModel = new SppModel();
-	
-		// Search for SPP data based on NIS
-		$spp = $sppModel->where('nis', $nis)->findAll();
-	
-		if ($spp) {
-			// SPP data found, send to view
-			$data['spp'] = $spp;
-			return view('siswa/informasi-pembayaran', $data);
-		} else {
-			// SPP data not found, send error message to view
-			$data['error'] = 'Data SPP dengan NIS ' . $nis . ' tidak ditemukan.';
-			return view('siswa/informasi-pembayaran', $data);
-		}
-	}
-	
+	public function searchSppByNamaSiswa()
+{
+    $namaSiswa = $this->request->getPost('nama');
+
+    $sppModel = new SppModel();
+    $pembayaranSpp = $sppModel->select('spp.*, siswa.nama AS nama, kelas.kelas')
+                                         ->join('siswa', 'spp.siswa_id = siswa.id')
+                                         ->join('kelas', 'siswa.kelas_id = kelas.id')
+                                         ->like('siswa.nama', $namaSiswa)
+                                         ->findAll();
+
+    if ($pembayaranSpp) {
+        $data['spp'] = $pembayaranSpp;
+        return view('spp/hasil', $data);
+    } else {
+        $data['error'] = 'Data pembayaran SPP untuk siswa dengan nama "' . $namaSiswa . '" tidak ditemukan.';
+        return view('spp/hasil', $data);
+    }
+}
 	
 
 

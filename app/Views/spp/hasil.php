@@ -14,7 +14,7 @@
   <link href="<?php echo base_url('asset/img/apple-touch-icon.png'); ?>" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="<?php echo base_url('asset/vendor/aos/aos.css'); ?>" rel="stylesheet">
@@ -71,7 +71,7 @@
 
     <!-- ======= Modal ======= -->
     <div class="modal fade" id="sppModal" tabindex="-1" aria-labelledby="sppModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="sppModalLabel">Informasi Status Pembayaran SPP</h5>
@@ -81,19 +81,31 @@
             <?php if (isset($spp) && !empty($spp)): ?>
             <div class="table-responsive">
               <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nama Siswa</th>
+                    <th>Kelas</th>
+                    <th>Tahun Ajaran</th>
+                    <th>Bulan Pembayaran</th>
+                    <th>Nominal Pembayaran</th>
+                    <th>Tanggal Pembayaran</th>
+                    <th>Status Pembayaran</th>
+                    <th>Metode Pembayaran</th>
+                    <th>Catatan</th>
+                  </tr>
+                </thead>
                 <tbody>
+                  <?php foreach ($spp as $row): ?>
                   <tr>
-                    <th scope="row">NIS</th>
-                    <td><?= $spp[0]['nis']; ?></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Bulan</th>
-                    <td>Status</td>
-                  </tr>
-                  <?php foreach ($spp as $item): ?>
-                  <tr>
-                    <td><?= $item['bulan']; ?></td>
-                    <td><?= $item['status']; ?></td>
+                    <td><?= $row['nama']; ?></td>
+                    <td><?= $row['kelas']; ?></td>
+                    <td><?= $row['tahun_ajaran']; ?></td>
+                    <td><?= $row['bulan_pembayaran']; ?></td>
+                    <td><?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></td>
+                    <td><?= $row['tanggal_pembayaran']; ?></td>
+                    <td><?= $row['status_pembayaran']; ?></td>
+                    <td><?= $row['metode_pembayaran']; ?></td>
+                    <td><?= $row['catatan']; ?></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>

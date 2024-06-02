@@ -71,13 +71,13 @@
     <div class="card shadow">
       <div class="card-body">
         <h2 class="card-title text-center">Form Cari Data Siswa</h2>
-        <form action="<?= base_url('spp/searchByNIS'); ?>" method="post">
+        <form action="<?= base_url('spp/searchByNamaSiswa'); ?>" method="post">
           <div class="form-group mb-3">
-            <label for="siswa_id">Siswa ID:</label>
-            <input type="number" class="form-control" id="siswa_id" name="siswa_id" placeholder="Silahkan Memasukan Data NIS siswa.." required>
+              <label for="nama">Nama Siswa:</label>
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Siswa" required>
           </div>
           <button type="submit" class="btn btn-primary">Cari Data</button>
-        </form>
+      </form>
       </div>
     </div>
   </div>
