@@ -14,7 +14,7 @@
   <link href="<?php echo base_url('asset/img/apple-touch-icon.png'); ?>" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="<?php echo base_url('asset/vendor/aos/aos.css'); ?>" rel="stylesheet">
@@ -71,7 +71,7 @@
 
     <!-- ======= Modal ======= -->
     <div class="modal fade" id="sppModal" tabindex="-1" aria-labelledby="sppModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="sppModalLabel">Informasi Status Pembayaran SPP</h5>
@@ -79,43 +79,37 @@
           </div>
           <div class="modal-body">
             <?php if (isset($spp) && !empty($spp)): ?>
-            <div class="table-responsive">
-          <table>
-            <thead>
-                <tr>
-                    <th>Nama Siswa</th>
-                    <th>Kelas</th>
-                    <th>Tahun Ajaran</th>
-                    <th>Bulan Pembayaran</th>
-                    <th>Nominal Pembayaran</th>
-                    <th>Tanggal Pembayaran</th>
-                    <th>Status Pembayaran</th>
-                    <th>Metode Pembayaran</th>
-                    <th>Catatan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($spp as $row): ?>
-                    <tr>
-                        <td><?= $row['nama']; ?></td>
-                        <td><?= $row['kelas']; ?></td>
-                        <td><?= $row['tahun_ajaran']; ?></td>
-                        <td><?= $row['bulan_pembayaran']; ?></td>
-                        <td><?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></td>
-                        <td><?= $row['tanggal_pembayaran']; ?></td>
-                        <td><?= $row['status_pembayaran']; ?></td>
-                        <td><?= $row['metode_pembayaran']; ?></td>
-                        <td><?= $row['catatan']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+              <?php foreach ($spp as $row): ?>
+                <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="card-title"><strong>Nama:</strong> <?= $row['nama']; ?></p>
+                      <p class="card-text"><strong>Kelas:</strong> <?= $row['kelas']; ?></p>
+                      <p class="card-text"><strong>Tahun Ajaran:</strong> <?= $row['tahun_ajaran']; ?></p>
+                      <p class="card-text"><strong>Bulan Pembayaran:</strong> <?= $row['bulan_pembayaran']; ?></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="card-text"><strong>Nominal : </strong>Rp. <?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></p>
+                      <p class="card-text"><strong>Tanggal Bayar:   </strong> <?= $row['tanggal_pembayaran']; ?></p>
+                      <p class="card-text"><strong>Metode Bayar:    </strong> <?= $row['metode_pembayaran']; ?></p>
+                      <p class="card-text"><strong>Catatan:</strong> <?= $row['catatan']; ?></p>
+                      <p class="card-text"><strong>Status Pembayaran:</strong> <?= $row['status_pembayaran']; ?></p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <?php endforeach; ?>
             <?php else: ?>
               <p>Data SPP tidak ditemukan.</p>
             <?php endif; ?>
           </div>
           <div class="modal-footer">
+            <?php if (isset($spp) && !empty($spp) && strtolower($spp[0]['status_pembayaran']) == 'belum lunas'): ?>
+              <a href="<?= base_url('/bayar/' . $spp[0]['nis']); ?>" class="btn btn-danger">Silahkan Bayar Pembayaran</a>
+            <?php elseif (isset($spp) && !empty($spp) && strtolower($spp[0]['status_pembayaran']) == 'lunas'): ?>
+              <button class="btn btn-success">Pembayaran Sudah Lunas</button>
+            <?php endif; ?>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
@@ -123,22 +117,6 @@
     </div><!-- End Modal -->
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-12 text-center">
-            <div class="copyright">
-              &copy; Copyright <strong><span>MI AL MA’MURIYAH</span></strong>. All Rights Reserved
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->

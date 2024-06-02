@@ -88,18 +88,18 @@ class SppController extends BaseController
     $namaSiswa = $this->request->getPost('nama');
 
     $sppModel = new SppModel();
-    $pembayaranSpp = $sppModel->select('spp.*, siswa.nama AS nama, kelas.kelas')
+    $spp = $sppModel->select('spp.*, siswa.nama AS nama, kelas.kelas')
                                          ->join('siswa', 'spp.siswa_id = siswa.id')
                                          ->join('kelas', 'siswa.kelas_id = kelas.id')
                                          ->like('siswa.nama', $namaSiswa)
                                          ->findAll();
 
-    if ($pembayaranSpp) {
-        $data['spp'] = $pembayaranSpp;
-        return view('spp/hasil', $data);
+    if ($spp) {
+        $data['spp'] = $spp;
+        return view('spp/informasi-pembayaran', $data);
     } else {
         $data['error'] = 'Data pembayaran SPP untuk siswa dengan nama "' . $namaSiswa . '" tidak ditemukan.';
-        return view('spp/hasil', $data);
+        return view('spp/informasi-pembayaran', $data);
     }
 }
 	
