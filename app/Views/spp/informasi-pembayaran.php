@@ -59,6 +59,7 @@
         </ol>
         <h2>Informasi SPP</h2>
         <?php if (isset($spp) && !empty($spp)): ?>
+          <p>Nama: <?= $spp[0]['nama']; ?></p>
           <p>NIS: <?= $spp[0]['nis']; ?></p>
           <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#sppModal">
             Lihat Informasi SPP
