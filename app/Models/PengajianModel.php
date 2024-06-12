@@ -53,6 +53,15 @@ class PengajianModel extends Model
 
         return $enumValues;
     }
+
+	    public function getPengajianById($id)
+    {
+        // Mengambil data pengajian berdasarkan ID
+        return $this->db->table($this->table)
+            ->where('id', $id)
+            ->get()
+            ->getRowArray();
+    }
 	
 
 }

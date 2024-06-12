@@ -166,20 +166,11 @@ class SppController extends BaseController
 
 	public function createMidtransTransaction($nis)
 	{
-		// Fetch student SPP data with related student data
 		$spp = $this->spp
 			->select('spp.*, siswa.nama') // Select SPP fields and student name
 			->join('siswa', 'siswa.nis = spp.nis') // Join with siswa table on nis
 			->where('spp.nis', $nis)
 			->first();
-	
-		if (!$spp) {
-			return redirect()->back()->with('error', 'Data SPP tidak ditemukan.');
-		}
-	
-		if (strtolower($spp['status_pembayaran']) != 'belum lunas') {
-			return redirect()->back()->with('error', 'Data SPP sudah lunas.');
-		}
 	
 		// Create transaction parameters
 		$transactionDetails = [
@@ -198,8 +189,8 @@ class SppController extends BaseController
 	
 		$customerDetails = [
 			'first_name' => $spp['nama'],
-			'email' => 'email@example.com', // Provide a valid email
-			'phone' => '081234567890', // Provide a valid phone number
+			'email' => 'email@example.com',
+			'phone' => '081234567890',
 		];
 	
 		$transaction = [
@@ -210,10 +201,12 @@ class SppController extends BaseController
 	
 		try {
 			$snapToken = Snap::getSnapToken($transaction);
-			return redirect()->to(base_url('/bayar-spp'))->with('snapToken', $snapToken);
+			// Store snapToken in session
+			session()->setFlashdata('snapToken', $snapToken);
+			return redirect()->to(base_url('/halaman-pembayaran'));
 		} catch (Exception $e) {
 			return redirect()->back()->with('error', $e->getMessage());
 		}
-	}
+	}	
 	
 }

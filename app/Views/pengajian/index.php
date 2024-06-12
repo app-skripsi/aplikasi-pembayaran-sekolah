@@ -57,9 +57,6 @@
         <hr>
         <div class="button-container">
           <div class="left-buttons">
-            <a href="<?php echo base_url('/spp/pdf'); ?>" class="btn btn-danger btn-custom">
-              <i class="mdi mdi-file-pdf-box fs-4"></i> Print Laporan PDF
-            </a>
             <a href="<?php echo base_url('/spp/excel'); ?>" class="btn btn-success btn-custom">
               <i class="mdi mdi-file-excel-box fs-4"></i> Print Laporan Excel
             </a>
@@ -91,29 +88,37 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($pengajian as $key => $row) { ?>
-                        <tr>
-                          <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['nama']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['npk']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
-                          <td scope="col" class="text-center">Rp. <?= $row['gaji'] ?>,000</td>
-                          <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
-                          <td scope="col" class="text-center"><?php echo $row['keterangan']; ?></td>
-                          <td scope="col" class="text-center">
-                            <div class="btn-group">
-                              <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
-                                edit
-                              </a>
-                              <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger">
-                                Hapus
-                            </a>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php } ?>
+                    <?php foreach ($pengajian as $key => $row) { ?>
+    <tr>
+        <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
+        <td scope="col" class="text-center"><?php echo $row['nama']; ?></td>
+        <td scope="col" class="text-center"><?php echo $row['npk']; ?></td>
+        <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
+        <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
+        <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
+        <td scope="col" class="text-center">Rp. <?= $row['gaji'] ?>,000</td>
+        <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
+        <td scope="col" class="text-center"><?php echo $row['keterangan']; ?></td>
+        <td scope="col" class="text-center">
+              <div class="btn-group">
+              <div class="form-group" style="margin-left: 2px;"></div> <!-- Menambahkan 5 spasi -->
+                <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary" style="margin-left: 2px;">
+                        Edit
+                    </a>
+                      <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-success">
+                          Hapus
+                      </a>
+                  </div>
+                <div class="form-group" style="margin-left: 5px;"></div> <!-- Menambahkan 5 spasi -->
+                    <a href="<?php echo base_url('pengajian/pdf/' . $row['id']); ?>" class="btn btn-sm btn-danger">
+                        <i class="mdi mdi-file-pdf-box"></i> Cetak Slip
+                    </a>
+                </div>
+            </div>
+        </td>
+    </tr>
+<?php } ?>
+
                     </tbody>
                   </table>
                 </div>

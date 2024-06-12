@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\GuruModel;
 use App\Models\PengajianModel;
+use TCPDF;
 
 class PengajianController extends BaseController
 {
@@ -150,6 +151,94 @@ class PengajianController extends BaseController
 		}
 	
 		return redirect()->to(base_url('pengajian'));
+	}
+	
+	public function pdf($id){
+		// Proteksi halaman
+		$pengajian = $this->pengajian->getPengajianById($id); // Mengambil data pengajian berdasarkan ID
+	
+		// Pastikan data pengajian ditemukan
+		if (!$pengajian) {
+			// Tampilkan pesan error atau redirect ke halaman lain jika tidak ditemukan
+			return redirect()->to(base_url('/pengajian'))->with('error', 'Data pengajian tidak ditemukan.');
+		}
+	
+		// Mengambil data pengajian berdasarkan ID dengan join guru
+		$pengajian = $this->pengajian
+						->select('penggajian.*, guru.nama')
+						->join('guru', 'guru.id = penggajian.guru_id')
+						->where('penggajian.id', $id)
+						->first(); // Fetching single record
+	
+		// Pastikan data pengajian ditemukan
+		if (!$pengajian) {
+			// Tampilkan pesan error atau redirect ke halaman lain jika tidak ditemukan
+			return redirect()->to(base_url('/pengajian'))->with('error', 'Data pengajian tidak ditemukan.');
+		}
+	
+		// Inisialisasi objek TCPDF
+		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'A4', true, 'UTF-8', false);
+	
+		// Pengaturan properti PDF
+		$pdf->SetCreator('Creator Name');
+		$pdf->SetAuthor('Author Name');
+		$pdf->SetTitle('Slip Pengajian');
+		$pdf->SetSubject('Subject of PDF');
+		$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+	
+		// Set default header data
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH,  'MI AL Mamuriyah - JAKARTA',' JL Raden Saleh Raya, No. 30, Cikini, Menteng, Jakarta Pusat, DKI Jakarta, 10330, Indonesia', PDF_HEADER_STRING);
+		$pdf->SetY(50); // Ubah angka ini sesuai dengan posisi yang diinginkan
+		$pdf->Line(10, $pdf->GetY(), $pdf->getPageWidth() - 10, $pdf->GetY());
+
+		// Set header and footer fonts
+		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+	
+		// Set default monospaced font
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+	
+		// Set margins
+		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+	
+		// Set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+	
+		// Set image scale factor
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+	    $pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', 12));
+   	 	$pdf->SetFont('dejavusans', '', 10);
+		// Add a page
+		$pdf->AddPage();
+	
+		// Generate HTML content for slip pengajian
+		$html = '<h1 style="text-align:center">Slip Gaji  ' . $pengajian['nama'] . '</h1><hr><br><br>';
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><strong>Guru:</strong> ' . $pengajian['nama'] . '</p>';
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><strong>NPK:</strong>'. $pengajian['npk'] .'</p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><strong>Gaji Bulan:</strong> '. $pengajian['bulan'] .'</p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><strong>Tahun:</strong> '. $pengajian['tahun'] .'</p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><strong>Tanggal:</strong> '. $pengajian['tanggal'] .'</p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><strong>Status:</strong> '. $pengajian['status'] .'</p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><strong>Tanggal:</strong> '. $pengajian['tanggal'] .'</p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p>Take Home Pay: <strong> Rp. ' . $pengajian['gaji'] . ',000</strong></p>';
+		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+
+		// Write HTML content to PDF
+		$pdf->writeHTML($html, true, false, true, false, '');
+	
+		// Output PDF
+		$this->response->setContentType('application/pdf');
+		$pdf->Output('Slip Pengajian.pdf', 'I');
 	}
 	
 }
