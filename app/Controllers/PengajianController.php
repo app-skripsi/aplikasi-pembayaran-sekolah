@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\GuruModel;
 use App\Models\PengajianModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use TCPDF;
 
 class PengajianController extends BaseController
@@ -26,8 +28,6 @@ class PengajianController extends BaseController
 		->findAll();
 		return view('pengajian/index', $data);
 	}
-
-
 	public function create(): string
 	{
 		 $guru = $this->guru->findAll();
@@ -37,8 +37,6 @@ class PengajianController extends BaseController
 		];
 				return view('pengajian/create', $data);
 	}
-
-
 	public function store()
 	{
 		$validation =  \Config\Services::validation();
@@ -79,9 +77,6 @@ class PengajianController extends BaseController
 		$validation->setRules([
 		]);
 	}
-	
-
-
 	public function edit($id)
 	{
 		$guru = $this->guru->findAll();
@@ -90,7 +85,6 @@ class PengajianController extends BaseController
 		$data['statusPembayaranEnum'] = $this->pengajian->getStatusPembayaranEnum();
         return view('pengajian/edit', $data);
 	}
-
 	public function update()
 	{
 		$id = $this->request->getPost('id');
@@ -127,7 +121,7 @@ class PengajianController extends BaseController
 			}
 		}
 	}
-	public function delete($id)
+		public function delete($id)
 	{
 		// Verifikasi nomor urutan
 		if (!is_numeric($id) || $id <= 0) {
@@ -152,7 +146,6 @@ class PengajianController extends BaseController
 	
 		return redirect()->to(base_url('pengajian'));
 	}
-	
 	public function pdf($id){
 		// Proteksi halaman
 		$pengajian = $this->pengajian->getPengajianById($id); // Mengambil data pengajian berdasarkan ID
@@ -215,23 +208,23 @@ class PengajianController extends BaseController
 	
 		// Generate HTML content for slip pengajian
 		$html = '<h1 style="text-align:center">Slip Gaji  ' . $pengajian['nama'] . '</h1><hr><br><br>';
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; 
 		$html .= '<p><strong>Guru:</strong> ' . $pengajian['nama'] . '</p>';
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><strong>NPK:</strong>'. $pengajian['npk'] .'</p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><strong>Gaji Bulan:</strong> '. $pengajian['bulan'] .'</p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><strong>Tahun:</strong> '. $pengajian['tahun'] .'</p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><strong>Tanggal:</strong> '. $pengajian['tanggal'] .'</p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><strong>Status:</strong> '. $pengajian['status'] .'</p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><strong>Tanggal:</strong> '. $pengajian['tanggal'] .'</p>'; // Ganti dengan data sesuai kebutuhan
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; 
+		$html .= '<p><strong>NPK:</strong>'. $pengajian['npk'] .'</p>'; 
+		$html .= '<p><hr></p>'; 
+		$html .= '<p><strong>Gaji Bulan:</strong> '. $pengajian['bulan'] .'</p>'; 
+		$html .= '<p><hr></p>'; 
+		$html .= '<p><strong>Tahun:</strong> '. $pengajian['tahun'] .'</p>'; 
+		$html .= '<p><hr></p>'; 
+		$html .= '<p><strong>Tanggal:</strong> '. $pengajian['tanggal'] .'</p>'; 
+		$html .= '<p><hr></p>'; 
+		$html .= '<p><strong>Status:</strong> '. $pengajian['status'] .'</p>'; 
+		$html .= '<p><hr></p>'; 
+		$html .= '<p><strong>Tanggal:</strong> '. $pengajian['tanggal'] .'</p>'; 
+		$html .= '<p><hr></p>'; 
 		$html .= '<p>Take Home Pay: <strong> Rp. ' . $pengajian['gaji'] . ',000</strong></p>';
-		$html .= '<p><hr></p>'; // Ganti dengan data sesuai kebutuhan
+		$html .= '<p><hr></p>'; 
 
 		// Write HTML content to PDF
 		$pdf->writeHTML($html, true, false, true, false, '');
@@ -241,4 +234,98 @@ class PengajianController extends BaseController
 		$pdf->Output('Slip Pengajian.pdf', 'I');
 	}
 	
+	public function xls()
+	{
+		$exportXls = $this->pengajian->select('penggajian.*, guru.nama')
+		->join('guru', 'guru.id = penggajian.guru_id')
+		->findAll();
+		$spreadsheet = new Spreadsheet();
+		$spreadsheet->setActiveSheetIndex(0)
+			->setCellValue('A1', 'Laporan Data Penggajian Guru')
+			->setCellValue('A2', 'Tanggal: ' . date('Y-m-d'))
+			->setCellValue('B3', 'Nama ')
+			->setCellValue('C3', 'Npk ')
+			->setCellValue('D3', 'Bulan')
+			->setCellValue('E3', 'Tahun')
+			->setCellValue('F3', 'Tanggal')
+			->setCellValue('G3', 'Gaji')
+			->setCellValue('H3', 'Status')
+			->setCellValue('I3', 'Keterangan');
+	
+		// Merge cells for the title
+		$spreadsheet->getActiveSheet()->mergeCells('A1:I1');
+		$spreadsheet->getActiveSheet()->mergeCells('A2:I2');
+		// Center align the title
+		$spreadsheet->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+		$spreadsheet->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+		$spreadsheet->getActiveSheet()->getStyle('A3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+		// Add yellow background and border to the title row
+		$spreadsheet->getActiveSheet()->getStyle('A1:I2')->applyFromArray([
+			'fill' => [
+				'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+				'startColor' => ['rgb' => 'FFFF00'], // Yellow background
+			],
+			'borders' => [
+				'allBorders' => [
+					'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+				],
+			],
+		]);
+	
+		// Set column widths
+		$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(20); // Width for cell A2
+		$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(30);
+		$spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+		$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+		$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(30);
+		$spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(30);
+		$spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(30);
+		$spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(30);
+		$spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(30);
+	    $spreadsheet->getDefaultStyle()->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+		// Center align column headers
+		$spreadsheet->getActiveSheet()->getStyle('B3:I3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+	
+		$column = 4;
+		$rowNumber = 1;
+	
+		foreach ($exportXls as $dokumens) {
+			$spreadsheet->setActiveSheetIndex(0)
+				->setCellValue('B' . $column, $dokumens['nama'])
+				->setCellValue('C' . $column, $dokumens['npk'])
+				->setCellValue('D' . $column, $dokumens['bulan'])
+				->setCellValue('E' . $column, $dokumens['tahun'])
+				->setCellValue('F' . $column, $dokumens['tanggal'])
+				->setCellValue('G' . $column, 'Rp ' . $dokumens['gaji'] . ',000')
+				->setCellValue('H' . $column, $dokumens['status'])
+				->setCellValue('I' . $column, $dokumens['keterangan']);
+	
+			// Set auto numbering on the left side of the data
+			$spreadsheet->getActiveSheet()->setCellValue('A' . $column, $rowNumber++);
+			$spreadsheet->getActiveSheet()->getStyle('A' . $column . ':I' . $column)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+			$column++;
+		}
+	
+		// Set border for data cells
+		$highestColumn = $spreadsheet->getActiveSheet()->getHighestColumn();
+		$highestRow = $spreadsheet->getActiveSheet()->getHighestRow();
+		$range = 'A3:' . $highestColumn . $highestRow;
+		$spreadsheet->getActiveSheet()->getStyle($range)->applyFromArray([
+			'borders' => [
+				'allBorders' => [
+					'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+				],
+			],
+		]);
+		$spreadsheet->getActiveSheet()->setCellValue('A3', 'No');
+		$writer = new Xlsx($spreadsheet);
+		$filename = date('Y-m-d-His'). '-Data-Penggajian';
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename=' . $filename . '.xlsx');
+		header('Cache-Control: max-age=0');
+
+		$writer->save('php://output');
+	}
 }

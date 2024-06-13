@@ -57,7 +57,7 @@
         <hr>
         <div class="button-container">
           <div class="left-buttons">
-            <a href="<?php echo base_url('/spp/excel'); ?>" class="btn btn-success btn-custom">
+            <a href="<?php echo base_url('/spp/xls'); ?>" class="btn btn-success btn-custom">
               <i class="mdi mdi-file-excel-box fs-4"></i> Print Laporan Excel
             </a>
           </div>
