@@ -42,7 +42,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="<?php echo base_url("/") ?>">Home</a></li>
-          <li><a class="nav-link scrollto" href="<?php echo base_url("/bayar-spp") ?>">Pembayaran Spp</a></li>
+          <li><a class="nav-link scrollto" href="<?php echo base_url("/bayar-spp") ?>">Pembayaran SPP</a></li>
           <li><a class="getstarted scrollto" href=<?php echo base_url("/login") ?>>Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

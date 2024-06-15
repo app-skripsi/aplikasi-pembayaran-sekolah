@@ -85,14 +85,14 @@
                   <div class="row">
                     <div class="col-md-6">
                       <p class="card-title"><strong>Nama:</strong> <?= $row['nama']; ?></p>
-                      <p class="card-title"><strong>Nik:</strong> <?= $row['nik']; ?></p>
+                      <p class="card-title"><strong>NIS:</strong> <?= $row['nis']; ?></p>
                       <p class="card-text"><strong>Kelas:</strong> <?= $row['kelas']; ?></p>
                       <p class="card-text"><strong>Tahun Ajaran:</strong> <?= $row['tahun_ajaran']; ?></p>
-                      <p class="card-text"><strong>Bulan Pembayaran:</strong> <?= $row['bulan_pembayaran']; ?></p>
+                      <p class="card-text"><strong>Bulan:</strong> <?= $row['bulan_pembayaran']; ?></p>
                     </div>
                     <div class="col-md-6">
                       <p class="card-text"><strong>Besar Iuran : </strong>Rp. <?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></p>
-                      <p class="card-text"><strong>Tanggal Jatoh Tempo Bayar:   </strong> <?= $row['tanggal_pembayaran']; ?></p>
+                      <p class="card-text"><strong>Tanggal Jatoh Tempo:   </strong> <?= $row['tanggal_pembayaran']; ?></p>
                       <p class="card-text"><strong>Status Pembayaran:</strong> <?= $row['status_pembayaran']; ?></p>
                     </div>
                   </div>

@@ -43,7 +43,6 @@ class PengajianController extends BaseController
 		$validation->setRules([], []); 
 			$validation->setRules([
 			'guru_id' => 'required',
-			'npk' => 'required',
 			'bulan' => 'required',
 			'tahun' => 'required',
 			'tanggal' => 'required',
@@ -53,7 +52,6 @@ class PengajianController extends BaseController
 		]);
 		$data = array(
 			'guru_id' => $this->request->getPost('guru_id'),
-			'npk' => $this->request->getPost('npk'),
 			'bulan' => $this->request->getPost('bulan'),
 			'tahun' => $this->request->getPost('tahun'),
 			'tanggal' => $this->request->getPost('tanggal'),
@@ -93,7 +91,6 @@ class PengajianController extends BaseController
 
 		$data = array(
 			'guru_id'               => $this->request->getPost('guru_id'),
-			'npk'              		=> $this->request->getPost('npk'),
             'bulan'                 => $this->request->getPost('bulan'),
 			'tahun'                 => $this->request->getPost('tahun'),
 			'tanggal'               => $this->request->getPost('tanggal'),

@@ -21,12 +21,12 @@ class Penggajian extends Migration
                 'unsigned'      => true,
             ],
             'npk' => [
-                'type'          => 'INT',
-                'constraint'    => 40,
+                'type'              => 'VARCHAR',
+                'constraint'        => 255,
             ],
             'bulan' => [
-                'type'          => 'INT',
-                'constraint'    => 2,
+                'type'              => 'VARCHAR',
+                'constraint'        => 255,
             ],
             'tahun' => [
                 'type'          => 'INT',

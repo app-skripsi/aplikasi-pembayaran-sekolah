@@ -48,7 +48,6 @@ class Validation extends BaseConfig
         'nominal_pembayaran'     => 'required',
         'tanggal_pembayaran'     => 'required',
         'status_pembayaran'      => 'required',
-        'metode_pembayaran'      => 'required',
         'catatan'                => 'required',
         'siswa_id'               => 'required',
         'kelas_id'               => 'required',
@@ -71,9 +70,6 @@ class Validation extends BaseConfig
         'status_pembayaran'     => [
 			'required'			=> 'Status Pembayaran Tidak Boleh Kosong'
         ],
-        'metode_pembayaran'     => [
-			'required'			=> 'Metode Pembayaran Tidak Boleh Kosong'
-        ],
         'catatan'      	        => [
 			'required'			=> 'Catatan Tidak Boleh Kosong'
         ],
@@ -90,7 +86,6 @@ class Validation extends BaseConfig
 
     public $pengajian = [
 		'guru_id'               => 'required',
-        'npk'                   => 'required',
         'bulan'                 => 'required',
         'tahun'                 => 'required',
         'tanggal'               => 'required',
@@ -102,9 +97,6 @@ class Validation extends BaseConfig
 	public $pengajian_errors = [
 		'guru_id'      	        => [
 			'required'			=> 'Guru Tidak Boleh Kosong'
-        ],
-        'npk'                   => [
-			'required'			=> 'Npk Tidak Boleh Kosong'
         ],
         'bulan'                 => [
 			'required'			=> 'Bulan Tidak Boleh Kosong'
