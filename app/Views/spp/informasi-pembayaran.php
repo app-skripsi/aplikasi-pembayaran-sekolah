@@ -85,15 +85,14 @@
                   <div class="row">
                     <div class="col-md-6">
                       <p class="card-title"><strong>Nama:</strong> <?= $row['nama']; ?></p>
+                      <p class="card-title"><strong>Nik:</strong> <?= $row['nik']; ?></p>
                       <p class="card-text"><strong>Kelas:</strong> <?= $row['kelas']; ?></p>
                       <p class="card-text"><strong>Tahun Ajaran:</strong> <?= $row['tahun_ajaran']; ?></p>
                       <p class="card-text"><strong>Bulan Pembayaran:</strong> <?= $row['bulan_pembayaran']; ?></p>
                     </div>
                     <div class="col-md-6">
-                      <p class="card-text"><strong>Nominal : </strong>Rp. <?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></p>
-                      <p class="card-text"><strong>Tanggal Bayar:   </strong> <?= $row['tanggal_pembayaran']; ?></p>
-                      <p class="card-text"><strong>Metode Bayar:    </strong> <?= $row['metode_pembayaran']; ?></p>
-                      <p class="card-text"><strong>Catatan:</strong> <?= $row['catatan']; ?></p>
+                      <p class="card-text"><strong>Besar Iuran : </strong>Rp. <?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></p>
+                      <p class="card-text"><strong>Tanggal Jatoh Tempo Bayar:   </strong> <?= $row['tanggal_pembayaran']; ?></p>
                       <p class="card-text"><strong>Status Pembayaran:</strong> <?= $row['status_pembayaran']; ?></p>
                     </div>
                   </div>
@@ -106,7 +105,7 @@
           </div>
           <div class="modal-footer">
             <?php if (isset($spp) && !empty($spp) && strtolower($spp[0]['status_pembayaran']) == 'belum lunas'): ?>
-              <a href="<?= base_url('spp/createMidtransTransaction/' . $spp[0]['nis']); ?>" class="btn btn-danger">Silahkan Bayar Pembayaran</a>
+              <a href="<?= base_url('spp/createMidtransTransaction/' . $spp[0]['nis']); ?>" class="btn btn-danger">Silahkan Melakukan Pembayaran</a>
             <?php elseif (isset($spp) && !empty($spp) && strtolower($spp[0]['status_pembayaran']) == 'lunas'): ?>
               <button class="btn btn-success">Pembayaran Sudah Lunas</button>
             <?php endif; ?>

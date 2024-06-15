@@ -121,7 +121,7 @@ class PengajianController extends BaseController
 			}
 		}
 	}
-		public function delete($id)
+	public function delete($id)
 	{
 		// Verifikasi nomor urutan
 		if (!is_numeric($id) || $id <= 0) {
