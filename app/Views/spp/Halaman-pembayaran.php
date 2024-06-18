@@ -80,7 +80,7 @@
                   <td><?= $row['kelas']; ?></td>
                   <td><?= $row['tahun_ajaran']; ?></td>
                   <td><?= $row['bulan_pembayaran']; ?></td>
-                  <td>Rp. <?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></td>
+                  <td>Rp. <?= number_format($row['nominal_pembayaran'], 3, ',', '.'); ?></td>
                   <td><?= $row['tanggal_pembayaran']; ?></td>
                   <td><?= $row['status_pembayaran']; ?></td>
                   <td>

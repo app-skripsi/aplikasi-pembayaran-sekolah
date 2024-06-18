@@ -20,15 +20,9 @@ $routes->get('spp/edit/(:alphanum)', 'SppController::edit/$1');
 $routes->post('spp/update/(:num)', 'SppController::update/$1');
 $routes->get('spp/delete/(:alphanum)', 'SppController::delete/$1');
 $routes->post('spp/searchByNamaSiswa', 'SppController::searchSppByNamaSiswa');
-$routes->get('spp/pdf/(:num)', 'PengajianController::pdf/$1');
-$routes->get('spp/xls', 'PengajianController::xls');
+$routes->get('spp/pdf/(:num)', 'SppController::pdf/$1');
+$routes->get('spp/excel', 'SppController::excel');
 $routes->get('spp/halaman-pembayaran','Home::halamanPembayaran/$1');
-
-$routes->get('spp/createMidtransTransaction/(:segment)', 'SppController::createMidtransTransaction/$1');
-$routes->post('midtrans/notification', 'MidtransController::notification');
-$routes->get('midtrans/completed', 'MidtransController::completed');
-$routes->get('midtrans/failed', 'MidtransController::failed');
-$routes->get('midtrans/unfinish', 'MidtransController::unfinish');
 
 $routes->get('pengajian', 'PengajianController::index');
 $routes->get('pengajian/create', 'PengajianController::create');
@@ -37,7 +31,6 @@ $routes->get('pengajian/edit/(:alphanum)', 'PengajianController::edit/$1');
 $routes->post('pengajian/update/(:num)', 'PengajianController::update/$1');
 $routes->get('pengajian/delete/(:num)', 'PengajianController::delete/$1');
 $routes->get('pengajian/pdf/(:num)', 'PengajianController::pdf/$1');
-
 
 $routes->get('guru', 'GuruController::index');
 $routes->get('guru/create', 'GuruController::create');
@@ -59,5 +52,3 @@ $routes->post('kelas/store', 'KelasController::store');
 $routes->get('kelas/edit/(:alphanum)', 'KelasController::edit/$1');
 $routes->post('kelas/update/(:num)', 'KelasController::update/$1');
 $routes->get('kelas/delete/(:alphanum)', 'KelasController::delete/$1');
-
-//
