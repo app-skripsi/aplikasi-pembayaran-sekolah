@@ -60,7 +60,6 @@
         <?php if (isset($spp) && !empty($spp)): ?>
           <p>Nama: <?= $spp[0]['nama']; ?></p>
           <p>NIS: <?= $spp[0]['nis']; ?></p>
-          <a href="<?php echo base_url('/halaman-pembayaran'); ?>">Lihat Informasi Spp</a>
           <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#sppModal">
             Lihat Informasi SPP
           </button>
@@ -87,7 +86,7 @@
                     <div class="col-md-6">
                       <p class="card-title"><strong>Nama:</strong> <?= $row['nama']; ?></p>
                       <p class="card-title"><strong>NIS:</strong> <?= $row['nis']; ?></p>
-                      <p class="card-text"><strong>Kelas:</strong> <?= $row['kelas']; ?></p>
+                      <p class="card-text"><strong>Test:</strong> <?= $row['kelas']; ?></p>
                       <p class="card-text"><strong>Tahun Ajaran:</strong> <?= $row['tahun_ajaran']; ?></p>
                       <p class="card-text"><strong>Bulan:</strong> <?= $row['bulan_pembayaran']; ?></p>
                     </div>
@@ -104,14 +103,6 @@
               <p>Data SPP tidak ditemukan.</p>
             <?php endif; ?>
           </div>
-          <div class="modal-footer">
-            <?php if (isset($spp) && !empty($spp) && strtolower($spp[0]['status_pembayaran']) == 'belum lunas'): ?>
-              <a href="<?= base_url('spp/createMidtransTransaction/' . $spp[0]['nis']); ?>" class="btn btn-danger">Silahkan Melakukan Pembayaran</a>
-            <?php elseif (isset($spp) && !empty($spp) && strtolower($spp[0]['status_pembayaran']) == 'lunas'): ?>
-              <button class="btn btn-success">Pembayaran Sudah Lunas</button>
-            <?php endif; ?>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
         </div>
       </div>
     </div><!-- End Modal -->
@@ -127,7 +118,26 @@
   <script src="<?php echo base_url('asset/vendor/isotope-layout/isotope.pkgd.min.js'); ?>"></script>
   <script src="<?php echo base_url('asset/vendor/swiper/swiper-bundle.min.js'); ?>"></script>
   <script src="<?php echo base_url('asset/vendor/php-email-form/validate.js'); ?>"></script>
-
+  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-11U7w6NIwYfR1H2g"></script>
+  <script type="text/javascript">
+      document.getElementById('pay-button').onclick = function(){
+        // SnapToken acquired from previous step
+        snap.pay('<?=$snapToken?>', {
+          // Optional
+          onSuccess: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          },
+          // Optional
+          onPending: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          },
+          // Optional
+          onError: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          }
+        });
+      };
+    </script>
   <!-- Template Main JS File -->
   <script src="<?php echo base_url('asset/js/main.js'); ?>"></script>
 

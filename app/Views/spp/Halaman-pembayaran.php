@@ -85,7 +85,7 @@
                   <td><?= $row['status_pembayaran']; ?></td>
                   <td>
                     <?php if (strtolower($row['status_pembayaran']) == 'belum lunas'): ?>
-                      <button id="pay-button-<?= $row['nis']; ?>" class="btn btn-danger" onclick="pay(<?= $row['nis']; ?>)">Bayar SPP</button>
+                      <button id="pay-button" class="btn btn-danger">Bayar SPP</button>
                     <?php else: ?>
                       <button class="btn btn-success" disabled>Lunas</button>
                     <?php endif; ?>
