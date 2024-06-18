@@ -34,7 +34,8 @@
       <div class="lds-pos"></div>
     </div>
   </div>
-  <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+  <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+    data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
     <?php echo view("pages/header") ?>
     <?php echo view("pages/aside"); ?>
     <div class="page-wrapper">
@@ -44,7 +45,8 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb mb-0 d-flex align-items-center">
                 <li class="breadcrumb-item">
-                  <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
+                  <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i
+                      class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                   Data Penggajian
@@ -88,52 +90,56 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($pengajian as $key => $row) { ?>
-    <tr>
-        <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
-        <td scope="col" class="text-center"><?php echo $row['nama']; ?></td>
-        <td scope="col" class="text-center"><?php echo $row['npk']; ?></td>
-        <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
-        <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
-        <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
-        <td scope="col" class="text-center">Rp. <?= $row['gaji'] ?>,000</td>
-        <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
-        <td scope="col" class="text-center"><?php echo $row['keterangan']; ?></td>
-        <td scope="col" class="text-center">
-              <div class="btn-group">
-              <div class="form-group" style="margin-left: 2px;"></div> <!-- Menambahkan 5 spasi -->
-                <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary" style="margin-left: 2px;">
-                        Edit
-                    </a>
-                      <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>" class="btn btn-sm btn-success">
-                          Hapus
-                      </a>
+                      <?php foreach ($pengajian as $key => $row) { ?>
+                        <tr>
+                          <td scope="col" class="text-center"><?php echo $key + 1; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['nama']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['npk']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['bulan']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['tahun']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['tanggal']; ?></td>
+                          <td scope="col" class="text-center">Rp. <?= $row['gaji'] ?>,000</td>
+                          <td scope="col" class="text-center"><?php echo $row['status']; ?></td>
+                          <td scope="col" class="text-center"><?php echo $row['keterangan']; ?></td>
+                          <td scope="col" class="text-center">
+                            <div class="btn-group">
+                              <div class="form-group" style="margin-left: 2px;"></div> <!-- Menambahkan 5 spasi -->
+                              <a href="<?php echo base_url('pengajian/edit/' . $row['id']); ?>"
+                                class="btn btn-sm btn-secondary" style="margin-left: 2px;">
+                                Edit
+                              </a>
+                              <a href="<?php echo base_url('pengajian/delete/' . $row['id']); ?>"
+                                class="btn btn-sm btn-success">
+                                Hapus
+                              </a>
+                            </div>
+                            <div class="form-group" style="margin-left: 5px;"></div> <!-- Menambahkan 5 spasi -->
+                            <a href="<?php echo base_url('pengajian/pdf/' . $row['id']); ?>"
+                              class="btn btn-sm btn-danger">
+                              <i class="mdi mdi-file-pdf-box"></i> Cetak Slip
+                            </a>
                   </div>
-                <div class="form-group" style="margin-left: 5px;"></div> <!-- Menambahkan 5 spasi -->
-                    <a href="<?php echo base_url('pengajian/pdf/' . $row['id']); ?>" class="btn btn-sm btn-danger">
-                        <i class="mdi mdi-file-pdf-box"></i> Cetak Slip
-                    </a>
                 </div>
-            </div>
-        </td>
-    </tr>
-<?php } ?>
+                </td>
+                </tr>
+              <?php } ?>
 
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <?php echo view("pages/script.php"); ?>
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
       $('#dataTable').DataTable();
     });
   </script>

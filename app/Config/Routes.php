@@ -22,6 +22,7 @@ $routes->get('spp/delete/(:alphanum)', 'SppController::delete/$1');
 $routes->post('spp/searchByNamaSiswa', 'SppController::searchSppByNamaSiswa');
 $routes->get('spp/pdf/(:num)', 'PengajianController::pdf/$1');
 $routes->get('spp/xls', 'PengajianController::xls');
+$routes->get('spp/halaman-pembayaran','Home::halamanPembayaran/$1');
 
 $routes->get('spp/createMidtransTransaction/(:segment)', 'SppController::createMidtransTransaction/$1');
 $routes->post('midtrans/notification', 'MidtransController::notification');

@@ -58,66 +58,69 @@
         </ol>
         <h2>Informasi SPP</h2>
         <?php if (isset($spp) && !empty($spp)): ?>
-          <p>Nama: <?= $spp[0]['nama']; ?></p>
-          <p>NIS: <?= $spp[0]['nis']; ?></p>
-          <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#sppModal">
-            Lihat Informasi SPP
-          </button>
-        <?php else: ?>
-          <p><?= isset($error) ? $error : 'Data SPP tidak ditemukan.'; ?></p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>NIS</th>
+                <th>Kelas</th>
+                <th>Tahun Ajaran</th>
+                <th>Bulan</th>
+                <th>Besar Iuran</th>
+                <th>Tanggal Jatuh Tempo</th>
+                <th>Status Pembayaran</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($spp as $row): ?>
+                <tr>
+                  <td><?= $row['nama']; ?></td>
+                  <td><?= $row['nis']; ?></td>
+                  <td><?= $row['kelas']; ?></td>
+                  <td><?= $row['tahun_ajaran']; ?></td>
+                  <td><?= $row['bulan_pembayaran']; ?></td>
+                  <td>Rp. <?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></td>
+                  <td><?= $row['tanggal_pembayaran']; ?></td>
+                  <td><?= $row['status_pembayaran']; ?></td>
+                  <td>
+                    <?php if (strtolower($row['status_pembayaran']) == 'belum lunas'): ?>
+                      <button id="pay-button-<?= $row['nis']; ?>" class="btn btn-danger" onclick="pay(<?= $row['nis']; ?>)">Bayar SPP</button>
+                    <?php else: ?>
+                      <button class="btn btn-success" disabled>Lunas</button>
+                    <?php endif; ?>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
         <?php endif; ?>
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Modal ======= -->
-    <div class="modal fade" id="sppModal" tabindex="-1" aria-labelledby="sppModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="sppModalLabel">Informasi Status Pembayaran SPP</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <?php if (isset($spp) && !empty($spp)): ?>
-              <?php foreach ($spp as $row): ?>
-                <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <p class="card-title"><strong>Nama:</strong> <?= $row['nama']; ?></p>
-                      <p class="card-text"><strong>Kelas:</strong> <?= $row['kelas']; ?></p>
-                      <p class="card-text"><strong>Tahun Ajaran:</strong> <?= $row['tahun_ajaran']; ?></p>
-                      <p class="card-text"><strong>Bulan Pembayaran:</strong> <?= $row['bulan_pembayaran']; ?></p>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="card-text"><strong>Nominal : </strong>Rp. <?= number_format($row['nominal_pembayaran'], 0, ',', '.'); ?></p>
-                      <p class="card-text"><strong>Tanggal Bayar:   </strong> <?= $row['tanggal_pembayaran']; ?></p>
-                      <p class="card-text"><strong>Metode Bayar:    </strong> <?= $row['metode_pembayaran']; ?></p>
-                      <p class="card-text"><strong>Catatan:</strong> <?= $row['catatan']; ?></p>
-                      <p class="card-text"><strong>Status Pembayaran:</strong> <?= $row['status_pembayaran']; ?></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <?php endforeach; ?>
-            <?php else: ?>
-              <p>Data SPP tidak ditemukan.</p>
-            <?php endif; ?>
-          </div>
-          <div class="modal-footer">
-            <?php if (isset($spp) && !empty($spp) && strtolower($spp[0]['status_pembayaran']) == 'belum lunas'): ?>
-              <a href="<?= base_url('spp/createMidtransTransaction/' . $spp[0]['nis']); ?>" class="btn btn-danger">Silahkan Bayar Pembayaran</a>
-            <?php elseif (isset($spp) && !empty($spp) && strtolower($spp[0]['status_pembayaran']) == 'lunas'): ?>
-              <button class="btn btn-success">Pembayaran Sudah Lunas</button>
-            <?php endif; ?>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div><!-- End Modal -->
-
   </main><!-- End #main -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-11U7w6NIwYfR1H2g"></script>
+  <script type="text/javascript">
+      document.getElementById('pay-button').onclick = function(){
+        // SnapToken acquired from previous step
+        snap.pay('<?=$snapToken?>', {
+          // Optional
+          onSuccess: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          },
+          // Optional
+          onPending: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          },
+          // Optional
+          onError: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          }
+        });
+      };
+    </script>
 
   <!-- Vendor JS Files -->
   <script src="<?php echo base_url('asset/vendor/purecounter/purecounter_vanilla.js'); ?>"></script>

@@ -22,14 +22,6 @@ class SppController extends BaseController
         $this->spp = new SppModel();
         $this->kelas = new KelasModel();
         $this->siswa = new SiswaModel();
-		// Inisialisasi konfigurasi Midtrans
-		$midtransConfig = new \Config\Midtrans();
-
-		// Set konfigurasi Midtrans
-		\Midtrans\Config::$serverKey = $midtransConfig::$serverKey;
-		\Midtrans\Config::$isProduction = $midtransConfig::$isProduction;
-		\Midtrans\Config::$isSanitized = $midtransConfig::$isSanitized;
-		\Midtrans\Config::$is3ds = $midtransConfig::$is3ds;
     }
 
     public function index(): string
@@ -108,7 +100,7 @@ class SppController extends BaseController
 	
 		if ($spp) {
 			$data['spp'] = $spp;
-			return view('spp/informasi-pembayaran', $data);
+			return view('spp/halaman-pembayaran', $data);
 		} else {
 			$data['error'] = 'Data pembayaran SPP untuk siswa dengan nama "' . $namaSiswa . '" tidak ditemukan.';
 			return redirect()->to(base_url('/bayar-spp'))->with('error', $data['error']);
@@ -166,6 +158,57 @@ class SppController extends BaseController
             return redirect()->to(base_url('spp'));
         }
     }
+
+	public function halamanPembayaran($nis)
+	{
+		// Set your Merchant Server Key
+		\Midtrans\Config::$serverKey = 'SB-Mid-server-30dKRBZjEbfnaSnrQ7vD8xaY';
+		// Set to Development/Sandbox Environment (default). Set to false for Production Environment.
+		\Midtrans\Config::$isProduction = false;
+		// Set sanitization on (default)
+		\Midtrans\Config::$isSanitized = true;
+		// Set 3DS transaction for credit card to true
+		\Midtrans\Config::$is3ds = true;
+	
+		// Fetch the SPP data
+		$spp = $this->spp
+			->select('spp.*, siswa.nama') // Select SPP fields and student name
+			->join('siswa', 'siswa.nis = spp.nis') // Join with siswa table on nis
+			->where('spp.nis', $nis)
+			->first();
+	
+		if (!$spp) {
+			// Handle case when SPP data is not found
+			return redirect()->back()->with('error', 'Data SPP tidak ditemukan');
+		}
+	
+		// Create transaction parameters
+		$transaction = array(
+			'transaction_details' => array(
+				'order_id' => rand(),
+				'gross_amount' => $spp['nominal_pembayaran'],
+			),
+			'customer_details' => array(
+				'first_name' => $spp['nama'],
+				'last_name' => '',
+				'email' => 'customer@example.com', // Replace with actual customer email if available
+				'phone' => '08123456789' // Replace with actual customer phone number if available
+			)
+		);
+	
+		// Generate Snap Token
+		$snapToken = \Midtrans\Snap::getSnapToken($transaction);
+	
+		// Prepare data to be sent to view
+		$data = [
+			'snapToken' => $snapToken,
+			'spp' => $spp
+		];
+	
+		return view('spp/halaman-pembayaran', $data);
+	}
+	
+    
 
 	public function pdf($id){
 		// Proteksi halaman
@@ -352,47 +395,42 @@ class SppController extends BaseController
 
 	public function createMidtransTransaction($nis)
 	{
+		// Set your Merchant Server Key
+		\Midtrans\Config::$serverKey = 'SB-Mid-server-30dKRBZjEbfnaSnrQ7vD8xaY';
+		// Set to Development/Sandbox Environment (default). Set to false for Production Environment.
+		\Midtrans\Config::$isProduction = false;
+		// Set sanitization on (default)
+		\Midtrans\Config::$isSanitized = true;
+		// Set 3DS transaction for credit card to true
+		\Midtrans\Config::$is3ds = true;
+	
 		$spp = $this->spp
-			->select('spp.*, siswa.nama') // Select SPP fields and student name
+			->select('spp.*, siswa.nama, siswa.kelas') // Select SPP fields, student name, and class
 			->join('siswa', 'siswa.nis = spp.nis') // Join with siswa table on nis
 			->where('spp.nis', $nis)
 			->first();
 	
-		// Create transaction parameters
-		$transactionDetails = [
-			'order_id' => 'order-' . uniqid(),
-			'gross_amount' => $spp['nominal_pembayaran'],
-		];
-	
-		$itemDetails = [
-			[
-				'id' => 'spp-' . $spp['id'],
-				'price' => $spp['nominal_pembayaran'],
-				'quantity' => 1,
-				'name' => 'Pembayaran SPP ' . $spp['nama'],
-			],
-		];
-	
-		$customerDetails = [
-			'first_name' => $spp['nama'],
-			'email' => 'email@example.com',
-			'phone' => '081234567890',
-		];
-	
-		$transaction = [
-			'transaction_details' => $transactionDetails,
-			'item_details' => $itemDetails,
-			'customer_details' => $customerDetails,
-		];
-	
-		try {
-			$snapToken = Snap::getSnapToken($transaction);
-			// Store snapToken in session
-			session()->setFlashdata('snapToken', $snapToken);
-			return redirect()->to(base_url('/halaman-pembayaran'));
-		} catch (Exception $e) {
-			return redirect()->back()->with('error', $e->getMessage());
+		if (!$spp) {
+			$error = 'Data pembayaran SPP untuk siswa dengan NIS "' . $nis . '" tidak ditemukan.';
+			return redirect()->to(base_url('/bayar-spp'))->with('error', $error);
 		}
-	}	
+	
+		// Create transaction parameters
+		$transaction = array(
+			'transaction_details' => array(
+				'order_id' => rand(),
+				'gross_amount' => $spp['nominal_pembayaran'],
+			)
+		);
+	
+		$snapToken = \Midtrans\Snap::getSnapToken($transaction);
+	
+		// Redirect back to pembayaran page with snapToken and nis
+		return redirect()->to(base_url('/bayar-spp'))->with([
+			'snapToken' => $snapToken,
+			'nis' => $nis
+		]);
+	}
+	
 	
 }

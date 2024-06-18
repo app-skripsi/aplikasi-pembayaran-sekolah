@@ -60,6 +60,7 @@
         <?php if (isset($spp) && !empty($spp)): ?>
           <p>Nama: <?= $spp[0]['nama']; ?></p>
           <p>NIS: <?= $spp[0]['nis']; ?></p>
+          <a href="<?php echo base_url('/halaman-pembayaran'); ?>">Lihat Informasi Spp</a>
           <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#sppModal">
             Lihat Informasi SPP
           </button>
