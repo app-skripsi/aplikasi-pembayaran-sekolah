@@ -20,28 +20,30 @@ class Home extends BaseController
         return view('bayar-spp');
     }
 
-    public function pembayaran(): string {
+    public function pembayaran(): string
+    {
         return view('informasi-data-pembayaran');
     }
 
-    public function viewDashboard(): string {
-        $pengajianModel     = new PengajianModel();
-        $sppModel           = new SppModel();
-        $guruModel          = new GuruModel();
-        $kelasModel         = new KelasModel();
-        $siswaModel         = new SiswaModel();
-        $counts = [
-            'penggajian'    => $pengajianModel->countAllPenggajian(),
-            'spp'           => $sppModel->countAllSpp(),
-            'guru'          => $guruModel->countAllGuru(),
-            'kelas'         => $kelasModel->countAllKelas(),
-            'siswa'         => $siswaModel->countAllSiswa(),
-        ];
-
+    public function viewDashboard(): string
+    {
+        $pengajianModel = new PengajianModel();
+        $sppModel       = new SppModel();
+        $guruModel      = new GuruModel();
+        $kelasModel     = new KelasModel();
+        $siswaModel     = new SiswaModel();
+        $counts         = [
+            'penggajian' => $pengajianModel->countAllPenggajian(),
+            'spp' => $sppModel->countAllSpp(),
+            'guru' => $guruModel->countAllGuru(),
+            'kelas' => $kelasModel->countAllKelas(),
+            'siswa' => $siswaModel->countAllSiswa(),
+                         ];
         return view('index', $counts);
     }
 
-    public function login(): string {
-        return view ('login');
+    public function login(): string
+    {
+        return view('login');
     }
 }

@@ -7,33 +7,33 @@ use App\Models\GuruModel;
 
 class GuruController extends BaseController
 {
-    protected $guru;
-    public function __construct()
+	protected $guru;
+	public function __construct()
 	{
 		helper(['form']);
 		$this->guru = new GuruModel();
 	}
 
-    public function index(): string
-    {
-        $guru['guru'] = $this->guru->findAll();
+	public function index(): string
+	{
+		$guru['guru'] = $this->guru->findAll();
 		return view('guru/index', $guru);
-    }
+	}
 
 	public function create(): string
 	{
 		return view('guru/create');
 	}
 
-    public function store()
+	public function store()
 	{
-		$validation =  \Config\Services::validation();
+		$validation = \Config\Services::validation();
 		$data = array(
-			'nama'        			=> $this->request->getPost('nama'),
-			'nip'         			=> $this->request->getPost('nip'),
-			'nomor_telepon'         => $this->request->getPost('nomor_telepon'),
-			'alamat'         		=> $this->request->getPost('alamat'),
-			'email'         	    => $this->request->getPost('email'),
+			'nama' 			=> $this->request->getPost('nama'),
+			'nip' 			=> $this->request->getPost('nip'),
+			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
+			'alamat' 		=> $this->request->getPost('alamat'),
+			'email' 		=> $this->request->getPost('email'),
 		);
 
 		if ($validation->run($data, 'guru') == FALSE) {
@@ -52,22 +52,20 @@ class GuruController extends BaseController
 
 	public function edit($id)
 	{
-        $data['guru'] = $this->guru->getData($id);
+		$data['guru'] = $this->guru->getData($id);
 		return view('guru/edit', $data);
 	}
 
 	public function update()
 	{
 		$id = $this->request->getPost('id');
-
-		$validation =  \Config\Services::validation();
-
+		$validation = \Config\Services::validation();
 		$data = array(
-			'nama'        			=> $this->request->getPost('nama'),
-			'nip'         			=> $this->request->getPost('nip'),
-			'nomor_telepon'         => $this->request->getPost('nomor_telepon'),
-			'alamat'         		=> $this->request->getPost('alamat'),
-			'email'         	    => $this->request->getPost('email'),
+			'nama' => $this->request->getPost('nama'),
+			'nip' => $this->request->getPost('nip'),
+			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
+			'alamat' => $this->request->getPost('alamat'),
+			'email' => $this->request->getPost('email'),
 		);
 
 		if ($validation->run($data, 'guru') == FALSE) {

@@ -101,7 +101,7 @@
   </main><!-- End #main -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-11U7w6NIwYfR1H2g"></script>
+  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="Mid-client-McHZ7u7qqVJfup69"></script>
   <script type="text/javascript">
       document.getElementById('pay-button').onclick = function(){
         // SnapToken acquired from previous step

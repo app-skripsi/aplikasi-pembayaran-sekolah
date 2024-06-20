@@ -8,20 +8,21 @@ use App\Models\SiswaModel;
 
 class SiswaController extends BaseController
 {
-    protected $siswa;
+	protected $siswa;
 	protected $kelas;
 
-    public function __construct()
+	public function __construct()
 	{
 		helper(['form']);
 		$this->siswa = new SiswaModel();
 		$this->kelas = new KelasModel();
 	}
 
-	public function index(): string {
+	public function index(): string
+	{
 		$siswa['siswa'] = $this->siswa->select('siswa.*, kelas.kelas')
-									 ->join('kelas', 'kelas.id = siswa.kelas_id')
-									 ->findAll();
+			->join('kelas', 'kelas.id = siswa.kelas_id')
+			->findAll();
 		return view('siswa/index', $siswa);
 	}
 
@@ -29,20 +30,20 @@ class SiswaController extends BaseController
 	{
 		$kelas = $this->kelas->findAll();
 		$data = ['kelas' => $kelas];
-			return view('siswa/create', $data);
+		return view('siswa/create', $data);
 	}
 
-    public function store()
+	public function store()
 	{
-		$validation =  \Config\Services::validation();
+		$validation = \Config\Services::validation();
 		$data = array(
-			'nama'              => $this->request->getPost('nama'),
-            'nis'               => $this->request->getPost('nis'),
-			'alamat'            => $this->request->getPost('alamat'),
-			'nomor_telepon'     => $this->request->getPost('nomor_telepon'),
-			'jenis_kelamin'     => $this->request->getPost('jenis_kelamin'),
-			'tanggal_lahir'     => $this->request->getPost('tanggal_lahir'),
-            'kelas_id'          => $this->request->getPost('kelas_id'),
+			'nama' => $this->request->getPost('nama'),
+			'nis' => $this->request->getPost('nis'),
+			'alamat' => $this->request->getPost('alamat'),
+			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
+			'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+			'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+			'kelas_id' => $this->request->getPost('kelas_id'),
 		);
 
 		if ($validation->run($data, 'siswa') == FALSE) {
@@ -66,22 +67,22 @@ class SiswaController extends BaseController
 		return view('siswa/edit', $data);
 	}
 
-	
+
 
 	public function update()
 	{
 		$id = $this->request->getPost('id');
 
-		$validation =  \Config\Services::validation();
+		$validation = \Config\Services::validation();
 
 		$data = array(
-			'nama'              => $this->request->getPost('nama'),
-            'nis'               => $this->request->getPost('nis'),
-			'alamat'            => $this->request->getPost('alamat'),
-			'nomor_telepon'     => $this->request->getPost('nomor_telepon'),
-			'jenis_kelamin'     => $this->request->getPost('jenis_kelamin'),
-			'tanggal_lahir'     => $this->request->getPost('tanggal_lahir'),
-            'kelas_id'          => $this->request->getPost('kelas_id'),
+			'nama' => $this->request->getPost('nama'),
+			'nis' => $this->request->getPost('nis'),
+			'alamat' => $this->request->getPost('alamat'),
+			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
+			'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+			'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+			'kelas_id' => $this->request->getPost('kelas_id'),
 
 		);
 
@@ -101,9 +102,9 @@ class SiswaController extends BaseController
 	public function delete($id)
 	{
 		$hapus = $this->siswa->deleteData($id);
-        if ($hapus) {
-            session()->setFlashdata('warning', 'Delete Data  Berhasil');
+		if ($hapus) {
+			session()->setFlashdata('warning', 'Delete Data  Berhasil');
 			return redirect()->to(base_url('siswa'));
-		}	
+		}
 	}
 }

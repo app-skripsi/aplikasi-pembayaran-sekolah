@@ -7,29 +7,29 @@ use App\Models\KelasModel;
 
 class KelasController extends BaseController
 {
-    protected $kelas;
-    public function __construct()
+	protected $kelas;
+	public function __construct()
 	{
 		helper(['form']);
 		$this->kelas = new KelasModel();
 	}
 
-    public function index(): string
-    {
-        $kelas['kelas'] = $this->kelas->findAll();
+	public function index(): string
+	{
+		$kelas['kelas'] = $this->kelas->findAll();
 		return view('kelas/index', $kelas);
-    }
+	}
 	public function create(): string
 	{
 		return view('kelas/create');
 	}
 
-    public function store()
+	public function store()
 	{
-		$validation =  \Config\Services::validation();
+		$validation = \Config\Services::validation();
 		$data = array(
-			'kelas'        			=> $this->request->getPost('kelas'),
-			'description'         	=> $this->request->getPost('description'),
+			'kelas' => $this->request->getPost('kelas'),
+			'description' => $this->request->getPost('description'),
 		);
 
 		if ($validation->run($data, 'kelas') == FALSE) {
@@ -45,24 +45,20 @@ class KelasController extends BaseController
 		}
 	}
 
-
 	public function edit($id)
 	{
-        $data['kelas'] = $this->kelas->getData($id);
+		$data['kelas'] = $this->kelas->getData($id);
 		return view('kelas/edit', $data);
 	}
 
 	public function update()
 	{
 		$id = $this->request->getPost('id');
-
-		$validation =  \Config\Services::validation();
-
+		$validation = \Config\Services::validation();
 		$data = array(
-			'kelas'        			=> $this->request->getPost('kelas'),
-			'description'         	=> $this->request->getPost('description'),
+			'kelas' => $this->request->getPost('kelas'),
+			'description' => $this->request->getPost('description'),
 		);
-
 		if ($validation->run($data, 'kelas') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
 			session()->setFlashdata('errors', $validation->getErrors());
@@ -76,7 +72,6 @@ class KelasController extends BaseController
 				return redirect()->to(base_url('kelas'));
 			} else {
 				session()->setFlashdata('error', 'Gagal mengupdate data');
-				// Sweet Alert error
 				session()->setFlashdata('alert', 'error');
 				return redirect()->to(base_url('kelas/edit/' . $id));
 			}
