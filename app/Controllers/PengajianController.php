@@ -32,8 +32,8 @@ class PengajianController extends BaseController
 	{
 		$guru = $this->guru->findAll();
 		$data = [
-			'guru' => $guru,
-			'statusPembayaranEnum' => $this->pengajian->getStatusPembayaranEnum(),
+			'guru' 					=> $guru,
+			'statusPembayaranEnum' 	=> $this->pengajian->getStatusPembayaranEnum(),
 		];
 		return view('pengajian/create', $data);
 	}
@@ -42,22 +42,22 @@ class PengajianController extends BaseController
 		$validation = \Config\Services::validation();
 		$validation->setRules([], []);
 		$validation->setRules([
-			'guru_id' => 'required',
-			'bulan' => 'required',
-			'tahun' => 'required',
-			'tanggal' => 'required',
-			'gaji' => 'required',
-			'status' => 'required',
-			'keterangan' => 'required',
+			'guru_id' 		=> 'required',
+			'bulan' 		=> 'required',
+			'tahun' 		=> 'required',
+			'tanggal' 		=> 'required',
+			'gaji' 			=> 'required',
+			'status' 		=> 'required',
+			'keterangan' 	=> 'required',
 		]);
 		$data = array(
-			'guru_id' => $this->request->getPost('guru_id'),
-			'bulan' => $this->request->getPost('bulan'),
-			'tahun' => $this->request->getPost('tahun'),
-			'tanggal' => $this->request->getPost('tanggal'),
-			'gaji' => $this->request->getPost('gaji'),
-			'status' => $this->request->getPost('status'),
-			'keterangan' => $this->request->getPost('keterangan'),
+			'guru_id' 		=> $this->request->getPost('guru_id'),
+			'bulan' 		=> $this->request->getPost('bulan'),
+			'tahun' 		=> $this->request->getPost('tahun'),
+			'tanggal' 		=> $this->request->getPost('tanggal'),
+			'gaji' 			=> $this->request->getPost('gaji'),
+			'status' 		=> $this->request->getPost('status'),
+			'keterangan' 	=> $this->request->getPost('keterangan'),
 		);
 
 		if ($validation->run($data) == FALSE) {
@@ -90,13 +90,13 @@ class PengajianController extends BaseController
 		$validation = \Config\Services::validation();
 
 		$data = array(
-			'guru_id' => $this->request->getPost('guru_id'),
-			'bulan' => $this->request->getPost('bulan'),
-			'tahun' => $this->request->getPost('tahun'),
-			'tanggal' => $this->request->getPost('tanggal'),
-			'gaji' => $this->request->getPost('gaji'),
-			'status' => $this->request->getPost('status'),
-			'keterangan' => $this->request->getPost('keterangan'),
+			'guru_id' 		=> $this->request->getPost('guru_id'),
+			'bulan' 		=> $this->request->getPost('bulan'),
+			'tahun' 		=> $this->request->getPost('tahun'),
+			'tanggal' 		=> $this->request->getPost('tanggal'),
+			'gaji' 			=> $this->request->getPost('gaji'),
+			'status' 		=> $this->request->getPost('status'),
+			'keterangan' 	=> $this->request->getPost('keterangan'),
 		);
 
 		if ($validation->run($data, 'pengajian') == FALSE) {

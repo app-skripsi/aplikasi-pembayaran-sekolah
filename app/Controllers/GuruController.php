@@ -61,11 +61,11 @@ class GuruController extends BaseController
 		$id = $this->request->getPost('id');
 		$validation = \Config\Services::validation();
 		$data = array(
-			'nama' => $this->request->getPost('nama'),
-			'nip' => $this->request->getPost('nip'),
+			'nama' 			=> $this->request->getPost('nama'),
+			'nip' 			=> $this->request->getPost('nip'),
 			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
-			'alamat' => $this->request->getPost('alamat'),
-			'email' => $this->request->getPost('email'),
+			'alamat' 		=> $this->request->getPost('alamat'),
+			'email' 		=> $this->request->getPost('email'),
 		);
 
 		if ($validation->run($data, 'guru') == FALSE) {

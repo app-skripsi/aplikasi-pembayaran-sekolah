@@ -28,8 +28,8 @@ class KelasController extends BaseController
 	{
 		$validation = \Config\Services::validation();
 		$data = array(
-			'kelas' => $this->request->getPost('kelas'),
-			'description' => $this->request->getPost('description'),
+			'kelas' 		=> $this->request->getPost('kelas'),
+			'description' 	=> $this->request->getPost('description'),
 		);
 
 		if ($validation->run($data, 'kelas') == FALSE) {
@@ -56,8 +56,8 @@ class KelasController extends BaseController
 		$id = $this->request->getPost('id');
 		$validation = \Config\Services::validation();
 		$data = array(
-			'kelas' => $this->request->getPost('kelas'),
-			'description' => $this->request->getPost('description'),
+			'kelas' 		=> $this->request->getPost('kelas'),
+			'description' 	=> $this->request->getPost('description'),
 		);
 		if ($validation->run($data, 'kelas') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());

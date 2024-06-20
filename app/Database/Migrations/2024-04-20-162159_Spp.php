@@ -9,25 +9,25 @@ class Spp extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => [
+            'id'                    => [
                 'type'              => 'INT',
                 'constraint'        => 11,
                 'unsigned'          => true,
                 'auto_increment'    => true,
             ],
-            'kelas_id' => [
-                'type' => 'INT',
+            'kelas_id'              => [
+                'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
                 'null'              => true,
             ],
-            'siswa_id' => [
-                'type' => 'INT',
+            'siswa_id'              => [
+                'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
                 'null'              => true,
             ],
-            'nis' => [
+            'nis'                   => [
                 'type'              => 'INT',
                 'constraint'        => 100,
             ],

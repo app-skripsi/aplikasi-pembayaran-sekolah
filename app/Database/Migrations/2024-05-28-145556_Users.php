@@ -9,7 +9,7 @@ class Users extends Migration
     public function up()
 	{
 		$this->forge->addField([
-			'id'          => [
+			'id'          		 => [
 				'type'           => 'INT',
 				'constraint'     => 11,
 				'unsigned'       => TRUE,
@@ -20,17 +20,17 @@ class Users extends Migration
 				'constraint'     => '50',
 			],
 
-			'username'               => [
+			'username'           => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '50',
 			],
-			'password'               => [
+			'password'           => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '50',
 			],
 			'level'              => [
 				'type'           => 'INT',
-				'constraint'      => 11
+				'constraint'     => 11
 			]
 		]);
 		$this->forge->addKey('id', TRUE);

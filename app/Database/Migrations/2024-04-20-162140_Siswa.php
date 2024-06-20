@@ -9,40 +9,40 @@ class Siswa extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => [
+            'id'                    => [
                 'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
                 'auto_increment'    => true,
             ],
-            'nama' => [
+            'nama'                  => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 100,
             ],
-            'nis' => [
+            'nis'                   => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 20,
             ],
-            'alamat' => [
+            'alamat'                => [
                 'type'              => 'TEXT',
                 'null'              => true,
             ],
-            'nomor_telepon' => [
+            'nomor_telepon'         => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 20,
                 'null'              => true,
             ],
-            'jenis_kelamin' => [
+            'jenis_kelamin'         => [
                 'type'              => 'ENUM',
                 'constraint'        => ['Laki - Laki', 'Perempuan'],
                 'default'           => 'Laki - Laki',
             ],
-            'tanggal_lahir' => [
+            'tanggal_lahir'         => [
                 'type'              => 'DATE',
                 'null'              => true,
             ],
-            'kelas_id' => [
-                'type' => 'INT',
+            'kelas_id'              => [
+                'type'              => 'INT',
                 'constraint'        => 5,
                 'unsigned'          => true,
                 'null'              => true,
@@ -58,4 +58,5 @@ class Siswa extends Migration
     {
         $this->forge->dropTable('siswa');
     }
+
 }

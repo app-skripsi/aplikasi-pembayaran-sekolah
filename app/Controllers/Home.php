@@ -33,12 +33,12 @@ class Home extends BaseController
         $kelasModel     = new KelasModel();
         $siswaModel     = new SiswaModel();
         $counts         = [
-            'penggajian' => $pengajianModel->countAllPenggajian(),
-            'spp' => $sppModel->countAllSpp(),
-            'guru' => $guruModel->countAllGuru(),
-            'kelas' => $kelasModel->countAllKelas(),
-            'siswa' => $siswaModel->countAllSiswa(),
-                         ];
+        'penggajian'    => $pengajianModel->countAllPenggajian(),
+        'spp'           => $sppModel->countAllSpp(),
+        'guru'          => $guruModel->countAllGuru(),
+        'kelas'         => $kelasModel->countAllKelas(),
+        'siswa'         => $siswaModel->countAllSiswa(),
+        ];
         return view('index', $counts);
     }
 

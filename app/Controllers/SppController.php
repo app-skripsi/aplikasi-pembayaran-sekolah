@@ -353,13 +353,9 @@ class SppController extends BaseController
 
 	public function halamanPembayaran($nis)
 	{
-		// Set your Merchant Server Key
 		\Midtrans\Config::$serverKey = 'SB-Mid-server-30dKRBZjEbfnaSnrQ7vD8xaY';
-		// Set to Development/Sandbox Environment (default). Set to false for Production Environment.
 		\Midtrans\Config::$isProduction = false;
-		// Set sanitization on (default)
 		\Midtrans\Config::$isSanitized = true;
-		// Set 3DS transaction for credit card to true
 		\Midtrans\Config::$is3ds = true;
 
 		// Fetch the SPP data

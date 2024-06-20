@@ -9,45 +9,45 @@ class Penggajian extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id' => [
-                'type'           => 'INT',
-                'constraint'     => 5,
-                'unsigned'       => true,
-                'auto_increment' => true,
+            'id'                    => [
+                'type'              => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
+                'auto_increment'    => true,
             ],
-            'guru_id' => [
-                'type'          => 'INT',
-                'constraint'    => 5,
-                'unsigned'      => true,
+            'guru_id'               => [
+                'type'              => 'INT',
+                'constraint'        => 5,
+                'unsigned'          => true,
             ],
-            'npk' => [
+            'npk'                   => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
-            'bulan' => [
+            'bulan'                 => [
                 'type'              => 'VARCHAR',
                 'constraint'        => 255,
             ],
-            'tahun' => [
-                'type'          => 'INT',
-                'constraint'    => 4,
+            'tahun'                 => [
+                'type'              => 'INT',
+                'constraint'        => 4,
             ],
-            'tanggal' => [
-                'type'          => 'INT',
-                'constraint'    => 4,
+            'tanggal'               => [
+                'type'              => 'INT',
+                'constraint'        => 4,
             ],
-            'gaji' => [
-                'type'          => 'DECIMAL',
-                'constraint'    => '10,3',
+            'gaji'                  => [
+                'type'              => 'DECIMAL',
+                'constraint'        => '10,3',
             ],
-            'status' => [
-                'type'          => 'ENUM',
-                'constraint'    => ['Sudah Dibayar', 'Belum Dibayar', 'Lunas'],
-                'default'       => 'Belum dibayar',
+            'status'                => [
+                'type'              => 'ENUM',
+                'constraint'        => ['Sudah Dibayar', 'Belum Dibayar', 'Lunas'],
+                'default'           => 'Belum dibayar',
             ],
-            'keterangan' => [
-                'type'          => 'TEXT',
-                'null'          => true,
+            'keterangan'            => [
+                'type'              => 'TEXT',
+                'null'              => true,
             ],
         ]);
 

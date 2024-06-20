@@ -37,13 +37,13 @@ class SiswaController extends BaseController
 	{
 		$validation = \Config\Services::validation();
 		$data = array(
-			'nama' => $this->request->getPost('nama'),
-			'nis' => $this->request->getPost('nis'),
-			'alamat' => $this->request->getPost('alamat'),
+			'nama' 			=> $this->request->getPost('nama'),
+			'nis' 			=> $this->request->getPost('nis'),
+			'alamat' 		=> $this->request->getPost('alamat'),
 			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
 			'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 			'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-			'kelas_id' => $this->request->getPost('kelas_id'),
+			'kelas_id' 		=> $this->request->getPost('kelas_id'),
 		);
 
 		if ($validation->run($data, 'siswa') == FALSE) {
@@ -76,13 +76,13 @@ class SiswaController extends BaseController
 		$validation = \Config\Services::validation();
 
 		$data = array(
-			'nama' => $this->request->getPost('nama'),
-			'nis' => $this->request->getPost('nis'),
-			'alamat' => $this->request->getPost('alamat'),
+			'nama' 			=> $this->request->getPost('nama'),
+			'nis' 			=> $this->request->getPost('nis'),
+			'alamat' 		=> $this->request->getPost('alamat'),
 			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
 			'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 			'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-			'kelas_id' => $this->request->getPost('kelas_id'),
+			'kelas_id' 		=> $this->request->getPost('kelas_id'),
 
 		);
 
