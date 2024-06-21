@@ -10,6 +10,17 @@ use App\Models\SppModel;
 
 class Home extends BaseController
 {
+
+    public function error(): string {
+		return view('error');
+    }
+    public function finish(): string {
+        return view('success');
+    }
+    public function unfinish(): string {
+        return view('unfinish');
+    }
+
     public function fe(): string
     {
         return view('fe');

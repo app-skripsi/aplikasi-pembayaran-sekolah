@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 use App\Models\KelasModel;
 use App\Models\SiswaModel;
 use App\Models\SppModel;
-use Midtrans\Snap;
 use Config\Midtrans;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -14,79 +13,79 @@ use TCPDF;
 
 class SppController extends BaseController
 {
-	protected $spp, $kelas, $siswa;
+    protected $spp, $kelas, $siswa;
 
-	public function __construct()
-	{
-		helper(['form']);
-		$this->spp = new SppModel();
-		$this->kelas = new KelasModel();
-		$this->siswa = new SiswaModel();
-	}
+    public function __construct()
+    {
+        helper(['form']);
+        $this->spp = new SppModel();
+        $this->kelas = new KelasModel();
+        $this->siswa = new SiswaModel();
+    }
 
-	public function index(): string
-	{
-		$data['spp'] = $this->spp->select('spp.*, kelas.kelas, siswa.nama')
-			->join('kelas', 'kelas.id = spp.kelas_id')
-			->join('siswa', 'siswa.id = spp.siswa_id')
-			->findAll();
-		return view('spp/index', $data);
-	}
+    public function index(): string
+    {
+        $data['spp'] = $this->spp->select('spp.*, kelas.kelas, siswa.nama')
+            ->join('kelas', 'kelas.id = spp.kelas_id')
+            ->join('siswa', 'siswa.id = spp.siswa_id')
+            ->findAll();
+        return view('spp/index', $data);
+    }
 
-	public function create(): string
-	{
-		$kelas = $this->kelas->findAll();
-		$siswa = $this->siswa->findAll();
-		$data = [
-			'kelas' => $kelas,
-			'siswa' => $siswa,
-			'statusPembayaranEnum' => $this->spp->getStatusPembayaranEnum(),
-			'metodePembayaranEnum' => $this->spp->getMetodePembayaranEnum()
-		];
-		return view('spp/create', $data);
-	}
+    public function create(): string
+    {
+        $kelas = $this->kelas->findAll();
+        $siswa = $this->siswa->findAll();
+        $data = [
+            'kelas' => $kelas,
+            'siswa' => $siswa,
+            'statusPembayaranEnum' => $this->spp->getStatusPembayaranEnum(),
+            'metodePembayaranEnum' => $this->spp->getMetodePembayaranEnum()
+        ];
+        return view('spp/create', $data);
+    }
 
-	public function store()
-	{
-		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
-		if (!$dataBuktiPembayaran) {
-			session()->setFlashdata('error', 'File upload tidak ditemukan');
-			return redirect()->back()->withInput();
-		}
-		if ($dataBuktiPembayaran->isValid() && !$dataBuktiPembayaran->hasMoved()) {
-			$fileBuktiPembayaran = $dataBuktiPembayaran->getName();
-			$dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
-		} else {
-			session()->setFlashdata('error', 'File upload gagal');
-			return redirect()->back()->withInput();
-		}
+    public function store()
+    {
+        $dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
+        if (!$dataBuktiPembayaran) {
+            session()->setFlashdata('error', 'File upload tidak ditemukan');
+            return redirect()->back()->withInput();
+        }
+        if ($dataBuktiPembayaran->isValid() && !$dataBuktiPembayaran->hasMoved()) {
+            $fileBuktiPembayaran = $dataBuktiPembayaran->getName();
+            $dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
+        } else {
+            session()->setFlashdata('error', 'File upload gagal');
+            return redirect()->back()->withInput();
+        }
 
-		$validation = \Config\Services::validation();
-		$data = [
-			'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
-			'bulan_pembayaran' => $this->request->getPost('bulan_pembayaran'),
-			'nominal_pembayaran' => $this->request->getPost('nominal_pembayaran'),
-			'tanggal_pembayaran' => $this->request->getPost('tanggal_pembayaran'),
-			'status_pembayaran' => $this->request->getPost('status_pembayaran'),
-			'metode_pembayaran' => $this->request->getPost('metode_pembayaran'),
-			'catatan' => $this->request->getPost('catatan'),
-			'nis' => $this->request->getPost('nis'),
-			'siswa_id' => $this->request->getPost('siswa_id'),
-			'kelas_id' => $this->request->getPost('kelas_id'),
-			'bukti_pembayaran' => $fileBuktiPembayaran,
-		];
-		if ($validation->run($data, 'spp') == false) {
-			session()->setFlashdata('inputs', $this->request->getPost());
-			session()->setFlashdata('errors', $validation->getErrors());
-			return redirect()->to(base_url('spp/create'));
-		} else {
-			$simpan = $this->spp->insertData($data);
-			if ($simpan) {
-				session()->setFlashdata('success', 'Tambah Data Berhasil');
-				return redirect()->to(base_url('spp'));
-			}
-		}
-	}
+        $validation = \Config\Services::validation();
+        $data = [
+            'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
+            'bulan_pembayaran' => $this->request->getPost('bulan_pembayaran'),
+            'nominal_pembayaran' => $this->request->getPost('nominal_pembayaran'),
+            'tanggal_pembayaran' => $this->request->getPost('tanggal_pembayaran'),
+            'status_pembayaran' => $this->request->getPost('status_pembayaran'),
+            'metode_pembayaran' => $this->request->getPost('metode_pembayaran'),
+            'catatan' => $this->request->getPost('catatan'),
+            'nis' => $this->request->getPost('nis'),
+            'siswa_id' => $this->request->getPost('siswa_id'),
+            'kelas_id' => $this->request->getPost('kelas_id'),
+            'bukti_pembayaran' => $fileBuktiPembayaran,
+        ];
+        if ($validation->run($data, 'spp') == false) {
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+            return redirect()->to(base_url('spp/create'));
+        } else {
+            $simpan = $this->spp->insertData($data);
+            if ($simpan) {
+                session()->setFlashdata('success', 'Tambah Data Berhasil');
+                return redirect()->to(base_url('spp'));
+            }
+        }
+    }
 
 	// public function searchSppByNamaSiswa()
 	// {
@@ -98,9 +97,9 @@ class SppController extends BaseController
 	// 	\Midtrans\Config::$isSanitized = true;
 	// 	// Set 3DS transaction for credit card to true
 	// 	\Midtrans\Config::$is3ds = true;
-
+	
 	// 	$namaSiswa = $this->request->getPost('nama');
-
+	
 	// 	// Fetch the SPP data by student's name
 	// 	$spp = $this->spp
 	// 		->select('spp.*, siswa.nama, kelas.kelas')
@@ -108,16 +107,16 @@ class SppController extends BaseController
 	// 		->join('kelas', 'siswa.kelas_id = kelas.id')
 	// 		->where('siswa.nama', $namaSiswa) // Use 'where' for exact search
 	// 		->findAll();
-
+	
 	// 	if (!$spp) {
 	// 		// Handle case when SPP data is not found
 	// 		$data['error'] = 'Data pembayaran SPP untuk siswa dengan nama "' . $namaSiswa . '" tidak ditemukan.';
 	// 		return redirect()->to(base_url('/bayar-spp'))->with('error', $data['error']);
 	// 	}
-
+	
 	// 	// Assuming there's only one SPP record per student for simplicity
 	// 	$sppRecord = $spp[0];
-
+	
 	// 	// Create transaction parameters
 	// 	$transaction = array(
 	// 		'transaction_details' => array(
@@ -131,28 +130,28 @@ class SppController extends BaseController
 	// 			'phone' => '08123456789' // You might want to fetch this from your database
 	// 		)
 	// 	);
-
+	
 	// 	$data = [
 	// 		'snapToken' => \Midtrans\Snap::getSnapToken($transaction),
 	// 		'spp' => $spp
 	// 	];
-
+	
 	// 	return view('spp/halaman-pembayaran', $data);
 	// }
-
+	
 	public function searchSppByNamaSiswa()
 	{
 		// Set your Merchant Server Key
-		\Midtrans\Config::$serverKey = 'Mid-server-2Qn12txPd1Br6TPV15nXH30_';
+		\Midtrans\Config::$serverKey = 'SB-Mid-server-30dKRBZjEbfnaSnrQ7vD8xaY';
 		// Set to Development/Sandbox Environment (default). Set to false for Production Environment.
-		\Midtrans\Config::$isProduction = true;
+		\Midtrans\Config::$isProduction = false;
 		// Set sanitization on (default)
 		\Midtrans\Config::$isSanitized = true;
 		// Set 3DS transaction for credit card to true
 		\Midtrans\Config::$is3ds = true;
-
+	
 		$namaSiswa = $this->request->getPost('nama');
-
+	
 		// Fetch the SPP data by student's name
 		$spp = $this->spp
 			->select('spp.*, siswa.nama, kelas.kelas')
@@ -160,52 +159,57 @@ class SppController extends BaseController
 			->join('kelas', 'siswa.kelas_id = kelas.id')
 			->where('siswa.nama', $namaSiswa) // Use 'where' for exact search
 			->findAll();
-
+	
 		if (!$spp) {
 			// Handle case when SPP data is not found
 			$data['error'] = 'Data pembayaran SPP untuk siswa dengan nama "' . $namaSiswa . '" tidak ditemukan.';
 			return redirect()->to(base_url('/bayar-spp'))->with('error', $data['error']);
 		}
-
+	
 		// Assuming there's only one SPP record per student for simplicity
 		$sppRecord = $spp[0];
-
+	
 		// Check if nominal_pembayaran is set and valid
 		if (isset($sppRecord['nominal_pembayaran']) && !empty($sppRecord['nominal_pembayaran'])) {
 			// Create transaction parameters
 			$transaction = array(
 				'transaction_details' => array(
 					'order_id' => rand(),
-					'gross_amount' => (int) $sppRecord['nominal_pembayaran'] * 1000, // Ensure gross_amount is an integer
+					'gross_amount' => (int)$sppRecord['nominal_pembayaran'] * 1000, // Ensure gross_amount is an integer
 				),
 				'customer_details' => array(
 					'first_name' => $sppRecord['nama'],
 					'last_name' => '',
 					'email' => 'customer@example.com', // You might want to fetch this from your database
 					'phone' => '08123456789' // You might want to fetch this from your database
+				),
+				'callbacks' => array(
+					'finish' => 'http://localhost:8080/finish',  // Redirect URL after payment finished
+					'error' => 'http://localhost:8080/error',    // Redirect URL after payment error
+					'unfinish' => 'unfinish' // Redirect URL after payment unfinished
 				)
 			);
-
+	
 			$snapToken = \Midtrans\Snap::getSnapToken($transaction);
 		} else {
 			// Handle case when nominal_pembayaran is not set
 			$snapToken = null;
 		}
-
+	
 		$data = [
 			'snapToken' => $snapToken,
 			'spp' => $spp
 		];
-
+	
 		return view('spp/halaman-pembayaran', $data);
 	}
 
 	public function excel()
 	{
 		$exportXls = $this->spp->select('spp.*, siswa.nama, kelas.kelas')
-			->join('siswa', 'spp.siswa_id = siswa.id')
-			->join('kelas', 'siswa.kelas_id = kelas.id')
-			->findAll();
+		->join('siswa', 'spp.siswa_id = siswa.id')
+		->join('kelas', 'siswa.kelas_id = kelas.id')
+		->findAll();
 		$spreadsheet = new Spreadsheet();
 		$spreadsheet->setActiveSheetIndex(0)
 			->setCellValue('A1', 'Laporan Data SPP')
@@ -219,7 +223,7 @@ class SppController extends BaseController
 			->setCellValue('H3', 'Metode Pembayaran')
 			->setCellValue('I3', 'Status Pembayaran')
 			->setCellValue('J3', 'Nominal Pembayaran');
-
+	
 		// Merge cells for the title
 		$spreadsheet->getActiveSheet()->mergeCells('A1:J1');
 		$spreadsheet->getActiveSheet()->mergeCells('A2:J2');
@@ -240,7 +244,7 @@ class SppController extends BaseController
 				],
 			],
 		]);
-
+	
 		// Set column widths
 		$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(20); // Width for cell A2
 		$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(30);
@@ -252,14 +256,14 @@ class SppController extends BaseController
 		$spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(30);
 		$spreadsheet->getActiveSheet()->getColumnDimension('I')->setWidth(30);
 		$spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth(30);
-		$spreadsheet->getDefaultStyle()->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+	    $spreadsheet->getDefaultStyle()->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
 		// Center align column headers
 		$spreadsheet->getActiveSheet()->getStyle('B3:J3')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-
+	
 		$column = 4;
 		$rowNumber = 1;
-
+	
 		foreach ($exportXls as $dokumens) {
 			$spreadsheet->setActiveSheetIndex(0)
 				->setCellValue('B' . $column, $dokumens['nama'])
@@ -271,13 +275,13 @@ class SppController extends BaseController
 				->setCellValue('H' . $column, $dokumens['status_pembayaran'])
 				->setCellValue('I' . $column, $dokumens['metode_pembayaran'])
 				->setCellValue('J' . $column, 'Rp ' . $dokumens['nominal_pembayaran']);
-
+	
 			// Set auto numbering on the left side of the data
 			$spreadsheet->getActiveSheet()->setCellValue('A' . $column, $rowNumber++);
 			$spreadsheet->getActiveSheet()->getStyle('A' . $column . ':J' . $column)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 			$column++;
 		}
-
+	
 		// Set border for data cells
 		$highestColumn = $spreadsheet->getActiveSheet()->getHighestColumn();
 		$highestRow = $spreadsheet->getActiveSheet()->getHighestRow();
@@ -291,101 +295,63 @@ class SppController extends BaseController
 		]);
 		$spreadsheet->getActiveSheet()->setCellValue('A3', 'No');
 		$writer = new Xlsx($spreadsheet);
-		$filename = date('Y-m-d-His') . '-Data-SPP';
+		$filename = date('Y-m-d-His'). '-Data-SPP';
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		header('Content-Disposition: attachment;filename=' . $filename . '.xlsx');
 		header('Cache-Control: max-age=0');
 
 		$writer->save('php://output');
 	}
+	
+    public function edit($id)
+    {
+        $kelas = $this->kelas->findAll();
+        $siswa = $this->siswa->findAll();
+        $data['kelas'] = ['' => 'Pilih Kelas'] + array_column($kelas, 'kelas', 'id');
+        $data['siswa'] = ['' => 'Pilih Siswa'] + array_column($siswa, 'nama', 'id');
+        $data['spp'] = $this->spp->find($id);
+        $data['statusPembayaranEnum'] = $this->spp->getStatusPembayaranEnum();
+        $data['metodePembayaranEnum'] = $this->spp->getMetodePembayaranEnum();
+        return view('spp/edit', $data);
+    }
 
-	public function edit($id)
-	{
-		$kelas = $this->kelas->findAll();
-		$siswa = $this->siswa->findAll();
-		$data['kelas'] = ['' => 'Pilih Kelas'] + array_column($kelas, 'kelas', 'id');
-		$data['siswa'] = ['' => 'Pilih Siswa'] + array_column($siswa, 'nama', 'id');
-		$data['spp'] = $this->spp->find($id);
-		$data['statusPembayaranEnum'] = $this->spp->getStatusPembayaranEnum();
-		$data['metodePembayaranEnum'] = $this->spp->getMetodePembayaranEnum();
-		return view('spp/edit', $data);
-	}
+    public function update()
+    {
+        $id = $this->request->getPost('id');
+        $validation = \Config\Services::validation();
 
-	public function update()
-	{
-		$id = $this->request->getPost('id');
-		$validation = \Config\Services::validation();
+        $data = [
+            'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
+            'bulan_pembayaran' => $this->request->getPost('bulan_pembayaran'),
+            'nominal_pembayaran' => $this->request->getPost('nominal_pembayaran'),
+            'tanggal_pembayaran' => $this->request->getPost('tanggal_pembayaran'),
+            'status_pembayaran' => $this->request->getPost('status_pembayaran'),
+            'metode_pembayaran' => $this->request->getPost('metode_pembayaran'),
+            'catatan' => $this->request->getPost('catatan'),
+            'nis' => $this->request->getPost('nis'),
+            'siswa_id' => $this->request->getPost('siswa_id'),
+            'kelas_id' => $this->request->getPost('kelas_id'),
+        ];
+        if ($validation->run($data, 'spp') == false) {
+            session()->setFlashdata('inputs', $this->request->getPost());
+            session()->setFlashdata('errors', $validation->getErrors());
+            return redirect()->to(base_url('spp/edit/' . $id));
+        } else {
+            $ubah = $this->spp->updateData($data, $id);
+            if ($ubah) {
+                session()->setFlashdata('success', 'Update Data Berhasil');
+                session()->setFlashdata('alert', 'success');
+                return redirect()->to(base_url('spp'));
+            }
+        }
+    }
 
-		$data = [
-			'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
-			'bulan_pembayaran' => $this->request->getPost('bulan_pembayaran'),
-			'nominal_pembayaran' => $this->request->getPost('nominal_pembayaran'),
-			'tanggal_pembayaran' => $this->request->getPost('tanggal_pembayaran'),
-			'status_pembayaran' => $this->request->getPost('status_pembayaran'),
-			'metode_pembayaran' => $this->request->getPost('metode_pembayaran'),
-			'catatan' => $this->request->getPost('catatan'),
-			'nis' => $this->request->getPost('nis'),
-			'siswa_id' => $this->request->getPost('siswa_id'),
-			'kelas_id' => $this->request->getPost('kelas_id'),
-		];
-		if ($validation->run($data, 'spp') == false) {
-			session()->setFlashdata('inputs', $this->request->getPost());
-			session()->setFlashdata('errors', $validation->getErrors());
-			return redirect()->to(base_url('spp/edit/' . $id));
-		} else {
-			$ubah = $this->spp->updateData($data, $id);
-			if ($ubah) {
-				session()->setFlashdata('success', 'Update Data Berhasil');
-				session()->setFlashdata('alert', 'success');
-				return redirect()->to(base_url('spp'));
-			}
-		}
-	}
-
-	public function delete($id)
-	{
-		$hapus = $this->spp->deleteData($id);
-		if ($hapus) {
-			session()->setFlashdata('warning', 'Delete Data Berhasil');
-			return redirect()->to(base_url('spp'));
-		}
-	}
-
-	public function halamanPembayaran($nis)
-	{
-		\Midtrans\Config::$serverKey = 'SB-Mid-server-30dKRBZjEbfnaSnrQ7vD8xaY';
-		\Midtrans\Config::$isProduction = false;
-		\Midtrans\Config::$isSanitized = true;
-		\Midtrans\Config::$is3ds = true;
-
-		// Fetch the SPP data
-		$spp = $this->spp
-			->select('spp.*, siswa.nama') // Select SPP fields and student name
-			->join('siswa', 'siswa.nis = spp.nis') // Join with siswa table on nis
-			->where('spp.nis', $nis)
-			->first();
-
-		if (!$spp) {
-			// Handle case when SPP data is not found
-			return redirect()->back()->with('error', 'Data SPP tidak ditemukan');
-		}
-
-		// Create transaction parameters
-		$transaction = array(
-			'transaction_details' => array(
-				'order_id' => rand(),
-				'gross_amount' => $spp['nominal_pembayaran'],
-			),
-			'customer_details' => array(
-				'first_name' => $spp['nama'],
-				'last_name' => '',
-				'email' => 'customer@example.com',
-				'phone' => '08123456789'
-			)
-		);
-		$data = [
-			'snapToken' => \Midtrans\Snap::getSnapToken($transaction)
-		];
-		return view('spp/halaman-pembayaran', $data);
-	}
+    public function delete($id)
+    {
+        $hapus = $this->spp->deleteData($id);
+        if ($hapus) {
+            session()->setFlashdata('warning', 'Delete Data Berhasil');
+            return redirect()->to(base_url('spp'));
+        }
+    }
 }

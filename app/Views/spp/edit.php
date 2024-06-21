@@ -77,7 +77,7 @@
                     <input class="form-control form-control-lg" type="text" id="nominal_pembayaran" name="nominal_pembayaran" value="<?php echo isset($spp['nominal_pembayaran']) ? $spp['nominal_pembayaran'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="tanggal_pembayaran">Gaji</label>
+                    <label class="form-label" for="tanggal_pembayaran">Tanggal Pembayaran</label>
                     <input class="form-control form-control-lg" type="text" id="tanggal_pembayaran" name="tanggal_pembayaran" value="<?php echo isset($spp['tanggal_pembayaran']) ? $spp['tanggal_pembayaran'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">

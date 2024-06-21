@@ -14,12 +14,14 @@ class SppModel extends Model
 			return $this->table('spp')
 				->join('kelas', 'kelas.id = spp.kelas_id')
 				->join('siswa', 'siswa.id = spp.siswa_id')
+				->join('wali', 'wali.id = spp.wali_id')
 				->get()
 				->getResultArray();
 		} else {
 			return $this->table('spp')
 				->join('kelas', 'kelas.id = spp.kelas_id')
 				->join('siswa', 'siswa.id = spp.siswa_id')
+				->join('wali', 'wali.id = spp.wali_id')
 				->where('spp.id', $id)
 				->get()
 				->getRowArray();

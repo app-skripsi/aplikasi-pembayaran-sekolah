@@ -12,6 +12,9 @@ $routes->get('/index', 'Home::index');
 $routes->get('/dashboard', 'Home::viewDashboard');
 $routes->get('/login', 'Home::login');
 $routes->get('/logout','Home::logout');
+$routes->get('/error', 'Home::error');
+$routes->get('/finish', 'Home::finish');
+$routes->get('/unfinish', 'Home::unfinish');
 
 $routes->post('spp/store', 'SppController::store');
 $routes->post('spp/update/(:num)', 'SppController::update/$1');
