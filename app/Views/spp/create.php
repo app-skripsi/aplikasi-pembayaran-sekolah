@@ -1,6 +1,4 @@
 <?php echo view("pages/head"); ?>
-
-
 <body>
   <div class="preloader">
     <div class="lds-ripple">
