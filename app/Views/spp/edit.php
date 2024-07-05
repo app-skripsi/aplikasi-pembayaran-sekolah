@@ -50,7 +50,7 @@
             <?php } ?>
             <div class="card shadow">
               <div class="card-body">
-                <form action="<?= site_url('spp/update/' . $spp['id']); ?>" method="post">
+                <form action="<?= site_url('spp/update/' . $spp['id']); ?>" enctype="multipart/form-data" method="post">
                 <?php echo form_hidden('id', $spp['id']); ?>
                   <div class="form-group">
                     <?php echo form_label('Kelas', 'kelas_id'); ?>
@@ -88,6 +88,10 @@
                         <option value="<?php echo $status; ?>" <?php echo isset($spp['status_pembayaran']) && $spp['status_pembayaran'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
                       <?php endforeach; ?>
                     </select>
+                  </div><br>
+                  <div class="form-group">
+                    <label class="form-label" for="bukti_pembayaran">Bukti Pembayaran</label>
+                    <input class="form-control form-control-lg" type="file" id="bukti_pembayaran" name="bukti_pembayaran" value="<?php echo isset($spp['bukti_pembayaran']) ? $spp['bukti_pembayaran'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="metode_pembayaran">Metode Pembayaran</label>

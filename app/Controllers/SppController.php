@@ -86,58 +86,6 @@ class SppController extends BaseController
             }
         }
     }
-
-	// public function searchSppByNamaSiswa()
-	// {
-	// 	// Set your Merchant Server Key
-	// 	\Midtrans\Config::$serverKey = 'SB-Mid-server-30dKRBZjEbfnaSnrQ7vD8xaY';
-	// 	// Set to Development/Sandbox Environment (default). Set to false for Production Environment.
-	// 	\Midtrans\Config::$isProduction = false;
-	// 	// Set sanitization on (default)
-	// 	\Midtrans\Config::$isSanitized = true;
-	// 	// Set 3DS transaction for credit card to true
-	// 	\Midtrans\Config::$is3ds = true;
-	
-	// 	$namaSiswa = $this->request->getPost('nama');
-	
-	// 	// Fetch the SPP data by student's name
-	// 	$spp = $this->spp
-	// 		->select('spp.*, siswa.nama, kelas.kelas')
-	// 		->join('siswa', 'spp.siswa_id = siswa.id')
-	// 		->join('kelas', 'siswa.kelas_id = kelas.id')
-	// 		->where('siswa.nama', $namaSiswa) // Use 'where' for exact search
-	// 		->findAll();
-	
-	// 	if (!$spp) {
-	// 		// Handle case when SPP data is not found
-	// 		$data['error'] = 'Data pembayaran SPP untuk siswa dengan nama "' . $namaSiswa . '" tidak ditemukan.';
-	// 		return redirect()->to(base_url('/bayar-spp'))->with('error', $data['error']);
-	// 	}
-	
-	// 	// Assuming there's only one SPP record per student for simplicity
-	// 	$sppRecord = $spp[0];
-	
-	// 	// Create transaction parameters
-	// 	$transaction = array(
-	// 		'transaction_details' => array(
-	// 			'order_id' => rand(),
-	// 			'gross_amount' => $sppRecord['nominal_pembayaran'],
-	// 		),
-	// 		'customer_details' => array(
-	// 			'first_name' => $sppRecord['nama'],
-	// 			'last_name' => '',
-	// 			'email' => 'customer@example.com', // You might want to fetch this from your database
-	// 			'phone' => '08123456789' // You might want to fetch this from your database
-	// 		)
-	// 	);
-	
-	// 	$data = [
-	// 		'snapToken' => \Midtrans\Snap::getSnapToken($transaction),
-	// 		'spp' => $spp
-	// 	];
-	
-	// 	return view('spp/halaman-pembayaran', $data);
-	// }
 	
 	public function searchSppByNamaSiswa()
 	{
@@ -320,6 +268,18 @@ class SppController extends BaseController
         $id = $this->request->getPost('id');
         $validation = \Config\Services::validation();
 
+		$dataBuktiPembayaran = $this->request->getFile('bukti_pembayaran');
+        if (!$dataBuktiPembayaran) {
+            session()->setFlashdata('error', 'File upload tidak ditemukan');
+            return redirect()->back()->withInput();
+        }
+        if ($dataBuktiPembayaran->isValid() && !$dataBuktiPembayaran->hasMoved()) {
+            $fileBuktiPembayaran = $dataBuktiPembayaran->getName();
+            $dataBuktiPembayaran->move('uploads/bukti_pembayaran/', $fileBuktiPembayaran);
+        } else {
+            session()->setFlashdata('error', 'File upload gagal');
+            return redirect()->back()->withInput();
+        }
         $data = [
             'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
             'bulan_pembayaran' => $this->request->getPost('bulan_pembayaran'),
@@ -327,6 +287,7 @@ class SppController extends BaseController
             'tanggal_pembayaran' => $this->request->getPost('tanggal_pembayaran'),
             'status_pembayaran' => $this->request->getPost('status_pembayaran'),
             'metode_pembayaran' => $this->request->getPost('metode_pembayaran'),
+			'bukti_pembayaran' => $fileBuktiPembayaran,
             'catatan' => $this->request->getPost('catatan'),
             'nis' => $this->request->getPost('nis'),
             'siswa_id' => $this->request->getPost('siswa_id'),
@@ -354,4 +315,58 @@ class SppController extends BaseController
             return redirect()->to(base_url('spp'));
         }
     }
+
+
+	public function pdf()
+	{
+		// Proteksi halaman
+		$data = array(
+			'spp' => $this->spp->getData(),
+		);
+		$html = view('pages/spp/pdf', $data);
+
+		// Initialize TCPDF object
+		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'A4', true, 'UTF-8', false);
+		$pdf->SetCreator(PDF_CREATOR);
+		$pdf->SetAuthor('Adelia');
+		$pdf->SetTitle('Laporan Data spp Kelurahan Jatiwarna');
+		$pdf->SetSubject('Laporan Data spp');
+
+		// Calculate responsive logo width based on the page width
+		$pageWidth = $pdf->getPageWidth();
+		$logoWidth = $pageWidth * 0.15; // Adjust the multiplier as needed for your desired logo size
+
+		// Set header data with responsive logo width
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, $logoWidth, 'Laporan spp Kelurahan Jatiwarna', 'Jalan Pasar Kecapi, Jatiwarna, Pondokmelati, RT.003/RW.001, Jatiwarna, Bekasi, Kota Bks, Jawa Barat 17415', PDF_HEADER_STRING);
+
+		$pdf->SetY(50); // Adjust position as needed
+		$pdf->Line(10, $pdf->GetY(), $pdf->getPageWidth() - 10, $pdf->GetY());
+
+		// Set header and footer fonts
+		$pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+		// Set default monospaced font
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+		// Set margins
+		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+		// Set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+		$pdf->AddPage();
+
+		// Set header
+		$pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', 12));
+		$pdf->SetFont('dejavusans', '', 10);
+
+		// Write HTML content
+		$pdf->writeHTML($html, true, false, true, false, '');
+
+		// Output PDF
+		$this->response->setContentType('application/pdf');
+		$pdf->Output('Data-spp.pdf', 'I');
+	}
 }

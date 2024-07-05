@@ -102,7 +102,7 @@
                       <?php endforeach; ?>
                     </select>
                   </div><br>
-                  <!-- <div class="form-group">
+                  <div class="form-group">
                     <label class="form-label" for="metode_pembayaran">Metode Pembayaran</label>
                     <select class="form-control form-control-lg" id="metode_pembayaran" name="metode_pembayaran" required>
                       <option value="">Pilih Metode Pembayaran</option>
@@ -110,11 +110,11 @@
                         <option value="<?php echo $pembayaran; ?>" <?php echo isset($spp['metode_pembayaran']) && $spp['metode_pembayaran'] == $pembayaran ? 'selected' : ''; ?>><?php echo $pembayaran; ?></option>
                       <?php endforeach; ?>
                     </select>
-                  </div><br> -->
-                  <!-- <div class="form-group">
+                  </div><br>
+                  <div class="form-group">
                     <label class="form-label" for="bukti_pembayaran">Bukti Pembayaran</label>
                     <input class="form-control form-control-lg" type="file" id="bukti_pembayaran" name="bukti_pembayaran" placeholder="Bukti Pembayaran" />
-                  </div><br> -->
+                  </div><br>
                   <div class="form-group">
                     <label class="form-label" for="catatan">Catatan Pembayaran</label>
                     <input class="form-control form-control-lg" type="text" id="catatan" name="catatan" placeholder="Masukan Catatan Pembayaran" />

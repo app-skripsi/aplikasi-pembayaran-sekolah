@@ -226,7 +226,7 @@ class PengajianController extends BaseController
 		$pdf->Output('Slip Pengajian.pdf', 'I');
 	}
 
-	public function xls()
+	public function excel()
 	{
 		$exportXls = $this->pengajian->select('penggajian.*, guru.nama')
 			->join('guru', 'guru.id = penggajian.guru_id')

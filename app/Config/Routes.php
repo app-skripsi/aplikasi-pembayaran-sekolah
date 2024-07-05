@@ -34,6 +34,7 @@ $routes->get('pengajian/create', 'PengajianController::create');
 $routes->get('pengajian/edit/(:alphanum)', 'PengajianController::edit/$1');
 $routes->get('pengajian/delete/(:num)', 'PengajianController::delete/$1');
 $routes->get('pengajian/pdf/(:num)', 'PengajianController::pdf/$1');
+$routes->get('pengajian/xls','PengajianController::excel');
 
 $routes->post('guru/store', 'GuruController::store');
 $routes->post('guru/update/(:num)', 'GuruController::update/$1');
