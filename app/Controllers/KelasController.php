@@ -14,13 +14,21 @@ class KelasController extends BaseController
 		$this->kelas = new KelasModel();
 	}
 
-	public function index(): string
+	public function index()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$kelas['kelas'] = $this->kelas->findAll();
 		return view('kelas/index', $kelas);
 	}
-	public function create(): string
+	public function create()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		return view('kelas/create');
 	}
 
@@ -28,8 +36,8 @@ class KelasController extends BaseController
 	{
 		$validation = \Config\Services::validation();
 		$data = array(
-			'kelas' 		=> $this->request->getPost('kelas'),
-			'description' 	=> $this->request->getPost('description'),
+			'kelas' => $this->request->getPost('kelas'),
+			'description' => $this->request->getPost('description'),
 		);
 
 		if ($validation->run($data, 'kelas') == FALSE) {
@@ -47,6 +55,10 @@ class KelasController extends BaseController
 
 	public function edit($id)
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$data['kelas'] = $this->kelas->getData($id);
 		return view('kelas/edit', $data);
 	}
@@ -56,8 +68,8 @@ class KelasController extends BaseController
 		$id = $this->request->getPost('id');
 		$validation = \Config\Services::validation();
 		$data = array(
-			'kelas' 		=> $this->request->getPost('kelas'),
-			'description' 	=> $this->request->getPost('description'),
+			'kelas' => $this->request->getPost('kelas'),
+			'description' => $this->request->getPost('description'),
 		);
 		if ($validation->run($data, 'kelas') == FALSE) {
 			session()->setFlashdata('inputs', $this->request->getPost());
@@ -79,6 +91,10 @@ class KelasController extends BaseController
 	}
 	public function delete($id)
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$hapus = $this->kelas->deleteData($id);
 		if ($hapus) {
 			session()->setFlashdata('success', 'Delete Data Berhasil');

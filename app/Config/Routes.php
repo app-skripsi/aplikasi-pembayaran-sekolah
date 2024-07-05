@@ -7,6 +7,10 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->post('authentication','Home::authentication');
 $routes->get('/', 'Home::fe');
+$routes->post('authentication', 'Home::cek_login');
+$routes->get('/logout', 'Home::logout');
+
+
 $routes->get('/bayar-spp', 'Home::paymentSpp');
 $routes->get('/index', 'Home::index');
 $routes->get('/dashboard', 'Home::viewDashboard');

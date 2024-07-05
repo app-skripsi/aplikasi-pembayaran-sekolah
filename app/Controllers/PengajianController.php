@@ -21,19 +21,27 @@ class PengajianController extends BaseController
 		$this->guru = new GuruModel();
 	}
 
-	public function index(): string
+	public function index()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$data['pengajian'] = $this->pengajian->select('penggajian.*, guru.nama')
 			->join('guru', 'guru.id = penggajian.guru_id')
 			->findAll();
 		return view('pengajian/index', $data);
 	}
-	public function create(): string
+	public function create()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$guru = $this->guru->findAll();
 		$data = [
-			'guru' 					=> $guru,
-			'statusPembayaranEnum' 	=> $this->pengajian->getStatusPembayaranEnum(),
+			'guru' => $guru,
+			'statusPembayaranEnum' => $this->pengajian->getStatusPembayaranEnum(),
 		];
 		return view('pengajian/create', $data);
 	}
@@ -42,22 +50,22 @@ class PengajianController extends BaseController
 		$validation = \Config\Services::validation();
 		$validation->setRules([], []);
 		$validation->setRules([
-			'guru_id' 		=> 'required',
-			'bulan' 		=> 'required',
-			'tahun' 		=> 'required',
-			'tanggal' 		=> 'required',
-			'gaji' 			=> 'required',
-			'status' 		=> 'required',
-			'keterangan' 	=> 'required',
+			'guru_id' => 'required',
+			'bulan' => 'required',
+			'tahun' => 'required',
+			'tanggal' => 'required',
+			'gaji' => 'required',
+			'status' => 'required',
+			'keterangan' => 'required',
 		]);
 		$data = array(
-			'guru_id' 		=> $this->request->getPost('guru_id'),
-			'bulan' 		=> $this->request->getPost('bulan'),
-			'tahun' 		=> $this->request->getPost('tahun'),
-			'tanggal' 		=> $this->request->getPost('tanggal'),
-			'gaji' 			=> $this->request->getPost('gaji'),
-			'status' 		=> $this->request->getPost('status'),
-			'keterangan' 	=> $this->request->getPost('keterangan'),
+			'guru_id' => $this->request->getPost('guru_id'),
+			'bulan' => $this->request->getPost('bulan'),
+			'tahun' => $this->request->getPost('tahun'),
+			'tanggal' => $this->request->getPost('tanggal'),
+			'gaji' => $this->request->getPost('gaji'),
+			'status' => $this->request->getPost('status'),
+			'keterangan' => $this->request->getPost('keterangan'),
 		);
 
 		if ($validation->run($data) == FALSE) {
@@ -77,6 +85,10 @@ class PengajianController extends BaseController
 	}
 	public function edit($id)
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$guru = $this->guru->findAll();
 		$data['guru'] = ['' => 'Pilih Guru'] + array_column($guru, 'nama', 'id');
 		$data['pengajian'] = $this->pengajian->find($id);
@@ -85,18 +97,22 @@ class PengajianController extends BaseController
 	}
 	public function update()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$id = $this->request->getPost('id');
 
 		$validation = \Config\Services::validation();
 
 		$data = array(
-			'guru_id' 		=> $this->request->getPost('guru_id'),
-			'bulan' 		=> $this->request->getPost('bulan'),
-			'tahun' 		=> $this->request->getPost('tahun'),
-			'tanggal' 		=> $this->request->getPost('tanggal'),
-			'gaji' 			=> $this->request->getPost('gaji'),
-			'status' 		=> $this->request->getPost('status'),
-			'keterangan' 	=> $this->request->getPost('keterangan'),
+			'guru_id' => $this->request->getPost('guru_id'),
+			'bulan' => $this->request->getPost('bulan'),
+			'tahun' => $this->request->getPost('tahun'),
+			'tanggal' => $this->request->getPost('tanggal'),
+			'gaji' => $this->request->getPost('gaji'),
+			'status' => $this->request->getPost('status'),
+			'keterangan' => $this->request->getPost('keterangan'),
 		);
 
 		if ($validation->run($data, 'pengajian') == FALSE) {
@@ -120,6 +136,11 @@ class PengajianController extends BaseController
 	}
 	public function delete($id)
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
+
 		if (!is_numeric($id) || $id <= 0) {
 			log_message('error', 'Nomor urutan tidak valid');
 			return redirect()->to(base_url('pengajian'));

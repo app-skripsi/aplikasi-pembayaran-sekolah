@@ -14,14 +14,22 @@ class GuruController extends BaseController
 		$this->guru = new GuruModel();
 	}
 
-	public function index(): string
+	public function index()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$guru['guru'] = $this->guru->findAll();
 		return view('guru/index', $guru);
 	}
 
-	public function create(): string
+	public function create()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		return view('guru/create');
 	}
 
@@ -29,11 +37,11 @@ class GuruController extends BaseController
 	{
 		$validation = \Config\Services::validation();
 		$data = array(
-			'nama' 			=> $this->request->getPost('nama'),
-			'nip' 			=> $this->request->getPost('nip'),
+			'nama' => $this->request->getPost('nama'),
+			'nip' => $this->request->getPost('nip'),
 			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
-			'alamat' 		=> $this->request->getPost('alamat'),
-			'email' 		=> $this->request->getPost('email'),
+			'alamat' => $this->request->getPost('alamat'),
+			'email' => $this->request->getPost('email'),
 		);
 
 		if ($validation->run($data, 'guru') == FALSE) {
@@ -52,20 +60,28 @@ class GuruController extends BaseController
 
 	public function edit($id)
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$data['guru'] = $this->guru->getData($id);
 		return view('guru/edit', $data);
 	}
 
 	public function update()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$id = $this->request->getPost('id');
 		$validation = \Config\Services::validation();
 		$data = array(
-			'nama' 			=> $this->request->getPost('nama'),
-			'nip' 			=> $this->request->getPost('nip'),
+			'nama' => $this->request->getPost('nama'),
+			'nip' => $this->request->getPost('nip'),
 			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
-			'alamat' 		=> $this->request->getPost('alamat'),
-			'email' 		=> $this->request->getPost('email'),
+			'alamat' => $this->request->getPost('alamat'),
+			'email' => $this->request->getPost('email'),
 		);
 
 		if ($validation->run($data, 'guru') == FALSE) {
@@ -89,6 +105,10 @@ class GuruController extends BaseController
 	}
 	public function delete($id)
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$hapus = $this->guru->deleteData($id);
 		if ($hapus) {
 			session()->setFlashdata('success', 'Delete Data Berhasil');

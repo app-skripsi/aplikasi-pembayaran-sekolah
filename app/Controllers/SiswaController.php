@@ -18,8 +18,12 @@ class SiswaController extends BaseController
 		$this->kelas = new KelasModel();
 	}
 
-	public function index(): string
+	public function index()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$siswa['siswa'] = $this->siswa->select('siswa.*, kelas.kelas')
 			->join('kelas', 'kelas.id = siswa.kelas_id')
 			->findAll();
@@ -28,6 +32,10 @@ class SiswaController extends BaseController
 
 	public function create()
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$kelas = $this->kelas->findAll();
 		$data = ['kelas' => $kelas];
 		return view('siswa/create', $data);
@@ -37,13 +45,13 @@ class SiswaController extends BaseController
 	{
 		$validation = \Config\Services::validation();
 		$data = array(
-			'nama' 			=> $this->request->getPost('nama'),
-			'nis' 			=> $this->request->getPost('nis'),
-			'alamat' 		=> $this->request->getPost('alamat'),
+			'nama' => $this->request->getPost('nama'),
+			'nis' => $this->request->getPost('nis'),
+			'alamat' => $this->request->getPost('alamat'),
 			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
 			'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 			'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-			'kelas_id' 		=> $this->request->getPost('kelas_id'),
+			'kelas_id' => $this->request->getPost('kelas_id'),
 		);
 
 		if ($validation->run($data, 'siswa') == FALSE) {
@@ -61,6 +69,10 @@ class SiswaController extends BaseController
 
 	public function edit($id)
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$kelas = $this->kelas->findAll();
 		$data['kelas'] = ['' => 'Pilih Kelas'] + array_column($kelas, 'kelas', 'id');
 		$data['siswa'] = $this->siswa->find($id);
@@ -71,18 +83,19 @@ class SiswaController extends BaseController
 
 	public function update()
 	{
+
 		$id = $this->request->getPost('id');
 
 		$validation = \Config\Services::validation();
 
 		$data = array(
-			'nama' 			=> $this->request->getPost('nama'),
-			'nis' 			=> $this->request->getPost('nis'),
-			'alamat' 		=> $this->request->getPost('alamat'),
+			'nama' => $this->request->getPost('nama'),
+			'nis' => $this->request->getPost('nis'),
+			'alamat' => $this->request->getPost('alamat'),
 			'nomor_telepon' => $this->request->getPost('nomor_telepon'),
 			'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 			'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-			'kelas_id' 		=> $this->request->getPost('kelas_id'),
+			'kelas_id' => $this->request->getPost('kelas_id'),
 
 		);
 
@@ -101,6 +114,10 @@ class SiswaController extends BaseController
 	}
 	public function delete($id)
 	{
+		if (session()->get('username') == '') {
+			session()->setFlashdata('harus login', 'Silahkan Login Terlebih Dahulu');
+			return redirect()->to(base_url('login'));
+		}
 		$hapus = $this->siswa->deleteData($id);
 		if ($hapus) {
 			session()->setFlashdata('warning', 'Delete Data  Berhasil');
