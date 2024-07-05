@@ -7,8 +7,8 @@
 <html>
 
 <head>
-<link href="logo.png" rel="icon">
-<link href="logo.png" rel="apple-touch-icon">
+    <link href="logo.png" rel="icon">
+    <link href="logo.png" rel="apple-touch-icon">
     <title>Login Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -124,18 +124,27 @@
                     <hr style="color:white;">
                 </div>
                 <div class="card-body">
+                    <?php if (!empty(session()->getFlashdata('sukses'))) { ?>
+                        <div class="alert alert-success"><?php echo session()->getFlashdata('sukses'); ?></div><?php } ?>
+                    <?php if (!empty(session()->getFlashdata('haruslogin'))) { ?>
+                        <div class="alert alert-info"><?php echo session()->getFlashdata('haruslogin'); ?></div><?php } ?>
+                    <?php if (!empty(session()->getFlashdata('gagal'))) { ?>
+                        <div class="alert alert-warning"><?php echo session()->getFlashdata('gagal'); ?></div><?php } ?>
+                    <?php echo form_open('authentication'); ?>
                     <form>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="username">
+                            <input type="text" class="form-control" name="username" id="username"
+                                placeholder="username">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="password">
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="password">
                         </div>
                         <div class="row align-items-center remember">
                         </div>
@@ -143,6 +152,7 @@
                             <input type="submit" value="Login" class="btn login_btn">
                         </div>
                     </form>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>

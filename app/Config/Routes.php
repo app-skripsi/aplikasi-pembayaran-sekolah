@@ -7,7 +7,6 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->post('authentication','Home::authentication');
 $routes->get('/', 'Home::fe');
-$routes->post('authentication', 'Home::cek_login');
 $routes->get('/logout', 'Home::logout');
 
 

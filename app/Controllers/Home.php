@@ -68,7 +68,7 @@ class Home extends BaseController
     }
 
 
-    public function cek_login()
+    public function authentication()
     {
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
@@ -85,7 +85,7 @@ class Home extends BaseController
         } else {
             // jika pengecekan salah
             session()->setFlashData('gagal', 'Username atau password tidak benar');
-            return redirect()->to(base_url('/'));
+            return redirect()->to(base_url('/login'));
         }
     }
 
