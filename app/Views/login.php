@@ -9,7 +9,7 @@
 <head>
     <link href="logo.png" rel="icon">
     <link href="logo.png" rel="apple-touch-icon">
-    <title>Login Page</title>
+    <title>Login Al Mamuriyah</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
