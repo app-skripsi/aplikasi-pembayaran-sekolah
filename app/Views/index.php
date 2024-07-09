@@ -1,4 +1,5 @@
 <?php echo view("pages/head"); ?>
+
 <body>
   <div class="preloader">
     <div class="lds-ripple">
@@ -6,7 +7,8 @@
       <div class="lds-pos"></div>
     </div>
   </div>
-  <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+  <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+    data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
     <?php echo view("pages/header") ?>
     <?php echo view("pages/aside"); ?>
     <div class="page-wrapper">
@@ -53,7 +55,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                      <tr>
                         <td>
                           <div class="d-flex align-items-center">
                             <div class="">
@@ -63,10 +65,11 @@
                         </td>
                         <td><?= $siswa ?? 0 ?></td>
                         <td>
-                        <a href="<?php  echo base_url('/siswa')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
+                          <a href="<?php echo base_url('/siswa') ?>" class="btn btn-danger" target="_blank">Lihat
+                            Data</a>
                         </td>
                       </tr>
-                    <tr>
+                      <tr>
                         <td>
                           <div class="d-flex align-items-center">
                             <div class="">
@@ -76,10 +79,12 @@
                         </td>
                         <td><?= $kelas ?? 0 ?></td>
                         <td>
-                        <a href="<?php  echo base_url('/kelas')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
+                          <a href="<?php echo base_url('/kelas') ?>" class="btn btn-danger" target="_blank">Lihat
+                            Data</a>
                         </td>
                       </tr>
-                    <tr>
+                      <?php if (session()->get('level') == 1) { ?>
+                      <tr>
                         <td>
                           <div class="d-flex align-items-center">
                             <div class="">
@@ -89,7 +94,8 @@
                         </td>
                         <td><?= $guru ?? 0 ?></td>
                         <td>
-                        <a href="<?php  echo base_url('/guru')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
+                          <a href="<?php echo base_url('/guru') ?>" class="btn btn-danger" target="_blank">Lihat
+                            Data</a>
                         </td>
                       </tr>
                       <tr>
@@ -102,7 +108,7 @@
                         </td>
                         <td><?= $spp ?? 0 ?></td>
                         <td>
-                        <a href="<?php  echo base_url('/spp')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
+                          <a href="<?php echo base_url('/spp') ?>" class="btn btn-danger" target="_blank">Lihat Data</a>
                         </td>
                       </tr>
                       <tr>
@@ -115,9 +121,11 @@
                         </td>
                         <td><?= $penggajian ?? 0 ?></td>
                         <td>
-                        <a href="<?php  echo base_url('/pengajian')?>" class="btn btn-danger" target="_blank">Lihat Data</a>
+                          <a href="<?php echo base_url('/pengajian') ?>" class="btn btn-danger" target="_blank">Lihat
+                            Data</a>
                         </td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>

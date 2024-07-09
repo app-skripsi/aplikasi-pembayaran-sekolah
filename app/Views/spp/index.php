@@ -101,9 +101,9 @@
                                                     <td scope="col" class="text-center"><?php echo $row['tanggal_pembayaran']; ?></td>
                                                     <td scope="col" class="text-center"><?php echo $row['status_pembayaran']; ?></td>
                                                     <td scope="col" class="text-center"><?php echo $row['metode_pembayaran']; ?></td>
-                                                    <td>
-                                                        <a href="<?php echo base_url('uploads/bukti_pembayaran/' . $row['bukti_pembayaran']); ?>" data-fancybox="gallery" data-caption="Bukti Pembayaran" target="_blank">
-                                                            <img src="<?php echo base_url('uploads/bukti_pembayaran/' . $row['bukti_pembayaran']); ?>" alt="Gambar" style="width: 100px; height: auto;">
+                                                    <td class="text-center">
+                                                        <a href="<?php echo base_url('uploads/bukti_pembayaran/' . $row['bukti_pembayaran']); ?>"target="_blank">
+                                                        <i class="mdi mdi-eye"></i>
                                                         </a>
                                                     </td>
                                                     <td scope="col" class="text-center"><?php echo $row['catatan']; ?></td>

@@ -15,7 +15,8 @@
           <p>AL MA’MURIYAH</p>
         </span>
       </a>
-      <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a>
+      <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+          class="mdi mdi-menu"></i></a>
     </div>
     <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
       <ul class="navbar-nav float-start me-auto">
@@ -31,10 +32,18 @@
                     waves-effect waves-dark
                     pro-pic
                   " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <p>Nanda | Admin</p>
+            <p><?= session()->get('nama_user'); ?> |
+              <?php if (session()->get('level') == 1) {
+                echo 'Admin';
+              } elseif (session()->get('level') == 2) {
+                echo 'Guru';
+              } else {
+                echo 'Guest';
+              } ?></p>
           </a>
           <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="<?php echo base_url("/login"); ?>"><i class="mdi mdi-account m-r-5 m-l-5"></i> Logout</a>
+            <a class="dropdown-item" href="<?php echo base_url("/login"); ?>"><i
+                class="mdi mdi-account m-r-5 m-l-5"></i> Logout</a>
           </ul>
         </li>
       </ul>
