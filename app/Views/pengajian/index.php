@@ -79,7 +79,7 @@
                       <tr>
                         <th scope="col" class="text-center">No</th>
                         <th scope="col" class="text-center">Guru</th>
-                        <th scope="col" class="text-center">Npk</th>
+                        <th scope="col" class="text-center">NIP</th>
                         <th scope="col" class="text-center">Bulan</th>
                         <th scope="col" class="text-center">Tahun</th>
                         <th scope="col" class="text-center">Tanggal</th>

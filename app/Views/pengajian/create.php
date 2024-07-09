@@ -62,7 +62,7 @@
                   </select>
                 </div>
                   <div class="form-group">
-                    <label class="form-label" for="npk">NPK</label>
+                    <label class="form-label" for="npk">NIP</label>
                     <input class="form-control form-control-lg" type="text" id="npk" name="npk" placeholder="Masukan NPK"/>
                   </div><br>
                   <div class="form-group">

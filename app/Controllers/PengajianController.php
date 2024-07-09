@@ -224,7 +224,7 @@ class PengajianController extends BaseController
 		$html .= '<p><hr></p>';
 		$html .= '<p><strong>Guru:</strong> ' . $pengajian['nama'] . '</p>';
 		$html .= '<p><hr></p>';
-		$html .= '<p><strong>NPK:</strong>' . $pengajian['npk'] . '</p>';
+		$html .= '<p><strong>NIP:</strong>' . $pengajian['npk'] . '</p>';
 		$html .= '<p><hr></p>';
 		$html .= '<p><strong>Gaji Bulan:</strong> ' . $pengajian['bulan'] . '</p>';
 		$html .= '<p><hr></p>';

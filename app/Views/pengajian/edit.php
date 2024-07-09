@@ -56,7 +56,7 @@
                     <?php echo form_dropdown('guru_id', $guru, $pengajian['guru_id'], ['class' => 'form-control']); ?>
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="npk">NPK</label>
+                    <label class="form-label" for="npk">NIP</label>
                     <input class="form-control form-control-lg" type="text" id="npk" name="npk" value="<?php echo isset($pengajian['npk']) ? $pengajian['npk'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
