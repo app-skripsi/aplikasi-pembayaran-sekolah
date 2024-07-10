@@ -54,6 +54,7 @@ class PengajianController extends BaseController
 			'bulan' => 'required',
 			'tahun' => 'required',
 			'tanggal' => 'required',
+			'npk'	=> 'required',
 			'gaji' => 'required',
 			'status' => 'required',
 			'keterangan' => 'required',
@@ -65,6 +66,7 @@ class PengajianController extends BaseController
 			'tanggal' => $this->request->getPost('tanggal'),
 			'gaji' => $this->request->getPost('gaji'),
 			'status' => $this->request->getPost('status'),
+			'npk'		=> $this->request->getPost('npk'),
 			'keterangan' => $this->request->getPost('keterangan'),
 		);
 
@@ -112,6 +114,7 @@ class PengajianController extends BaseController
 			'tanggal' => $this->request->getPost('tanggal'),
 			'gaji' => $this->request->getPost('gaji'),
 			'status' => $this->request->getPost('status'),
+			'npk'		=> $this->request->getPost('npk'),
 			'keterangan' => $this->request->getPost('keterangan'),
 		);
 

@@ -73,7 +73,8 @@
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="gaji">Gaji</label>
-                    <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" value="<?php echo isset($pengajian['gaji']) ? number_format($pengajian['gaji'], 3, ',', '.') : ''; ?>" />
+                    <input class="form-control form-control-lg" type="text" id="gaji" name="gaji" value="<?php echo isset($pengajian['gaji']) ? $pengajian['gaji'] : ''; ?>" />
+
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="status">Status Pembayaran</label>

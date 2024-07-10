@@ -78,7 +78,7 @@
                               <a href="<?php echo base_url('kelas/edit/' . $row['id']); ?>" class="btn btn-sm btn-secondary">
                                 edit
                               </a>
-                              <a href="<?php echo base_url('kelas/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger delete-btn">
+                              <a href="<?php echo base_url('kelas/delete/' . $row['id']); ?>" class="btn btn-sm btn-danger">
                                 hapus
                               </a>
                             </div>
