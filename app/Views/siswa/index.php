@@ -75,7 +75,7 @@
                         <th scope="col"  class="text-center">NIS</th>
                         <th scope="col"  class="text-center">Kelas</th>
                         <th scope="col"  class="text-center">Alamat</th>
-                        <th scope="col"  class="text-center">No Telephone</th>
+                        <th scope="col"  class="text-center">Nomor Telephone</th>
                         <th scope="col"  class="text-center">Jenis Kelamin</th>
                         <th scope="col"  class="text-center">Tanggal Lahir</th>
                         <th scope="col"  class="text-center">Action</th>

@@ -65,7 +65,7 @@
                         <th scope="col" class="text-center">No</th>
                         <th scope="col" class="text-center">Nama</th>
                         <th scope="col" class="text-center">NIP</th>
-                        <th scope="col" class="text-center">No Telephone</th>
+                        <th scope="col" class="text-center">Nomor Telephone</th>
                         <th scope="col" class="text-center">Alamat</th>
                         <th scope="col" class="text-center">Email</th>
                         <th scope="col" class="text-center">Action</th>

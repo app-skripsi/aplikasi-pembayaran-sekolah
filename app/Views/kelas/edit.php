@@ -21,7 +21,7 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data Kelas
+                <a href="<?php echo base_url('/kelas'); ?>">Data Kelas</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                    Edit Kelas

@@ -61,7 +61,7 @@
                     <?php echo form_dropdown('siswa_id', $siswa, $spp['siswa_id'], ['class' => 'form-control']); ?>
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="nis">Nis</label>
+                    <label class="form-label" for="nis">NIS</label>
                     <input class="form-control form-control-lg" type="text" id="nis" name="nis" value="<?php echo isset($spp['nis']) ? $spp['nis'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">

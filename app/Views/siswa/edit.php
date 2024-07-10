@@ -64,7 +64,7 @@
                     <input class="form-control form-control-lg" type="text" id="nama" name="nama" value="<?php echo isset($siswa['nama']) ? $siswa['nama'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="nis">Nis</label>
+                    <label class="form-label" for="nis">NIS</label>
                     <input class="form-control form-control-lg" type="text" id="nis" name="nis" value="<?php echo isset($siswa['nis']) ? $siswa['nis'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
@@ -72,7 +72,7 @@
                     <input class="form-control form-control-lg" type="text" id="alamat" name="alamat" value="<?php echo isset($siswa['alamat']) ? $siswa['alamat'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="nomor_telepon">Nomer Telepon</label>
+                    <label class="form-label" for="nomor_telepon">Nomor Telepon</label>
                     <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" value="<?php echo isset($siswa['nomor_telepon']) ? $siswa['nomor_telepon'] : ''; ?>" />
                   </div><br>
                   <div class="form-group">

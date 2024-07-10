@@ -69,11 +69,11 @@
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nis">NIS</label>
-                    <input class="form-control form-control-lg" type="number" id="nis" name="nis" placeholder="Masukan Nis" />
+                    <input class="form-control form-control-lg" type="number" id="nis" name="nis" placeholder="Masukan NIS" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="bulan">Bulan</label>
-                    <input class="form-control form-control-lg" type="number" id="bulan" name="bulan" placeholder="Masukan Bulan" />
+                    <label class="form-label" for="bulan">Angsuran</label>
+                    <input class="form-control form-control-lg" type="number" id="bulan" name="bulan" placeholder="Masukan Angsuran" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="tahun_ajaran">Tahun Ajaran</label>
@@ -81,11 +81,11 @@
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bulan_pembayaran">Bulan Pembayaran</label>
-                    <input class="form-control form-control-lg" type="text" id="bulan_pembayaran" name="bulan_pembayaran" placeholder="Masukan Bulan Pembayaran" />
+                    <input class="form-control form-control-lg" type="text" id="bulan_pembayaran" name="bulan_pembayaran" placeholder="Masukan Bulan" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nominal_pembayaran">Nominal Pembayaran</label>
-                    <input class="form-control form-control-lg" type="text" id="nominal_pembayaran" name="nominal_pembayaran" placeholder="Masukan Nominal Pembayaran" />
+                    <input class="form-control form-control-lg" type="text" id="nominal_pembayaran" name="nominal_pembayaran" placeholder="Masukan Nominal" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="tanggal_pembayaran">Tanggal Pembayaran</label>
@@ -94,7 +94,7 @@
                   <div class="form-group">
                     <label class="form-label" for="status_pembayaran">Status Pembayaran</label>
                     <select class="form-control form-control-lg" id="status_pembayaran" name="status_pembayaran" required>
-                      <option value="">Pilih Status Pembayaran</option>
+                      <option value="">Pilih Status</option>
                       <?php foreach ($statusPembayaranEnum as $status) : ?>
                         <option value="<?php echo $status; ?>" <?php echo isset($spp['status_pembayaran']) && $spp['status_pembayaran'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
                       <?php endforeach; ?>
@@ -103,7 +103,7 @@
                   <div class="form-group">
                     <label class="form-label" for="metode_pembayaran">Metode Pembayaran</label>
                     <select class="form-control form-control-lg" id="metode_pembayaran" name="metode_pembayaran" required>
-                      <option value="">Pilih Metode Pembayaran</option>
+                      <option value="">Pilih Metode</option>
                       <?php foreach ($metodePembayaranEnum as $pembayaran) : ?>
                         <option value="<?php echo $pembayaran; ?>" <?php echo isset($spp['metode_pembayaran']) && $spp['metode_pembayaran'] == $pembayaran ? 'selected' : ''; ?>><?php echo $pembayaran; ?></option>
                       <?php endforeach; ?>
@@ -111,11 +111,11 @@
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bukti_pembayaran">Bukti Pembayaran</label>
-                    <input class="form-control form-control-lg" type="file" id="bukti_pembayaran" name="bukti_pembayaran" placeholder="Bukti Pembayaran" />
+                    <input class="form-control form-control-lg" type="file" id="bukti_pembayaran" name="bukti_pembayaran" placeholder="Masukan Bukti " />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="catatan">Catatan Pembayaran</label>
-                    <input class="form-control form-control-lg" type="text" id="catatan" name="catatan" placeholder="Masukan Catatan Pembayaran" />
+                    <input class="form-control form-control-lg" type="text" id="catatan" name="catatan" placeholder="Masukan Catatan " />
                   </div><br>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

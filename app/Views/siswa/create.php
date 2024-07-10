@@ -65,16 +65,16 @@
                     <input class="form-control form-control-lg" type="text" id="nama" name="nama" placeholder="Masukan Nama Siswa" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="nis">Nis</label>
-                    <input class="form-control form-control-lg" type="text" id="nis" name="nis" placeholder="Masukan Nis" />
+                    <label class="form-label" for="nis">NIS</label>
+                    <input class="form-control form-control-lg" type="text" id="nis" name="nis" placeholder="Masukan NIS" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="alamat">Alamat</label>
                     <input class="form-control form-control-lg" type="text" id="alamat" name="alamat" placeholder="Masukan Alamat" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="nomor_telepon">Nomer Telepon</label>
-                    <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" placeholder="Masukan Nomer Telephone" />
+                    <label class="form-label" for="nomor_telepon">Nomor Telepon</label>
+                    <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" placeholder="Masukan Nomor Telephone" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>

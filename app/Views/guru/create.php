@@ -21,7 +21,7 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data Guru
+                  <a href="<?php echo base_url('/guru'); ?>">Data Guru</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                    Tambah Guru
@@ -57,11 +57,11 @@
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="nip">NIP</label>
-                    <input class="form-control form-control-lg" type="text" id="nip" name="nip" placeholder="Masukan Nip" />
+                    <input class="form-control form-control-lg" type="text" id="nip" name="nip" placeholder="Masukan NIP" />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="nomor_telepon">Nomer Telephone</label>
-                    <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" placeholder="Masukan No Telephone" />
+                    <label class="form-label" for="nomor_telepon">Nomor Telephone</label>
+                    <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" placeholder="Masukan Nomor Telephone" />
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="alamat">Alamat</label>

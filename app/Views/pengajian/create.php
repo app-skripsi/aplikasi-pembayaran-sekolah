@@ -63,7 +63,7 @@
                 </div>
                   <div class="form-group">
                     <label class="form-label" for="npk">NIP</label>
-                    <input class="form-control form-control-lg" type="text" id="npk" name="npk" placeholder="Masukan NPK"/>
+                    <input class="form-control form-control-lg" type="text" id="npk" name="npk" placeholder="Masukan NIP"/>
                   </div><br>
                   <div class="form-group">
                     <label class="form-label" for="bulan">Bulan</label>
@@ -84,7 +84,7 @@
                   <div class="form-group">
                     <label class="form-label" for="status">Status Pembayaran</label>
                     <select class="form-control form-control-lg" id="status" name="status" required>
-                      <option value="">Pilih Status Pembayaran</option>
+                      <option value="">Pilih Status</option>
                       <?php foreach ($statusPembayaranEnum as $status) : ?>
                         <option value="<?php echo $status; ?>" <?php echo isset($pengajian['status']) && $pengajian['status'] == $status ? 'selected' : ''; ?>><?php echo $status; ?></option>
                       <?php endforeach; ?>

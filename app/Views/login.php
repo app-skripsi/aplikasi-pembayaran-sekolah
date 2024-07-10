@@ -117,7 +117,7 @@
                     <p>
                         <hr style="color:white;">
                     </p>
-                    <p class="text-center">Sistem Pembayaran Al MA'Muriyah</p>
+                    <p class="text-center">Sistem Pembayaran MI AL - MA'MURIYAH</p>
                     <hr style="color:white;">
                 </div>
                 <div class="card-body">
@@ -146,8 +146,11 @@
                         <div class="row align-items-center remember">
                         </div>
                         <div class="form-group text-center"> <!-- Menambahkan kelas 'text-center' -->
-                            <input type="submit" value="Login" class="btn login_btn">
+                        <a href="<?php echo base_url('/'); ?>" class="btn login_btn"> < Kembali</a>
+                        <input type="submit" value="Login" class="btn login_btn">
                         </div>
+                        <div class="form-group text-center"> <!-- Menambahkan kelas 'text-center' -->
+                        </div><br>
                     </form>
                     <?php echo form_close(); ?>
                 </div>

@@ -21,7 +21,7 @@
                   <a href="<?php echo base_url('/dashboard'); ?>" class="link"><i class="mdi mdi-home-outline fs-4"></i></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">
-                  Data guru
+                <a href="<?php echo base_url('/guru'); ?>">Data Guru</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                    Edit guru
@@ -60,7 +60,7 @@
                     <input class="form-control form-control-lg" type="text" id="nip" name="nip" value="<?php echo isset($guru['nip']) ? $guru['nip'] : ''; ?>"  />
                   </div><br>
                   <div class="form-group">
-                    <label class="form-label" for="nomor_telepon">No Telephone</label>
+                    <label class="form-label" for="nomor_telepon">Nomor Telephone</label>
                     <input class="form-control form-control-lg" type="text" id="nomor_telepon" name="nomor_telepon" value="<?php echo isset($guru['nomor_telepon']) ? $guru['nomor_telepon'] : ''; ?>"  />
                   </div><br>
                   <div class="form-group">
