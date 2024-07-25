@@ -43,15 +43,19 @@ class SppController extends BaseController
 			return redirect()->to(base_url('login'));
 		}
 		$kelas = $this->kelas->findAll();
-		$siswa = $this->siswa->findAll();
 		$data = [
 			'kelas' => $kelas,
-			'siswa' => $siswa,
 			'statusPembayaranEnum' => $this->spp->getStatusPembayaranEnum(),
 			'metodePembayaranEnum' => $this->spp->getMetodePembayaranEnum()
 		];
 		return view('spp/create', $data);
 	}
+	public function getSiswaByKelas()
+{
+    $kelasId = $this->request->getPost('kelas_id');
+    $siswa = $this->siswa->where('kelas_id', $kelasId)->findAll();
+    return $this->response->setJSON($siswa);
+}
 
 	public function store()
 	{

@@ -29,6 +29,7 @@ $routes->get('spp/delete/(:alphanum)', 'SppController::delete/$1');
 $routes->get('spp/pdf/(:num)', 'SppController::pdf/$1');
 $routes->get('spp/excel', 'SppController::excel');
 $routes->get('spp/halaman-pembayaran','Home::halamanPembayaran/$1');
+$routes->post('spp/getSiswaByKelas', 'SppController::getSiswaByKelas');
 
 $routes->post('pengajian/store', 'PengajianController::store');
 $routes->post('pengajian/update/(:num)', 'PengajianController::update/$1');
