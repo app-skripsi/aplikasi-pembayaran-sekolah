@@ -111,20 +111,6 @@
                           <a href="<?php echo base_url('/spp') ?>" class="btn btn-danger" target="_blank">Lihat Data</a>
                         </td>
                       </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="">
-                              <h4 class="m-b-0 font-16">Data Penggajian</h4>
-                            </div>
-                          </div>
-                        </td>
-                        <td><?= $penggajian ?? 0 ?></td>
-                        <td>
-                          <a href="<?php echo base_url('/pengajian') ?>" class="btn btn-danger" target="_blank">Lihat
-                            Data</a>
-                        </td>
-                      </tr>
                       <?php } ?>
                     </tbody>
                   </table>

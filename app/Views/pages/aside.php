@@ -24,9 +24,9 @@
             <li class="sidebar-item">
               <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/spp'); ?>" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">SPP</span></a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
               <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('/pengajian'); ?>" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Penggajian</span></a>
-            </li>
+            </li> -->
             <?php } ?>
 
           </ul>
