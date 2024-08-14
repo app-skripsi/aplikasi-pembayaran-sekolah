@@ -47,13 +47,11 @@ class Home extends BaseController
 
     public function viewDashboard(): string
     {
-        $pengajianModel = new PengajianModel();
         $sppModel       = new SppModel();
         $guruModel      = new GuruModel();
         $kelasModel     = new KelasModel();
         $siswaModel     = new SiswaModel();
         $counts         = [
-        'penggajian'    => $pengajianModel->countAllPenggajian(),
         'spp'           => $sppModel->countAllSpp(),
         'guru'          => $guruModel->countAllGuru(),
         'kelas'         => $kelasModel->countAllKelas(),
