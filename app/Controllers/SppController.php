@@ -353,7 +353,7 @@ class SppController extends BaseController
 		$logoWidth = $pageWidth * 0.15; // Adjust the multiplier as needed for your desired logo size
 
 		// Set header data with responsive logo width
-		$pdf->SetHeaderData(PDF_HEADER_LOGO, $logoWidth, 'Laporan SPP AL - MA`MURIYAH JAKARTA', 'Jalan Raden Saleh Raya No. 30, Cikini', PDF_HEADER_STRING);
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, $logoWidth, 'Laporan SPP AL - MA`MURIYAH JAKARTA', 'Jalan Raden Saleh Raya No. 30, Cikini');
 
 		$pdf->SetY(50); // Adjust position as needed
 		$pdf->Line(10, $pdf->GetY(), $pdf->getPageWidth() - 10, $pdf->GetY());
