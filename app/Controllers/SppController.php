@@ -339,13 +339,13 @@ class SppController extends BaseController
 		$data = array(
 			'spp' => $this->spp->getData(),
 		);
-		$html = view('pages/spp/pdf', $data);
+		$html = view('spp/pdf', $data);
 
 		// Initialize TCPDF object
 		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'A4', true, 'UTF-8', false);
 		$pdf->SetCreator(PDF_CREATOR);
-		$pdf->SetAuthor('Adelia');
-		$pdf->SetTitle('Laporan Data spp Kelurahan Jatiwarna');
+		$pdf->SetAuthor('Nanda');
+		$pdf->SetTitle('Laporan Data spp AL Mamuriyah ');
 		$pdf->SetSubject('Laporan Data spp');
 
 		// Calculate responsive logo width based on the page width
@@ -353,7 +353,7 @@ class SppController extends BaseController
 		$logoWidth = $pageWidth * 0.15; // Adjust the multiplier as needed for your desired logo size
 
 		// Set header data with responsive logo width
-		$pdf->SetHeaderData(PDF_HEADER_LOGO, $logoWidth, 'Laporan spp Kelurahan Jatiwarna', 'Jalan Pasar Kecapi, Jatiwarna, Pondokmelati, RT.003/RW.001, Jatiwarna, Bekasi, Kota Bks, Jawa Barat 17415', PDF_HEADER_STRING);
+		$pdf->SetHeaderData(PDF_HEADER_LOGO, $logoWidth, 'Laporan SPP AL - MA`MURIYAH JAKARTA', 'Jalan Raden Saleh Raya No. 30, Cikini', PDF_HEADER_STRING);
 
 		$pdf->SetY(50); // Adjust position as needed
 		$pdf->Line(10, $pdf->GetY(), $pdf->getPageWidth() - 10, $pdf->GetY());

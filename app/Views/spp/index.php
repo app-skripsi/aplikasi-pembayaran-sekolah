@@ -59,8 +59,8 @@
                     <i class="mdi mdi-plus fs-4"></i> Tambah Data
                 </a>
                 <div class="left-buttons">
-                    <a href="<?php echo base_url('/spp/excel'); ?>" class="btn btn-success btn-custom">
-                        <i class="mdi mdi-file-excel-box fs-4"></i> Print Laporan Excel
+                    <a href="<?php echo base_url('/spp/pdf'); ?>" class="btn btn-danger btn-custom">
+                        <i class="mdi mdi-file-pdf-box fs-4"></i> Print Laporan Pdf
                     </a>
                 </div>
             </div>

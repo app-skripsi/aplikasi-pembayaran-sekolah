@@ -27,18 +27,10 @@ $routes->get('spp/create', 'SppController::create');
 $routes->get('spp/edit/(:alphanum)', 'SppController::edit/$1');
 $routes->get('spp/delete/(:alphanum)', 'SppController::delete/$1');
 $routes->get('spp/pdf/(:num)', 'SppController::pdf/$1');
+$routes->get('spp/pdf', 'SppController::pdf');
 $routes->get('spp/excel', 'SppController::excel');
 $routes->get('spp/halaman-pembayaran','Home::halamanPembayaran/$1');
 $routes->post('spp/getSiswaByKelas', 'SppController::getSiswaByKelas');
-
-$routes->post('pengajian/store', 'PengajianController::store');
-$routes->post('pengajian/update/(:num)', 'PengajianController::update/$1');
-$routes->get('pengajian', 'PengajianController::index');
-$routes->get('pengajian/create', 'PengajianController::create');
-$routes->get('pengajian/edit/(:alphanum)', 'PengajianController::edit/$1');
-$routes->get('pengajian/delete/(:num)', 'PengajianController::delete/$1');
-$routes->get('pengajian/pdf/(:num)', 'PengajianController::pdf/$1');
-$routes->get('pengajian/xls','PengajianController::excel');
 
 $routes->post('guru/store', 'GuruController::store');
 $routes->post('guru/update/(:num)', 'GuruController::update/$1');
